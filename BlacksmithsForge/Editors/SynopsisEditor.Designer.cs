@@ -43,6 +43,7 @@
             this.tagsListBox = new System.Windows.Forms.ListBox();
             this.addTagButton = new System.Windows.Forms.Button();
             this.removeTagButton = new System.Windows.Forms.Button();
+            this.warningLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // nameTextBox
@@ -182,12 +183,22 @@
             this.removeTagButton.UseVisualStyleBackColor = true;
             this.removeTagButton.Click += new System.EventHandler(this.removeTagButton_Click);
             // 
+            // warningLabel
+            // 
+            this.warningLabel.AutoSize = true;
+            this.warningLabel.Location = new System.Drawing.Point(93, 544);
+            this.warningLabel.Name = "warningLabel";
+            this.warningLabel.Size = new System.Drawing.Size(246, 15);
+            this.warningLabel.TabIndex = 19;
+            this.warningLabel.Text = "The first 4 properties are updated as you type.";
+            // 
             // SynopsisEditor
             // 
             this.AcceptButton = this.okayButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(434, 575);
+            this.Controls.Add(this.warningLabel);
             this.Controls.Add(this.removeTagButton);
             this.Controls.Add(this.addTagButton);
             this.Controls.Add(this.tagsListBox);
@@ -228,5 +239,6 @@
         private ListBox tagsListBox;
         private Button addTagButton;
         private Button removeTagButton;
+        private Label warningLabel;
     }
 }
