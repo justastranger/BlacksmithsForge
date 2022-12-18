@@ -20,11 +20,31 @@ namespace BlacksmithsForge.Editors
             InitializeComponent();
 
             Synopsis = synopsis;
+
+            FillValues();
+        }
+
+        private void FillValues()
+        {
+            nameTextBox.Text = Synopsis.Name;
+            authorTextBox.Text = Synopsis.Author;
+            versionTextBox.Text = Synopsis.Version;
+            descriptionTextBox.Text = Synopsis.Description;
+            longDescriptionTextBox.Text = Synopsis.Description_Long;
+            if (Synopsis.Tags != null && Synopsis.Tags.Count > 0)
+            {
+                Synopsis.Tags.ForEach((string tag) => { tagsListBox.Items.Add(tag); });
+            }
+            if (Synopsis.Dependencies != null && Synopsis.Dependencies.Count > 0)
+            {
+                Synopsis.Dependencies.ForEach((string dependency) => { dependenciesListBox.Items.Add(dependency); });
+            }
         }
 
         private void okayButton_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
+            Close();
         }
 
         private void nameTextBox_TextChanged(object sender, EventArgs e)

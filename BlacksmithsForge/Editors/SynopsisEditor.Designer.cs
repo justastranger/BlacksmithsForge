@@ -226,6 +226,7 @@
             // 
             // SynopsisEditor
             // 
+            this.AcceptButton = this.okayButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(434, 575);
@@ -250,7 +251,7 @@
             this.Controls.Add(this.nameTextBox);
             this.Name = "SynopsisEditor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "SynopsisEditor";
+            this.Text = "Synopsis Editor";
             this.ResumeLayout(false);
             this.PerformLayout();
 
