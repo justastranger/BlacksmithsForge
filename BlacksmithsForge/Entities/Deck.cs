@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BlacksmithsForge.Entities
 {
-    internal class Deck : IEntity
+    internal class Deck : IRootEntity
     {
         public JObject EntityData { get; set; }
         public string ID
@@ -20,6 +20,7 @@ namespace BlacksmithsForge.Entities
             set => EntityData["id"] = value;
         }
         public Guid Guid { get; set; } = new();
+        public string? Filename { get; set; }
 
         public string? Label { get { return EntityData["label"]?.ToString(); } set => EntityData["label"] = value; }
         public string? Description { get { return EntityData["description"]?.ToString(); } set => EntityData["description"] = value; }
@@ -35,14 +36,6 @@ namespace BlacksmithsForge.Entities
         public Deck(JObject entityData)
         {
             EntityData = entityData;
-            if (entityData["id"] is not JToken id)
-            {
-                throw new Exception("Element without an ID encountered");
-            }
-            else
-            {
-                ID = id.ToString();
-            }
         }
     }
 }

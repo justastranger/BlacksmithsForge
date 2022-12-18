@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BlacksmithsForge.Entities
 {
-    internal class Ending : IEntity
+    internal class Ending : IRootEntity
     {
         public JObject EntityData { get; set; }
         public string ID
@@ -20,6 +20,8 @@ namespace BlacksmithsForge.Entities
             set => EntityData["id"] = value;
         }
         public Guid Guid { get; set; } = new();
+        public string? Filename { get; set; }
+
 
         public string? Label { get { return EntityData["label"]?.ToString(); } set => EntityData["label"] = value; }
         public string? Description { get { return EntityData["description"]?.ToString(); } set => EntityData["description"] = value; }
@@ -29,18 +31,9 @@ namespace BlacksmithsForge.Entities
         public string? Anim { get { return EntityData["anim"]?.ToString(); } set => EntityData["anim"] = value; }
         public List<string>? Achievements { get { return (List<string>?)(EntityData["achievements"]?.Values<string>()); } set => EntityData["achievements"] = value != null ? JArray.FromObject(value) : null; }
 
-
         public Ending(JObject entityData)
         {
             EntityData = entityData;
-            if (entityData["id"] is not JToken id)
-            {
-                throw new Exception("Ending without an ID encountered");
-            }
-            else
-            {
-                ID = id.ToString();
-            }
         }
 
 

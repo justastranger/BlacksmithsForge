@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BlacksmithsForge.Entities
 {
-    internal class Element : IEntity
+    internal class Element : IRootEntity
     {
         public JObject EntityData { get; set; }
         public string ID
@@ -21,6 +21,7 @@ namespace BlacksmithsForge.Entities
             set => EntityData["id"] = value;
         }
         public Guid Guid { get; set; } = new();
+        public string? Filename { get; set; }
 
 
         public string? Label { get { return EntityData["label"]?.ToString(); } set => EntityData["label"] = value; }
@@ -48,14 +49,6 @@ namespace BlacksmithsForge.Entities
         public Element(JObject entityData)
         {
             EntityData = entityData;
-            if (entityData["id"] is not JToken id)
-            {
-                throw new Exception("Element without an ID encountered");
-            }
-            else
-            {
-                ID = id.ToString();
-            }
         }
     }
 }
