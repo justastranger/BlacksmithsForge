@@ -12,6 +12,7 @@ namespace BlacksmithsForge.Entities
         JObject EntityData { get; set; }
         string ID { get; set; }
         Guid Guid { get; set; }
+        // string Lever { get; set; }
     }
 
     public interface IRootEntity : IEntity
