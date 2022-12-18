@@ -64,21 +64,23 @@
             // openFolderToolStripMenuItem
             // 
             this.openFolderToolStripMenuItem.Name = "openFolderToolStripMenuItem";
-            this.openFolderToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.openFolderToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
+            this.openFolderToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.openFolderToolStripMenuItem.Text = "Open Folder";
             this.openFolderToolStripMenuItem.Click += new System.EventHandler(this.openFolderToolStripMenuItem_Click);
             // 
             // editSynopsisToolStripMenuItem
             // 
             this.editSynopsisToolStripMenuItem.Name = "editSynopsisToolStripMenuItem";
-            this.editSynopsisToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.editSynopsisToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.editSynopsisToolStripMenuItem.Text = "Edit Synopsis";
             this.editSynopsisToolStripMenuItem.Click += new System.EventHandler(this.editSynopsisToolStripMenuItem_Click);
             // 
             // saveModToolStripMenuItem
             // 
             this.saveModToolStripMenuItem.Name = "saveModToolStripMenuItem";
-            this.saveModToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveModToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            this.saveModToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.saveModToolStripMenuItem.Text = "Save Mod";
             this.saveModToolStripMenuItem.Click += new System.EventHandler(this.saveModToolStripMenuItem_Click);
             // 
