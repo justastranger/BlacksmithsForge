@@ -17,9 +17,8 @@ namespace BlacksmithsForge.Mods
         public Synopsis? Synopsis;
         public string SynopsisPath;
 
-        // <type, <guid, entity>>
+        // <filename, <guid, entity>>
         public Dictionary<string, Dictionary<Guid, IEntity>> Content = new();
-        public List<string> ContentFiles = new();
 
         public Mod(string path)
         {
@@ -88,7 +87,6 @@ namespace BlacksmithsForge.Mods
             // Guard check to end early
             if (files.Count == 0) return;
 
-            ContentFiles = files;
             files.ForEach((string file) => {
                 string json = File.OpenText(file).ReadToEnd();
                 // All valid CS JSON exist as a main object with only one property
@@ -102,18 +100,20 @@ namespace BlacksmithsForge.Mods
 
                 List<JToken> array = parsedJson.Properties().First().Value.ToList();
                 // oh lawd have mercy on my soul for this accursed nested ForEach loop
-                List<IEntity> results = ParseJTokenList(array, jsonType);
+                Dictionary<Guid, IEntity> results = ParseJTokenList(array, jsonType);
+
+                Content.Add(jsonType, results);
             });
         }
 
-        private List<IEntity> ParseJTokenList(List<JToken> jTokens, string type)
+        private Dictionary<Guid, IEntity> ParseJTokenList(List<JToken> jTokens, string type)
         {
-            List<IEntity> result = new();
+            Dictionary<Guid, IEntity> result = new();
 
             jTokens.ForEach((JToken token) => {
-                JObject jo = (JObject)token;
+                IEntity parsed = EntityFactory.Parse((JObject)token, type);
 
-                result.Add(EntityFactory.Parse(jo, type));
+                result.Add(parsed.Guid, parsed);
             });
 
 
