@@ -26,6 +26,7 @@ namespace BlacksmithsForge
                 try
                 {
                     CurrentMod = new Mod(path);
+                    DisplayContent();
                 }
                 catch (FileFormatException ffe)
                 {
@@ -68,6 +69,21 @@ namespace BlacksmithsForge
             streamWriter.Write(synopsisText);
         }
 
+        private void DisplayContent()
+        {
+            if (CurrentMod == null) 
+            {
+                filesListView.Items.Clear();
+                entitiesListView.Items.Clear();
+                return;
+            }
+
+            CurrentMod.Content.Keys.ToList().ForEach((string file) => {
+                filesListView.Items.Add(file);
+
+            });
+        }
+
         private void editSynopsisToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (CurrentMod?.Synopsis != null)
@@ -75,6 +91,11 @@ namespace BlacksmithsForge
                 SynopsisEditor synopsisEditor = new(ref CurrentMod.Synopsis);
                 synopsisEditor.Show();
             }
+        }
+
+        private void filesListView_DoubleClick(object sender, EventArgs e)
+        {
+
         }
     }
 }

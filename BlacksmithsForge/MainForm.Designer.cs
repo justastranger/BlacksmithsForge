@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("Elements", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("Elements", System.Windows.Forms.HorizontalAlignment.Left);
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.fileToolStripDropDownButton = new System.Windows.Forms.ToolStripDropDownButton();
             this.openFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -41,7 +41,6 @@
             this.entitiesListView = new System.Windows.Forms.ListView();
             this.idColumnHeader = new System.Windows.Forms.ColumnHeader();
             this.labelColumnHeader = new System.Windows.Forms.ColumnHeader();
-            this.descriptionColumnHeader = new System.Windows.Forms.ColumnHeader();
             this.toolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -93,33 +92,39 @@
             // 
             // filesListView
             // 
+            this.filesListView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.filesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.filenameColumnHeader});
-            listViewGroup2.Header = "Elements";
-            listViewGroup2.Name = "elementsListViewGroup";
+            listViewGroup1.Header = "Elements";
+            listViewGroup1.Name = "elementsListViewGroup";
             this.filesListView.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup2});
+            listViewGroup1});
             this.filesListView.Location = new System.Drawing.Point(12, 28);
             this.filesListView.Name = "filesListView";
-            this.filesListView.Size = new System.Drawing.Size(205, 410);
+            this.filesListView.ShowGroups = false;
+            this.filesListView.Size = new System.Drawing.Size(366, 410);
             this.filesListView.TabIndex = 1;
             this.filesListView.UseCompatibleStateImageBehavior = false;
             this.filesListView.View = System.Windows.Forms.View.Details;
+            this.filesListView.DoubleClick += new System.EventHandler(this.filesListView_DoubleClick);
             // 
             // filenameColumnHeader
             // 
             this.filenameColumnHeader.Text = "File";
-            this.filenameColumnHeader.Width = 200;
+            this.filenameColumnHeader.Width = 400;
             // 
             // entitiesListView
             // 
+            this.entitiesListView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.entitiesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.idColumnHeader,
-            this.labelColumnHeader,
-            this.descriptionColumnHeader});
-            this.entitiesListView.Location = new System.Drawing.Point(223, 107);
+            this.labelColumnHeader});
+            this.entitiesListView.Location = new System.Drawing.Point(384, 107);
             this.entitiesListView.Name = "entitiesListView";
-            this.entitiesListView.Size = new System.Drawing.Size(565, 331);
+            this.entitiesListView.ShowGroups = false;
+            this.entitiesListView.Size = new System.Drawing.Size(404, 331);
             this.entitiesListView.TabIndex = 2;
             this.entitiesListView.UseCompatibleStateImageBehavior = false;
             this.entitiesListView.View = System.Windows.Forms.View.Details;
@@ -127,17 +132,12 @@
             // idColumnHeader
             // 
             this.idColumnHeader.Text = "Entity ID";
-            this.idColumnHeader.Width = 150;
+            this.idColumnHeader.Width = 200;
             // 
             // labelColumnHeader
             // 
             this.labelColumnHeader.Text = "Entity Label";
-            this.labelColumnHeader.Width = 150;
-            // 
-            // descriptionColumnHeader
-            // 
-            this.descriptionColumnHeader.Text = "Entity Description";
-            this.descriptionColumnHeader.Width = 250;
+            this.labelColumnHeader.Width = 200;
             // 
             // MainForm
             // 
@@ -170,6 +170,5 @@
         private ListView entitiesListView;
         private ColumnHeader idColumnHeader;
         private ColumnHeader labelColumnHeader;
-        private ColumnHeader descriptionColumnHeader;
     }
 }
