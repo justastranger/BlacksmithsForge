@@ -8,17 +8,17 @@ namespace BlacksmithsForge.Entities
 {
     internal enum EntityTypes
     {
-        ELEMENT,
-        VERB,
-        RECIPE,
-        PORTAL,
-        DECK,
-        LEGACY,
-        LEVER,
-        ENDING,
         ACHIEVEMENT,
         CULTURE,
-        SETTING
+        DECK,
+        ELEMENT,
+        ENDING,
+        LEGACY,
+        LEVER,
+        PORTAL,
+        RECIPE,
+        SETTING,
+        VERB
 
     }
 }
