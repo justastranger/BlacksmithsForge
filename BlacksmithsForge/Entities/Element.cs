@@ -34,7 +34,7 @@ namespace BlacksmithsForge.Entities
         public bool? Unique { get { return EntityData["unique"]?.ToObject<bool>(); } set => EntityData["unique"] = value; }
         public int? Lifetime { get { return EntityData["lifetime"]?.ToObject<int>(); } set => EntityData["lifetime"] = value; }
         public string? Inherits { get { return EntityData["inherits"]?.ToString(); } set => EntityData["inherits"] = value; }
-        public Dictionary<string, string>? Aspects { get { return EntityData["aspects"]?.ToObject<Dictionary<string, string>>(); } set => EntityData["aspects"] = value != null ? JObject.FromObject(value) : null; }
+        public Dictionary<string, int>? Aspects { get { return EntityData["aspects"]?.ToObject<Dictionary<string, int>>(); } set => EntityData["aspects"] = value != null ? JObject.FromObject(value) : null; }
 
 
         public Element(JObject entityData)
