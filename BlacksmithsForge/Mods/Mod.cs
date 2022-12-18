@@ -1,5 +1,7 @@
 ﻿using BlacksmithsForge.Editors;
+using BlacksmithsForge.Entities;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,15 +13,25 @@ namespace BlacksmithsForge.Mods
     public class Mod
     {
         public string? Name;
-        public string Filepath;
+        public string RootPath;
         public Synopsis? Synopsis;
         public string SynopsisPath;
 
+        public Dictionary<string, Dictionary<string, IEntity>> Content = new();
+
         public Mod(string path)
         {
-            Filepath = path;
+            RootPath = path;
             SynopsisPath = Path.Combine(path, "synopsis.json");
 
+            // initialize the mod, basically
+            LoadOrCreateSynopsis();
+            // 
+            LoadContent();
+        }
+
+        private void LoadOrCreateSynopsis()
+        {
             // check to see if path leads to a valid mod
             if (!File.Exists(SynopsisPath))
             {
@@ -56,6 +68,34 @@ namespace BlacksmithsForge.Mods
                     Name = Synopsis.Name;
                 }
             }
+        }
+
+        private void LoadContent()
+        {
+            string contentFolder = Path.Combine(RootPath, "content");
+
+            // If content folder doesn't exist, create it.
+            // This code should only be reached if a synopsis is correctly loaded or created
+            if (!Directory.Exists(contentFolder))
+            {
+                Directory.CreateDirectory(contentFolder);
+            }
+
+            // Gather the json files in the content folder
+            List<string> files = Directory.EnumerateFiles(contentFolder, "*.json").ToList();
+            // Guard check to end early
+            if (files.Count == 0) return;
+
+            files.ForEach((string file) => {
+                string json = File.OpenText(file).ReadToEnd();
+                // All valid CS JSON exist as a main object with only one property
+                // That property's value is an Array of Entities whose key is the type being loaded
+                JObject parsedJson = JObject.Parse(json);
+                string jsonType = parsedJson.Properties().First().Name;
+                // TODO decide how to handle loading
+                // Perhaps a switch/case with Entities whose constructor is just the JObject?
+                // Could use that and properties whose getters pull out of the JObject instance (with null checks)
+            });
         }
     }
 }
