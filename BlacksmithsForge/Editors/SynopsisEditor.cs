@@ -35,10 +35,6 @@ namespace BlacksmithsForge.Editors
             {
                 Synopsis.Tags.ForEach((string tag) => { tagsListBox.Items.Add(tag); });
             }
-            if (Synopsis.Dependencies != null && Synopsis.Dependencies.Count > 0)
-            {
-                Synopsis.Dependencies.ForEach((string dependency) => { dependenciesListBox.Items.Add(dependency); });
-            }
         }
 
         private void okayButton_Click(object sender, EventArgs e)
@@ -75,22 +71,6 @@ namespace BlacksmithsForge.Editors
         {
             if (String.IsNullOrEmpty(longDescriptionTextBox.Text)) Synopsis.Description_Long = null;
             else Synopsis.Description_Long = longDescriptionTextBox.Text;
-        }
-
-        private void addDependencyButton_Click(object sender, EventArgs e)
-        {
-            string tmp = "";
-            SimpleTextInput STI = new(ref tmp);
-            STI.Show();
-            if (tmp != "")
-            {
-                dependenciesListBox.Items.Add(tmp);
-            }
-        }
-
-        private void removeDependencyButton_Click(object sender, EventArgs e)
-        {
-            if (dependenciesListBox.SelectedItem != null) dependenciesListBox.Items.Remove(dependenciesListBox.SelectedItem);
         }
 
         private void addTagButton_Click(object sender, EventArgs e)

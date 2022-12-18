@@ -39,12 +39,8 @@
             this.longDescriptionLabel = new System.Windows.Forms.Label();
             this.longDescriptionTextBox = new System.Windows.Forms.TextBox();
             this.okayButton = new System.Windows.Forms.Button();
-            this.dependenciesLabel = new System.Windows.Forms.Label();
-            this.dependenciesListBox = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tagsListBox = new System.Windows.Forms.ListBox();
-            this.addDependencyButton = new System.Windows.Forms.Button();
-            this.removeDependencyButton = new System.Windows.Forms.Button();
             this.addTagButton = new System.Windows.Forms.Button();
             this.removeTagButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -148,28 +144,10 @@
             this.okayButton.UseVisualStyleBackColor = true;
             this.okayButton.Click += new System.EventHandler(this.okayButton_Click);
             // 
-            // dependenciesLabel
-            // 
-            this.dependenciesLabel.AutoSize = true;
-            this.dependenciesLabel.Location = new System.Drawing.Point(12, 362);
-            this.dependenciesLabel.Name = "dependenciesLabel";
-            this.dependenciesLabel.Size = new System.Drawing.Size(81, 15);
-            this.dependenciesLabel.TabIndex = 11;
-            this.dependenciesLabel.Text = "Dependencies";
-            // 
-            // dependenciesListBox
-            // 
-            this.dependenciesListBox.FormattingEnabled = true;
-            this.dependenciesListBox.ItemHeight = 15;
-            this.dependenciesListBox.Location = new System.Drawing.Point(12, 380);
-            this.dependenciesListBox.Name = "dependenciesListBox";
-            this.dependenciesListBox.Size = new System.Drawing.Size(217, 109);
-            this.dependenciesListBox.TabIndex = 12;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(235, 362);
+            this.label1.Location = new System.Drawing.Point(12, 362);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(30, 15);
             this.label1.TabIndex = 13;
@@ -179,34 +157,14 @@
             // 
             this.tagsListBox.FormattingEnabled = true;
             this.tagsListBox.ItemHeight = 15;
-            this.tagsListBox.Location = new System.Drawing.Point(235, 380);
+            this.tagsListBox.Location = new System.Drawing.Point(12, 380);
             this.tagsListBox.Name = "tagsListBox";
-            this.tagsListBox.Size = new System.Drawing.Size(187, 109);
+            this.tagsListBox.Size = new System.Drawing.Size(410, 79);
             this.tagsListBox.TabIndex = 14;
-            // 
-            // addDependencyButton
-            // 
-            this.addDependencyButton.Location = new System.Drawing.Point(12, 495);
-            this.addDependencyButton.Name = "addDependencyButton";
-            this.addDependencyButton.Size = new System.Drawing.Size(75, 23);
-            this.addDependencyButton.TabIndex = 15;
-            this.addDependencyButton.Text = "Add";
-            this.addDependencyButton.UseVisualStyleBackColor = true;
-            this.addDependencyButton.Click += new System.EventHandler(this.addDependencyButton_Click);
-            // 
-            // removeDependencyButton
-            // 
-            this.removeDependencyButton.Location = new System.Drawing.Point(154, 495);
-            this.removeDependencyButton.Name = "removeDependencyButton";
-            this.removeDependencyButton.Size = new System.Drawing.Size(75, 23);
-            this.removeDependencyButton.TabIndex = 16;
-            this.removeDependencyButton.Text = "Remove";
-            this.removeDependencyButton.UseVisualStyleBackColor = true;
-            this.removeDependencyButton.Click += new System.EventHandler(this.removeDependencyButton_Click);
             // 
             // addTagButton
             // 
-            this.addTagButton.Location = new System.Drawing.Point(235, 495);
+            this.addTagButton.Location = new System.Drawing.Point(12, 465);
             this.addTagButton.Name = "addTagButton";
             this.addTagButton.Size = new System.Drawing.Size(75, 23);
             this.addTagButton.TabIndex = 17;
@@ -216,7 +174,7 @@
             // 
             // removeTagButton
             // 
-            this.removeTagButton.Location = new System.Drawing.Point(347, 495);
+            this.removeTagButton.Location = new System.Drawing.Point(347, 465);
             this.removeTagButton.Name = "removeTagButton";
             this.removeTagButton.Size = new System.Drawing.Size(75, 23);
             this.removeTagButton.TabIndex = 18;
@@ -232,12 +190,8 @@
             this.ClientSize = new System.Drawing.Size(434, 575);
             this.Controls.Add(this.removeTagButton);
             this.Controls.Add(this.addTagButton);
-            this.Controls.Add(this.removeDependencyButton);
-            this.Controls.Add(this.addDependencyButton);
             this.Controls.Add(this.tagsListBox);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.dependenciesListBox);
-            this.Controls.Add(this.dependenciesLabel);
             this.Controls.Add(this.okayButton);
             this.Controls.Add(this.longDescriptionTextBox);
             this.Controls.Add(this.longDescriptionLabel);
@@ -270,12 +224,8 @@
         private Label longDescriptionLabel;
         private TextBox longDescriptionTextBox;
         private Button okayButton;
-        private Label dependenciesLabel;
-        private ListBox dependenciesListBox;
         private Label label1;
         private ListBox tagsListBox;
-        private Button addDependencyButton;
-        private Button removeDependencyButton;
         private Button addTagButton;
         private Button removeTagButton;
     }
