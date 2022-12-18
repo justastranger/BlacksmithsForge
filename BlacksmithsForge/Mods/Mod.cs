@@ -102,9 +102,9 @@ namespace BlacksmithsForge.Mods
                 List<JToken> array = parsedJson.Properties().First().Value.ToList();
                 // oh lawd have mercy on my soul for this accursed nested ForEach loop
                 Dictionary<Guid, IEntity> results = ParseJTokenList(array, jsonType);
-
-                Content.Add(file, results);
-                FileTypes.Add(file, jsonType);
+                string shortFilePath = file.Remove(0, contentFolder.Length);
+                Content.Add(shortFilePath, results);
+                FileTypes.Add(shortFilePath, jsonType);
             });
         }
 
