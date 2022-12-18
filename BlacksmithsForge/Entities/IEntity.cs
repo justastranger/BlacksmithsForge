@@ -16,6 +16,6 @@ namespace BlacksmithsForge.Entities
 
     public interface IRootEntity : IEntity
     {
-        string Filename { get; set; }
+        string? Filename { get; set; }
     }
 }
