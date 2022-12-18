@@ -30,11 +30,11 @@ namespace BlacksmithsForge.Entities
         public bool? NoArtNeeded { get { return EntityData["noartneeded"]?.ToObject<bool>(); } set => EntityData["noartneeded"] = value; }
         public string? Metafictional { get { return EntityData["metafictional"]?.ToString(); } set => EntityData["metafictional"] = value; }
         public string? ManifestationType { get { return EntityData["manifestationtype"]?.ToString(); } set => EntityData["manifestationtype"] = value; }
-        public List<string>? Achievements { get { return (List<string>?)(EntityData["achievements"]?.Values<string>()); } set => EntityData["achievements"] = JArray.FromObject(value); }
+        public List<string>? Achievements { get { return (List<string>?)(EntityData["achievements"]?.Values<string>()); } set => EntityData["achievements"] = value != null ? JArray.FromObject(value) : null; }
         public bool? Unique { get { return EntityData["unique"]?.ToObject<bool>(); } set => EntityData["unique"] = value; }
         public int? Lifetime { get { return EntityData["lifetime"]?.ToObject<int>(); } set => EntityData["lifetime"] = value; }
         public string? Inherits { get { return EntityData["inherits"]?.ToString(); } set => EntityData["inherits"] = value; }
-        public Dictionary<string, string>? Aspects { get { return EntityData["aspects"]?.ToObject<Dictionary<string, string>>(); } set => EntityData["aspects"] = JObject.FromObject(value); }
+        public Dictionary<string, string>? Aspects { get { return EntityData["aspects"]?.ToObject<Dictionary<string, string>>(); } set => EntityData["aspects"] = value != null ? JObject.FromObject(value) : null; }
 
 
         public Element(JObject entityData)
