@@ -45,7 +45,7 @@ namespace BlacksmithsForge.Entities
         public string? Inherits { get { return EntityData["inherits"]?.ToString(); } set => EntityData["inherits"] = value; }
         public Dictionary<string, int>? Aspects { get { return EntityData["aspects"]?.ToObject<Dictionary<string, int>>(); } set => EntityData["aspects"] = value != null ? JObject.FromObject(value) : null; }
         public List<string>? Commute { get { return (List<string>?)(EntityData["commute"]?.Values<string>()); } set => EntityData["commute"] = value != null ? JArray.FromObject(value) : null; }
-        // slots
+        public List<Sphere>? Slots { get { return (List<Sphere>?)(EntityData["slots"]?.Values<Sphere>()); } set => EntityData["slots"] = value != null ? JArray.FromObject(value) : null; }
         public List<RecipeLink>? Induces { get { return (List<RecipeLink>?)(EntityData["induces"]?.Values<RecipeLink>()); } set => EntityData["induces"] = value != null ? JArray.FromObject(value) : null; }
         public Dictionary<string, List<XTrigger>>? XTriggers { get { return EntityData["induces"]?.ToObject<Dictionary<string, List<XTrigger>>>(); } set => EntityData["induces"] = value != null ? JObject.FromObject(value) : null; }
 
