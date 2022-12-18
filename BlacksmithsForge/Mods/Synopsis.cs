@@ -16,17 +16,19 @@ namespace BlacksmithsForge.Mods
         public string? Description_Long;
         public string? Comments;
         public List<string>? Tags;
+        public List<string>? Dependencies;
 
         [JsonConstructor]
-        public Synopsis(string? name, string? version, string? author, string? description, string? description_long, string? comments, List<string> tags)
+        public Synopsis(string? name, string? version, string? author, string? description, string? description_long, string? comments, List<string> tags, List<string>? dependencies)
         {
-            this.Name = name;
-            this.Version = version;
-            this.Author = author;
-            this.Description = description;
-            this.Description_Long = description_long;
-            this.Comments = comments;
-            this.Tags = tags;
+            Name = name;
+            Version = version;
+            Author = author;
+            Description = description;
+            Description_Long = description_long;
+            Comments = comments;
+            Tags = tags;
+            Dependencies = dependencies;
         }
 
         public Synopsis()
