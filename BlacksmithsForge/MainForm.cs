@@ -15,6 +15,11 @@ namespace BlacksmithsForge
 
         private void openFolderToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (CurrentMod != null && MessageBox.Show("If you open a new folder, you will lose any unsaved progress. Are you sure?", "Mod Already Open", MessageBoxButtons.YesNo) != DialogResult.Yes)
+            {
+                return;
+            }
+
             if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
                 string path = folderBrowserDialog.SelectedPath;
