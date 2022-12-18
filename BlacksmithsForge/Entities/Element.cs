@@ -12,7 +12,7 @@ namespace BlacksmithsForge.Entities
     {
         public JObject EntityData { get; set; }
         public string ID { get; set; }
-        public Guid Guid { get; set; }
+        public Guid Guid { get; set; } = new();
 
 
         public string? Label { get { return EntityData["label"]?.ToString(); } set => EntityData["label"] = value; }
@@ -48,7 +48,6 @@ namespace BlacksmithsForge.Entities
             {
                 ID = id.ToString();
             }
-            Guid = new();
         }
     }
 }
