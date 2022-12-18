@@ -15,7 +15,7 @@ namespace BlacksmithsForge.Entities
         {
             get
             {
-                if (EntityData["id"] == null) throw new NullReferenceException("Entity ID must be specified.");
+                if (EntityData["id"] == null) throw new NullReferenceException("Element ID must be specified.");
                 else return EntityData["id"].ToString();
             }
             set => EntityData["id"] = value;
@@ -44,6 +44,10 @@ namespace BlacksmithsForge.Entities
         public int? Lifetime { get { return EntityData["lifetime"]?.ToObject<int>(); } set => EntityData["lifetime"] = value; }
         public string? Inherits { get { return EntityData["inherits"]?.ToString(); } set => EntityData["inherits"] = value; }
         public Dictionary<string, int>? Aspects { get { return EntityData["aspects"]?.ToObject<Dictionary<string, int>>(); } set => EntityData["aspects"] = value != null ? JObject.FromObject(value) : null; }
+        public List<string>? Commute { get { return (List<string>?)(EntityData["commute"]?.Values<string>()); } set => EntityData["commute"] = value != null ? JArray.FromObject(value) : null; }
+        // slots
+        public List<RecipeLink>? Induces { get { return (List<RecipeLink>?)(EntityData["induces"]?.Values<RecipeLink>()); } set => EntityData["induces"] = value != null ? JArray.FromObject(value) : null; }
+        // xtriggers
 
 
         public Element(JObject entityData)
