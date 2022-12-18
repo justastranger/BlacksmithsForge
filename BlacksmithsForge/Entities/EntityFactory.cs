@@ -23,7 +23,7 @@ namespace BlacksmithsForge.Entities
                 "deck" => new Deck(entityData) { Filename = filename },
                 "element" => new Element(entityData) { Filename = filename },
                 "ending" => new Ending(entityData) { Filename = filename },
-                "legacy" => throw new NotImplementedException(),
+                "legacy" => new Legacy(entityData) { Filename = filename },
                 "lever" => throw new NotImplementedException(),
                 "portal" => throw new NotImplementedException(),
                 "recipe" => throw new NotImplementedException(),
