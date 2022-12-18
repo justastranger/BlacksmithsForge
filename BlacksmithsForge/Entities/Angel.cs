@@ -14,7 +14,7 @@ namespace BlacksmithsForge.Entities
         {
             get
             {
-                if (EntityData["id"] == null) throw new NullReferenceException("XTrigger ID must be specified.");
+                if (EntityData["id"] == null) throw new NullReferenceException("Angel ID must be specified.");
                 else return EntityData["id"].ToString();
             }
             set => EntityData["id"] = value;
