@@ -17,7 +17,9 @@ namespace BlacksmithsForge.Mods
         public Synopsis? Synopsis;
         public string SynopsisPath;
 
-        public Dictionary<string, Dictionary<string, IEntity>> Content = new();
+        // <type, <guid, entity>>
+        public Dictionary<string, Dictionary<Guid, IEntity>> Content = new();
+        public List<string> ContentFiles = new();
 
         public Mod(string path)
         {
@@ -86,6 +88,7 @@ namespace BlacksmithsForge.Mods
             // Guard check to end early
             if (files.Count == 0) return;
 
+            ContentFiles = files;
             files.ForEach((string file) => {
                 string json = File.OpenText(file).ReadToEnd();
                 // All valid CS JSON exist as a main object with only one property
@@ -97,7 +100,24 @@ namespace BlacksmithsForge.Mods
                 // Could use that and properties whose getters pull out of the JObject instance (with null checks)
                 // CSpark used a switch/case that did some type-specific pre-processing in order to convert from quickspec format
 
+                List<JToken> array = parsedJson.Properties().First().Value.ToList();
+                // oh lawd have mercy on my soul for this accursed nested ForEach loop
+                List<IEntity> results = ParseJTokenList(array, jsonType);
             });
+        }
+
+        private List<IEntity> ParseJTokenList(List<JToken> jTokens, string type)
+        {
+            List<IEntity> result = new();
+
+            jTokens.ForEach((JToken token) => {
+                JObject jo = (JObject)token;
+
+                result.Add(EntityFactory.Parse(jo, type));
+            });
+
+
+            return result;
         }
     }
 }
