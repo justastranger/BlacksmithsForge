@@ -19,6 +19,7 @@ namespace BlacksmithsForge.Mods
 
         // <filename, <guid, entity>>
         public Dictionary<string, Dictionary<Guid, IEntity>> Content = new();
+        public Dictionary<string, string> FileTypes = new();
 
         public Mod(string path)
         {
@@ -102,7 +103,8 @@ namespace BlacksmithsForge.Mods
                 // oh lawd have mercy on my soul for this accursed nested ForEach loop
                 Dictionary<Guid, IEntity> results = ParseJTokenList(array, jsonType);
 
-                Content.Add(jsonType, results);
+                Content.Add(file, results);
+                FileTypes.Add(file, jsonType);
             });
         }
 
