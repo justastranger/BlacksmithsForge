@@ -95,6 +95,8 @@ namespace BlacksmithsForge.Mods
                 // TODO decide how to handle loading
                 // Perhaps a switch/case with Entities whose constructor is just the JObject?
                 // Could use that and properties whose getters pull out of the JObject instance (with null checks)
+                // CSpark used a switch/case that did some type-specific pre-processing in order to convert from quickspec format
+
             });
         }
     }
