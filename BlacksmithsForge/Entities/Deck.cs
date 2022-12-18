@@ -10,7 +10,15 @@ namespace BlacksmithsForge.Entities
     internal class Deck : IEntity
     {
         public JObject EntityData { get; set; }
-        public string ID { get; set; }
+        public string ID
+        {
+            get
+            {
+                if (EntityData["id"] == null) throw new NullReferenceException("Entity ID must be specified.");
+                else return EntityData["id"].ToString();
+            }
+            set => EntityData["id"] = value;
+        }
         public Guid Guid { get; set; } = new();
 
         public string? Label { get { return EntityData["label"]?.ToString(); } set => EntityData["label"] = value; }
