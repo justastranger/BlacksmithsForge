@@ -10,7 +10,7 @@ namespace BlacksmithsForge.Entities
     internal class EntityFactory
     {
 
-        public static IEntity Parse(JObject entityData, string type)
+        public static IEntity Parse(JObject entityData, string type, string filename)
         {
             // get the right type name, hopefully not a big performance impact
             // would be easy enough to swap the strings in the switch below back to their plural form
@@ -20,9 +20,9 @@ namespace BlacksmithsForge.Entities
             {
                 "achievement" => throw new NotImplementedException(),
                 "culture" => throw new NotImplementedException(),
-                "deck" => throw new NotImplementedException(),
-                "element" => new Element(entityData),
-                "ending" => throw new NotImplementedException(),
+                "deck" => new Deck(entityData) { Filename = filename },
+                "element" => new Element(entityData) { Filename = filename },
+                "ending" => new Ending(entityData) { Filename = filename },
                 "legacy" => throw new NotImplementedException(),
                 "lever" => throw new NotImplementedException(),
                 "portal" => throw new NotImplementedException(),

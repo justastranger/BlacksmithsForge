@@ -101,19 +101,19 @@ namespace BlacksmithsForge.Mods
 
                 List<JToken> array = parsedJson.Properties().First().Value.ToList();
                 // oh lawd have mercy on my soul for this accursed nested ForEach loop
-                Dictionary<Guid, IEntity> results = ParseJTokenList(array, jsonType);
                 string shortFilePath = file.Remove(0, contentFolder.Length);
+                Dictionary<Guid, IEntity> results = ParseJTokenList(array, jsonType, shortFilePath);
                 Content.Add(shortFilePath, results);
                 FileTypes.Add(shortFilePath, jsonType);
             });
         }
 
-        private Dictionary<Guid, IEntity> ParseJTokenList(List<JToken> jTokens, string type)
+        private static Dictionary<Guid, IEntity> ParseJTokenList(List<JToken> jTokens, string type, string filename)
         {
             Dictionary<Guid, IEntity> result = new();
 
             jTokens.ForEach((JToken token) => {
-                IEntity parsed = EntityFactory.Parse((JObject)token, type);
+                IEntity parsed = EntityFactory.Parse((JObject)token, type, filename);
 
                 result.Add(parsed.Guid, parsed);
             });
