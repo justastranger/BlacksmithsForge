@@ -40,7 +40,7 @@
             this.filenameColumnHeader = new System.Windows.Forms.ColumnHeader();
             this.entitiesListView = new System.Windows.Forms.ListView();
             this.idColumnHeader = new System.Windows.Forms.ColumnHeader();
-            this.labelColumnHeader = new System.Windows.Forms.ColumnHeader();
+            this.fileTypeLabel = new System.Windows.Forms.Label();
             this.toolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -96,11 +96,13 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.filesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.filenameColumnHeader});
+            this.filesListView.FullRowSelect = true;
             listViewGroup1.Header = "Elements";
             listViewGroup1.Name = "elementsListViewGroup";
             this.filesListView.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
             listViewGroup1});
             this.filesListView.Location = new System.Drawing.Point(12, 28);
+            this.filesListView.MultiSelect = false;
             this.filesListView.Name = "filesListView";
             this.filesListView.ShowGroups = false;
             this.filesListView.Size = new System.Drawing.Size(366, 410);
@@ -112,16 +114,17 @@
             // filenameColumnHeader
             // 
             this.filenameColumnHeader.Text = "File";
-            this.filenameColumnHeader.Width = 400;
+            this.filenameColumnHeader.Width = 350;
             // 
             // entitiesListView
             // 
             this.entitiesListView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.entitiesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.idColumnHeader,
-            this.labelColumnHeader});
+            this.idColumnHeader});
+            this.entitiesListView.FullRowSelect = true;
             this.entitiesListView.Location = new System.Drawing.Point(384, 107);
+            this.entitiesListView.MultiSelect = false;
             this.entitiesListView.Name = "entitiesListView";
             this.entitiesListView.ShowGroups = false;
             this.entitiesListView.Size = new System.Drawing.Size(404, 331);
@@ -132,21 +135,28 @@
             // idColumnHeader
             // 
             this.idColumnHeader.Text = "Entity ID";
-            this.idColumnHeader.Width = 200;
+            this.idColumnHeader.Width = 400;
             // 
-            // labelColumnHeader
+            // fileTypeLabel
             // 
-            this.labelColumnHeader.Text = "Entity Label";
-            this.labelColumnHeader.Width = 200;
+            this.fileTypeLabel.AutoSize = true;
+            this.fileTypeLabel.Location = new System.Drawing.Point(384, 28);
+            this.fileTypeLabel.Name = "fileTypeLabel";
+            this.fileTypeLabel.Size = new System.Drawing.Size(69, 15);
+            this.fileTypeLabel.TabIndex = 3;
+            this.fileTypeLabel.Text = "Not Loaded";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.fileTypeLabel);
             this.Controls.Add(this.entitiesListView);
             this.Controls.Add(this.filesListView);
             this.Controls.Add(this.toolStrip);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Blacksmith\'s Forge";
@@ -169,6 +179,6 @@
         private ColumnHeader filenameColumnHeader;
         private ListView entitiesListView;
         private ColumnHeader idColumnHeader;
-        private ColumnHeader labelColumnHeader;
+        private Label fileTypeLabel;
     }
 }

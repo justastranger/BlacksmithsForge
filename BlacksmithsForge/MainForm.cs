@@ -1,4 +1,5 @@
 using BlacksmithsForge.Editors;
+using BlacksmithsForge.Entities;
 using BlacksmithsForge.Mods;
 using Newtonsoft.Json;
 
@@ -95,7 +96,23 @@ namespace BlacksmithsForge
 
         private void filesListView_DoubleClick(object sender, EventArgs e)
         {
+            if (CurrentMod == null) return;
+            if (filesListView.SelectedItems.Count == 0) return;
+            
+            entitiesListView.Items.Clear();
 
+            string filename = filesListView.SelectedItems[0].Text;
+
+            fileTypeLabel.Text = CurrentMod.FileTypes[filename];
+            Dictionary<Guid, IEntity> selectedEntities = CurrentMod.Content[filename];
+
+            List<ListViewItem> items = new();
+            foreach (KeyValuePair<Guid, IEntity> pair in selectedEntities)
+            {
+                ListViewItem item = new(pair.Value.ID) { Tag = pair.Key };
+                items.Add(item);
+            }
+            entitiesListView.Items.AddRange(items.ToArray());
         }
     }
 }
