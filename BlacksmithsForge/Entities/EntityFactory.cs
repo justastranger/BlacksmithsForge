@@ -24,11 +24,11 @@ namespace BlacksmithsForge.Entities
                 "element" => new Element(entityData) { Filename = filename },
                 "ending" => new Ending(entityData) { Filename = filename },
                 "legacy" => new Legacy(entityData) { Filename = filename },
-                "lever" => throw new NotImplementedException(),
-                "portal" => throw new NotImplementedException(),
-                "recipe" => throw new NotImplementedException(),
+                "lever" => new Lever(entityData) { Filename = filename },
+                "portal" => new Portal(entityData) { Filename = filename },
+                "recipe" => new Recipe(entityData) { Filename = filename },
                 "setting" => throw new NotImplementedException(),
-                "verb" => throw new NotImplementedException(),
+                "verb" => new Verb(entityData) { Filename = filename },
                 _ => throw new NotImplementedException(),
             };
         }
