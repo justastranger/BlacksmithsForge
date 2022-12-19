@@ -58,7 +58,8 @@ namespace BlacksmithsForge.Mods
             else
             {
                 // attempt to deserialize Synopsis if detected, ignoring null values
-                Synopsis = JsonConvert.DeserializeObject<Synopsis>(File.OpenText(SynopsisPath).ReadToEnd(), new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore });
+                using StreamReader streamReader = File.OpenText(SynopsisPath);
+                Synopsis = JsonConvert.DeserializeObject<Synopsis>(streamReader.ReadToEnd(), new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore });
                 if (Synopsis == null)
                 {
                     // This should only be possible if the file is corrupted
@@ -84,12 +85,13 @@ namespace BlacksmithsForge.Mods
             }
 
             // Gather the json files in the content folder
-            List<string> files = Directory.EnumerateFiles(contentFolder, "*.json").ToList();
+            List<string> files = Directory.EnumerateFiles(contentFolder, "*.json", new EnumerationOptions { RecurseSubdirectories = true }).ToList();
             // Guard check to end early
             if (files.Count == 0) return;
 
             files.ForEach((string file) => {
-                string json = File.OpenText(file).ReadToEnd();
+                using StreamReader streamReader = File.OpenText(file);
+                string json = streamReader.ReadToEnd();
                 // All valid CS JSON exist as a main object with only one property
                 // That property's value is an Array of Entities whose key is the type being loaded
                 JObject parsedJson = JObject.Parse(json);
