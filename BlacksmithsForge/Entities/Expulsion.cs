@@ -21,7 +21,7 @@ namespace BlacksmithsForge.Entities
             }
             set => EntityData["id"] = value;
         }
-        public Guid Guid { get; set; } = new();
+        public Guid Guid { get; set; } = Guid.NewGuid()
         public Dictionary<string, string>? Filter { get { return EntityData["filter"]?.ToObject<Dictionary<string, string>>(); } set => EntityData["filter"] = value != null ? JObject.FromObject(value) : null; }
         public int? Limit { get { return EntityData["limit"]?.ToObject<int>(); } set => EntityData["limit"] = value; }
         public string? ToPath { get { return EntityData["topath"]?.ToString(); } set => EntityData["topath"] = value; }

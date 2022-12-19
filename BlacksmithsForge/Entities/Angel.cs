@@ -19,7 +19,7 @@ namespace BlacksmithsForge.Entities
             }
             set => EntityData["id"] = value;
         }
-        public Guid Guid { get; set; } = new();
+        public Guid Guid { get; set; } = Guid.NewGuid()
 
         public string? Choir { get { return EntityData["choir"]?.ToString(); } set => EntityData["choir"] = value; }
         // reference to a Sphere's ID
