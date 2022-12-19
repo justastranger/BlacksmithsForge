@@ -18,8 +18,10 @@ namespace BlacksmithsForge.Entities
 
             return type switch
             {
-                "achievement" => throw new NotImplementedException(),
-                "culture" => throw new NotImplementedException(),
+                // the Filename is added only when Entities are parsed this way
+                // 
+                "achievement" => new Achievement(entityData) { Filename = filename },
+                "culture" => new Culture(entityData) { Filename = filename },
                 "deck" => new Deck(entityData) { Filename = filename },
                 "element" => new Element(entityData) { Filename = filename },
                 "ending" => new Ending(entityData) { Filename = filename },
@@ -27,7 +29,7 @@ namespace BlacksmithsForge.Entities
                 "lever" => new Lever(entityData) { Filename = filename },
                 "portal" => new Portal(entityData) { Filename = filename },
                 "recipe" => new Recipe(entityData) { Filename = filename },
-                "setting" => throw new NotImplementedException(),
+                "setting" => new Setting(entityData) { Filename = filename },
                 "verb" => new Verb(entityData) { Filename = filename },
                 _ => throw new NotImplementedException(),
             };
