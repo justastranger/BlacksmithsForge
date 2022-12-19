@@ -19,7 +19,7 @@ namespace BlacksmithsForge.Entities
             }
             set => EntityData["id"] = value;
         }
-        public Guid Guid { get; set; } = Guid.NewGuid()
+        public Guid Guid { get; set; } = Guid.NewGuid();
         public string? Filename { get; set; }
 
         public string? TabId { get { return EntityData["tabid"]?.ToString(); } set => EntityData["tabid"] = value; }
