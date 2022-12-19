@@ -131,6 +131,7 @@
             this.entitiesListView.TabIndex = 2;
             this.entitiesListView.UseCompatibleStateImageBehavior = false;
             this.entitiesListView.View = System.Windows.Forms.View.Details;
+            this.entitiesListView.DoubleClick += new System.EventHandler(this.entitiesListView_DoubleClick);
             // 
             // idColumnHeader
             // 
