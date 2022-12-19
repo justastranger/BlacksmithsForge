@@ -63,7 +63,7 @@ namespace BlacksmithsForge
                 NullValueHandling = NullValueHandling.Ignore,
                 Formatting = Formatting.Indented
             });
-            // VS shows a possible null reference but it's guarded against up top
+            // VS shows a possible null reference but it's guarded against up above
             // a Mod can't be constructed without having a SynopsisPath computed for it anyways
             using StreamWriter streamWriter = File.CreateText(CurrentMod?.SynopsisPath);
             streamWriter.Write(synopsisText);

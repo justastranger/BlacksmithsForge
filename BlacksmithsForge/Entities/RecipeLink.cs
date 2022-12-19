@@ -9,8 +9,6 @@ namespace BlacksmithsForge.Entities
 {
     internal class RecipeLink : IEntity
     {
-
-
         public JObject EntityData { get; set; }
         // For this Entity, the ID property determines the target for the link
         // It should never be null
