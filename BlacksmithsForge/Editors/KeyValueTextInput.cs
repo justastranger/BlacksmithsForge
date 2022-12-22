@@ -13,8 +13,8 @@ namespace BlacksmithsForge.Editors
 {
     public partial class KeyValueTextInput : Form
     {
-        public string? Key;
-        public string? Value;
+        public string Key;
+        public string Value;
 
         public KeyValueTextInput(string key, string value)
         {
