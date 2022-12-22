@@ -246,19 +246,16 @@ namespace BlacksmithsForge.Editors
 
         private void addPropertyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (selectedNode == null) return;
+            // make sure we're only adding to the root node
+            if (selectedNode == null && selectedNode.Parent != null) return;
             string? jsonPath = selectedNode.Tag?.ToString() ?? throw new NullReferenceException("Selected Node has null tag.");
             selectedToken = currentEntity.SelectToken(jsonPath) ?? throw new NullReferenceException("Null Token retrieved from Node.");
 
             if (selectedToken is JObject jObject)
             {
-                KeyValueTextInput input = new();
 
-                if (selectedNode.Parent == null)
-                {
-                    string rootName = ((selectedToken.Root as JObject).First as JProperty).Name;
-                    input.AddAutoCompleteForType(Utils.GetTypeFromRootName(rootName));
-                }
+                string rootName = ((selectedToken.Root as JObject).First as JProperty).Name;
+                KeyValueTextInput input = new(Utils.GetTypeFromRootName(rootName));
                 if (input.ShowDialog() == DialogResult.OK)
                 {
                     JProperty jProperty;
