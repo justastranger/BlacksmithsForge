@@ -184,8 +184,11 @@ namespace BlacksmithsForge.Editors
                     }
                     else
                     {
-                        jArray.Add(STI.textValue);
+                        // Allows for arbitrary JSON to be used as a value
+                        // Or for simple values like strings, numbers, bools
+                        jArray.Add(JToken.Parse(STI.textValue));
                     }
+
 
                     ReloadEntity();
                 }
@@ -216,8 +219,9 @@ namespace BlacksmithsForge.Editors
                         }
                         else
                         {
-                            // jArray.Add(STI.textValue);
-                            jProperty = new(key, STI.textValue);
+                            // Allows for arbitrary JSON to be used as a value
+                            // Or for simple values like strings, numbers, bools
+                            jProperty = new(key, JToken.Parse(STI.textValue));
                         }
                         jObject.Add(jProperty);
                         ReloadEntity();
