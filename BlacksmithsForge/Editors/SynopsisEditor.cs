@@ -75,7 +75,7 @@ namespace BlacksmithsForge.Editors
 
         private void addTagButton_Click(object sender, EventArgs e)
         {
-            SimpleTextInput STI = new("");
+            SimpleTextInput STI = new();
             STI.ShowDialog();
             if (!String.IsNullOrEmpty(STI.textValue))
             {
