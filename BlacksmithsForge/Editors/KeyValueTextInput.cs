@@ -60,7 +60,7 @@ namespace BlacksmithsForge.Editors
             Key = nameTextBox.Text;
         }
 
-        private void valueScintilla_Click(object sender, EventArgs e)
+        private void valueScintilla_TextChanged(object sender, EventArgs e)
         {
             Value = valueScintilla.Text;
         }

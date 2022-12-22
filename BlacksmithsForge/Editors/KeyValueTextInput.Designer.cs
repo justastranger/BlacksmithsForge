@@ -67,7 +67,8 @@
             this.valueScintilla.BiDirectionality = ScintillaNET.BiDirectionalDisplayType.Disabled;
             this.valueScintilla.CaretLineBackColor = System.Drawing.Color.White;
             this.valueScintilla.CaretLineVisible = true;
-            this.valueScintilla.LexerName = null;
+            this.valueScintilla.Lexer = ScintillaNET.Lexer.Json;
+            this.valueScintilla.LexerName = "json";
             this.valueScintilla.Location = new System.Drawing.Point(12, 71);
             this.valueScintilla.Name = "valueScintilla";
             this.valueScintilla.ScrollWidth = 49;
@@ -76,7 +77,7 @@
             this.valueScintilla.TabIndex = 4;
             this.valueScintilla.UseRightToLeftReadingLayout = false;
             this.valueScintilla.WrapMode = ScintillaNET.WrapMode.None;
-            this.valueScintilla.Click += new System.EventHandler(this.valueScintilla_Click);
+            this.valueScintilla.TextChanged += new System.EventHandler(this.valueScintilla_TextChanged);
             // 
             // okayButton
             // 
