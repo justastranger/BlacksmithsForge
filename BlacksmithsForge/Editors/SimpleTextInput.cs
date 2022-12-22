@@ -12,15 +12,19 @@ namespace BlacksmithsForge.Editors
 {
     public partial class SimpleTextInput : Form
     {
-        public string? textValue;
+        public string textValue;
 
         public SimpleTextInput(string input)
         {
             InitializeComponent();
 
             textValue = input;
-
             textBox.Text = input;
+        }
+
+        public SimpleTextInput() : this("")
+        {
+
         }
 
         private void textBox_TextChanged(object sender, EventArgs e)
