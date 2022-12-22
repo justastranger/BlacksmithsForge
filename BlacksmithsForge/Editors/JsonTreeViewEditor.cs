@@ -247,16 +247,13 @@ namespace BlacksmithsForge.Editors
         private void addPropertyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // make sure we're only adding to the root node
-            if (selectedNode == null && selectedNode.Parent != null) return;
-            string? jsonPath = selectedNode.Tag?.ToString() ?? throw new NullReferenceException("Selected Node has null tag.");
-            selectedToken = currentEntity.SelectToken(jsonPath) ?? throw new NullReferenceException("Null Token retrieved from Node.");
-
-            if (selectedToken is JObject jObject)
+            if (selectedNode == null || selectedNode.Parent != null) return;
+            
+            string rootName = ((currentEntity.Root as JObject).First as JProperty).Name;
+            KeyValueTextInput input = new(Utils.GetTypeFromRootName(rootName));
+            if (input.ShowDialog() == DialogResult.OK)
             {
-
-                string rootName = ((selectedToken.Root as JObject).First as JProperty).Name;
-                KeyValueTextInput input = new(Utils.GetTypeFromRootName(rootName));
-                if (input.ShowDialog() == DialogResult.OK)
+                if (!currentEntity.ContainsKey(input.Key))
                 {
                     JProperty jProperty;
                     if (int.TryParse(input.Value, out int numberValue))
@@ -276,9 +273,33 @@ namespace BlacksmithsForge.Editors
                             jProperty = new(input.Key, input.Value);
                         }
                     }
-                    jObject.Add(jProperty);
-                    ReloadEntity();
+                    currentEntity.Add(jProperty);
                 }
+                else
+                {
+                    JProperty? existingProperty = currentEntity.Property(input.Key);
+                    JProperty jProperty;
+                    if (int.TryParse(input.Value, out int numberValue))
+                    {
+                        jProperty = new(input.Key, numberValue);
+                    }
+                    else
+                    {
+                        try
+                        {
+                            // try to parse as a non-string value
+                            jProperty = new(input.Key, JToken.Parse(input.Value));
+                        }
+                        catch (JsonReaderException)
+                        {
+                            // assume it was a string
+                            jProperty = new(input.Key, input.Value);
+                        }
+                    }
+                    existingProperty?.Replace(jProperty);
+                }
+
+                ReloadEntity();
             }
         }
 
