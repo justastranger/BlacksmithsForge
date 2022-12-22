@@ -33,10 +33,17 @@
             // 
             // jsonTreeView
             // 
+            this.jsonTreeView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.jsonTreeView.Location = new System.Drawing.Point(12, 12);
             this.jsonTreeView.Name = "jsonTreeView";
             this.jsonTreeView.Size = new System.Drawing.Size(707, 426);
             this.jsonTreeView.TabIndex = 0;
+            this.jsonTreeView.AfterLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.jsonTreeView_AfterLabelEdit);
+            this.jsonTreeView.Click += new System.EventHandler(this.jsonTreeView_Click);
+            this.jsonTreeView.DoubleClick += new System.EventHandler(this.jsonTreeView_DoubleClick);
+            this.jsonTreeView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.jsonTreeView_MouseDown);
             // 
             // JsonTreeViewEditor
             // 
