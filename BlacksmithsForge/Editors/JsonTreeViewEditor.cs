@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BlacksmithsForge.Extensions;
 using Newtonsoft.Json;
+using System.Reflection.Metadata.Ecma335;
 
 namespace BlacksmithsForge.Editors
 {
@@ -202,8 +203,6 @@ namespace BlacksmithsForge.Editors
                         //}
                         jArray.Add(value);
                     }
-                    
-
                     ReloadEntity();
                 }
             }
@@ -277,6 +276,29 @@ namespace BlacksmithsForge.Editors
                     jObject.Add(jProperty);
                     ReloadEntity();
                 }
+            }
+        }
+
+        private void deletePropertyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (selectedNode == null || selectedNode.Parent == null) return;
+            string? jsonPath = selectedNode.Tag?.ToString() ?? throw new NullReferenceException("Selected Node has null tag.");
+            selectedToken = currentEntity.SelectToken(jsonPath) ?? throw new NullReferenceException("Null Token retrieved from Node.");
+            
+            JToken actualToken = selectedToken.Parent ?? throw new NullReferenceException("Parent Token is Null.");
+
+            if (MessageBox.Show("Are you sure you want to delete the following property?\n\n" + actualToken.ToString(), "Confirm", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                if (actualToken.Type == JTokenType.Array)
+                {
+                    // this means selectedToken is one of the Array's values, and we don't want to remove the whole Array
+                    selectedToken.Remove();
+                }
+                else
+                {
+                    actualToken.Remove();
+                }
+                ReloadEntity();
             }
         }
     }

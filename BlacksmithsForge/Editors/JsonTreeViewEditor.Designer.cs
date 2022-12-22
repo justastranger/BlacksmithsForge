@@ -34,8 +34,9 @@
             this.editPropertyNameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addEntryToArrayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addEntryToDictionaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.okayButton = new System.Windows.Forms.Button();
             this.addPropertyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deletePropertyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.okayButton = new System.Windows.Forms.Button();
             this.treeViewContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,7 +61,8 @@
             this.editPropertyNameToolStripMenuItem,
             this.addEntryToArrayToolStripMenuItem,
             this.addEntryToDictionaryToolStripMenuItem,
-            this.addPropertyToolStripMenuItem});
+            this.addPropertyToolStripMenuItem,
+            this.deletePropertyToolStripMenuItem});
             this.treeViewContextMenuStrip.Name = "treeViewContextMenuStrip";
             this.treeViewContextMenuStrip.Size = new System.Drawing.Size(198, 114);
             // 
@@ -85,6 +87,20 @@
             this.addEntryToDictionaryToolStripMenuItem.Text = "Add Entry to Dictionary";
             this.addEntryToDictionaryToolStripMenuItem.Click += new System.EventHandler(this.addEntryToDictionaryToolStripMenuItem_Click);
             // 
+            // addPropertyToolStripMenuItem
+            // 
+            this.addPropertyToolStripMenuItem.Name = "addPropertyToolStripMenuItem";
+            this.addPropertyToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+            this.addPropertyToolStripMenuItem.Text = "Add Property";
+            this.addPropertyToolStripMenuItem.Click += new System.EventHandler(this.addPropertyToolStripMenuItem_Click);
+            // 
+            // deletePropertyToolStripMenuItem
+            // 
+            this.deletePropertyToolStripMenuItem.Name = "deletePropertyToolStripMenuItem";
+            this.deletePropertyToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+            this.deletePropertyToolStripMenuItem.Text = "Delete Property";
+            this.deletePropertyToolStripMenuItem.Click += new System.EventHandler(this.deletePropertyToolStripMenuItem_Click);
+            // 
             // okayButton
             // 
             this.okayButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
@@ -96,13 +112,6 @@
             this.okayButton.Text = "Okay";
             this.okayButton.UseVisualStyleBackColor = true;
             this.okayButton.Click += new System.EventHandler(this.okayButton_Click);
-            // 
-            // addPropertyToolStripMenuItem
-            // 
-            this.addPropertyToolStripMenuItem.Name = "addPropertyToolStripMenuItem";
-            this.addPropertyToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
-            this.addPropertyToolStripMenuItem.Text = "Add Property";
-            this.addPropertyToolStripMenuItem.Click += new System.EventHandler(this.addPropertyToolStripMenuItem_Click);
             // 
             // JsonTreeViewEditor
             // 
@@ -131,5 +140,6 @@
         private ToolStripMenuItem addEntryToArrayToolStripMenuItem;
         private ToolStripMenuItem addEntryToDictionaryToolStripMenuItem;
         private ToolStripMenuItem addPropertyToolStripMenuItem;
+        private ToolStripMenuItem deletePropertyToolStripMenuItem;
     }
 }
