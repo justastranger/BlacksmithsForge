@@ -110,6 +110,32 @@ namespace BlacksmithsForge
             });
         }
 
+        private void UpdateEntities()
+        {
+            entitiesListView.Items.Clear();
+            if (SelectedEntities == null) return;
+
+            List<ListViewItem> items = new();
+            foreach (KeyValuePair<Guid, IEntity> pair in SelectedEntities)
+            {
+                ListViewItem item = new(pair.Value.ID) { Tag = pair.Key };
+                items.Add(item);
+            }
+            entitiesListView.Items.AddRange(items.ToArray());
+        }
+
+        private void UpdateFilesList()
+        {
+            filesListView.Items.Clear();
+            if (CurrentMod != null)
+            {
+                CurrentMod.Content.Keys.ToList().ForEach((string file) => {
+                    filesListView.Items.Add(file);
+                });
+            }
+
+        }
+
         private void editSynopsisToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (CurrentMod?.Synopsis != null)
@@ -176,6 +202,7 @@ namespace BlacksmithsForge
             {
                 // we deserialize the EntityData and replace the old with the new
                 selectedEntity.EntityData = JObject.Parse(jsonEditor.jsonText);
+                UpdateEntities();
             }
         }
 
@@ -191,11 +218,13 @@ namespace BlacksmithsForge
             // Whip up a TreeViewEditor with the selected EntityData
             JsonTreeViewEditor jsonEditor = new(selectedEntity.EntityData);
             // and if the Accept button is pressed
-            if (jsonEditor.ShowDialog() == DialogResult.Yes)
-            {
-                // we replace the old EntityData with the new
-                selectedEntity.EntityData = jsonEditor.currentEntity;
-            }
+            jsonEditor.ShowDialog();
+            UpdateEntities();
+            //{
+            //    // we replace the old EntityData with the new
+            //    // might not be necessary
+            //    selectedEntity.EntityData = jsonEditor.currentEntity;
+            //}
         }
     }
 }
