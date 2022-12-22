@@ -14,7 +14,7 @@ namespace BlacksmithsForge.Editors
 {
     public partial class JsonTreeViewEditor : Form
     {
-        readonly JObject currentEntity;
+        public readonly JObject currentEntity;
 
         public JsonTreeViewEditor(JObject entityToEdit)
         {
