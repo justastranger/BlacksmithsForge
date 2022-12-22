@@ -43,7 +43,6 @@
             this.fileTypeLabel = new System.Windows.Forms.Label();
             this.jsonTextEditorButton = new System.Windows.Forms.Button();
             this.jsonTreeViewEditorButton = new System.Windows.Forms.Button();
-            this.testPropertyRetrievalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -63,8 +62,7 @@
             this.fileToolStripDropDownButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openFolderToolStripMenuItem,
             this.editSynopsisToolStripMenuItem,
-            this.saveModToolStripMenuItem,
-            this.testPropertyRetrievalToolStripMenuItem});
+            this.saveModToolStripMenuItem});
             this.fileToolStripDropDownButton.Image = ((System.Drawing.Image)(resources.GetObject("fileToolStripDropDownButton.Image")));
             this.fileToolStripDropDownButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.fileToolStripDropDownButton.Name = "fileToolStripDropDownButton";
@@ -75,14 +73,14 @@
             // 
             this.openFolderToolStripMenuItem.Name = "openFolderToolStripMenuItem";
             this.openFolderToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openFolderToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.openFolderToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.openFolderToolStripMenuItem.Text = "Open Folder";
             this.openFolderToolStripMenuItem.Click += new System.EventHandler(this.openFolderToolStripMenuItem_Click);
             // 
             // editSynopsisToolStripMenuItem
             // 
             this.editSynopsisToolStripMenuItem.Name = "editSynopsisToolStripMenuItem";
-            this.editSynopsisToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.editSynopsisToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.editSynopsisToolStripMenuItem.Text = "Edit Synopsis";
             this.editSynopsisToolStripMenuItem.Click += new System.EventHandler(this.editSynopsisToolStripMenuItem_Click);
             // 
@@ -90,7 +88,7 @@
             // 
             this.saveModToolStripMenuItem.Name = "saveModToolStripMenuItem";
             this.saveModToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveModToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.saveModToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.saveModToolStripMenuItem.Text = "Save Mod";
             this.saveModToolStripMenuItem.Click += new System.EventHandler(this.saveModToolStripMenuItem_Click);
             // 
@@ -171,13 +169,6 @@
             this.jsonTreeViewEditorButton.UseVisualStyleBackColor = true;
             this.jsonTreeViewEditorButton.Click += new System.EventHandler(this.jsonTreeViewEditorButton_Click);
             // 
-            // testPropertyRetrievalToolStripMenuItem
-            // 
-            this.testPropertyRetrievalToolStripMenuItem.Name = "testPropertyRetrievalToolStripMenuItem";
-            this.testPropertyRetrievalToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
-            this.testPropertyRetrievalToolStripMenuItem.Text = "Test Property Retrieval";
-            this.testPropertyRetrievalToolStripMenuItem.Click += new System.EventHandler(this.testPropertyRetrievalToolStripMenuItem_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -216,6 +207,5 @@
         private Label fileTypeLabel;
         private Button jsonTextEditorButton;
         private Button jsonTreeViewEditorButton;
-        private ToolStripMenuItem testPropertyRetrievalToolStripMenuItem;
     }
 }

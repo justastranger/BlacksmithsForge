@@ -226,10 +226,5 @@ namespace BlacksmithsForge
             //    selectedEntity.EntityData = jsonEditor.currentEntity;
             //}
         }
-
-        private void testPropertyRetrievalToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
