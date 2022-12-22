@@ -35,6 +35,7 @@
             this.addEntryToArrayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addEntryToDictionaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.okayButton = new System.Windows.Forms.Button();
+            this.addPropertyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.treeViewContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -58,9 +59,10 @@
             this.treeViewContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.editPropertyNameToolStripMenuItem,
             this.addEntryToArrayToolStripMenuItem,
-            this.addEntryToDictionaryToolStripMenuItem});
+            this.addEntryToDictionaryToolStripMenuItem,
+            this.addPropertyToolStripMenuItem});
             this.treeViewContextMenuStrip.Name = "treeViewContextMenuStrip";
-            this.treeViewContextMenuStrip.Size = new System.Drawing.Size(198, 70);
+            this.treeViewContextMenuStrip.Size = new System.Drawing.Size(198, 114);
             // 
             // editPropertyNameToolStripMenuItem
             // 
@@ -95,6 +97,13 @@
             this.okayButton.UseVisualStyleBackColor = true;
             this.okayButton.Click += new System.EventHandler(this.okayButton_Click);
             // 
+            // addPropertyToolStripMenuItem
+            // 
+            this.addPropertyToolStripMenuItem.Name = "addPropertyToolStripMenuItem";
+            this.addPropertyToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+            this.addPropertyToolStripMenuItem.Text = "Add Property";
+            this.addPropertyToolStripMenuItem.Click += new System.EventHandler(this.addPropertyToolStripMenuItem_Click);
+            // 
             // JsonTreeViewEditor
             // 
             this.AcceptButton = this.okayButton;
@@ -121,5 +130,6 @@
         private ToolStripMenuItem editPropertyNameToolStripMenuItem;
         private ToolStripMenuItem addEntryToArrayToolStripMenuItem;
         private ToolStripMenuItem addEntryToDictionaryToolStripMenuItem;
+        private ToolStripMenuItem addPropertyToolStripMenuItem;
     }
 }

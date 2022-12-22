@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BlacksmithsForge.Extensions;
+using Newtonsoft.Json;
 
 namespace BlacksmithsForge.Editors
 {
@@ -186,9 +187,18 @@ namespace BlacksmithsForge.Editors
                     {
                         // Allows for arbitrary JSON to be used as a value
                         // Or for simple values like strings, numbers, bools
-                        jArray.Add(JToken.Parse(STI.textValue));
+                        JValue value;
+                        try
+                        {
+                            value = new(JToken.Parse(STI.textValue));
+                        }
+                        catch (JsonReaderException)
+                        {
+                            value = new(STI.textValue);
+                        }
+                        jArray.Add(value);
                     }
-
+                    
 
                     ReloadEntity();
                 }
@@ -207,18 +217,61 @@ namespace BlacksmithsForge.Editors
                 KeyValueTextInput input = new();
                 if (input.ShowDialog() == DialogResult.OK)
                 {
-                        JProperty jProperty;
+                    JProperty jProperty;
                     if (int.TryParse(input.Value, out int numberValue))
-                        {
+                    {
                           jProperty = new(input.Key, numberValue);
-                        }
-                        else
-                        {
-                        jProperty = new(input.Key, JToken.Parse(input.Value));
-                        }
-                        jObject.Add(jProperty);
-                        ReloadEntity();
                     }
+                    else
+                    {
+                        try
+                        {
+                            // try to parse as a non-string value
+                            jProperty = new(input.Key, JToken.Parse(input.Value));
+                        }
+                        catch (JsonReaderException)
+                        {
+                            // assume it was a string
+                            jProperty = new(input.Key, input.Value);
+                        }
+                    }
+                    jObject.Add(jProperty);
+                    ReloadEntity();
+                }
+            }
+        }
+
+        private void addPropertyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (selectedNode == null) return;
+            string? jsonPath = selectedNode.Tag?.ToString() ?? throw new NullReferenceException("Selected Node has null tag.");
+            selectedToken = currentEntity.SelectToken(jsonPath) ?? throw new NullReferenceException("Null Token retrieved from Node.");
+
+            if (selectedToken is JObject jObject)
+            {
+                KeyValueTextInput input = new();
+                if (input.ShowDialog() == DialogResult.OK)
+                {
+                    JProperty jProperty;
+                    if (int.TryParse(input.Value, out int numberValue))
+                    {
+                        jProperty = new(input.Key, numberValue);
+                    }
+                    else
+                    {
+                        try
+                        {
+                            // try to parse as a non-string value
+                            jProperty = new(input.Key, JToken.Parse(input.Value));
+                        }
+                        catch (JsonReaderException)
+                        {
+                            // assume it was a string
+                            jProperty = new(input.Key, input.Value);
+                        }
+                    }
+                    jObject.Add(jProperty);
+                    ReloadEntity();
                 }
             }
         }
