@@ -9,16 +9,22 @@ namespace BlacksmithsForge.Entities
     internal enum EntityTypes
     {
         ACHIEVEMENT,
+        ANGEL,
         CULTURE,
         DECK,
         ELEMENT,
         ENDING,
+        EXPULSION,
         LEGACY,
         LEVER,
+        MUTATION,
         PORTAL,
         RECIPE,
+        RECIPELINK,
         SETTING,
-        VERB
-
+        SPHERE,
+        VERB,
+        XTRIGGER
+        
     }
 }
