@@ -255,52 +255,39 @@ namespace BlacksmithsForge.Editors
             {
                 if (!currentEntity.ContainsKey(input.Key))
                 {
-                    JProperty jProperty;
-                    if (int.TryParse(input.Value, out int numberValue))
-                    {
-                        jProperty = new(input.Key, numberValue);
-                    }
-                    else
-                    {
-                        try
-                        {
-                            // try to parse as a non-string value
-                            jProperty = new(input.Key, JToken.Parse(input.Value));
-                        }
-                        catch (JsonReaderException)
-                        {
-                            // assume it was a string
-                            jProperty = new(input.Key, input.Value);
-                        }
-                    }
-                    currentEntity.Add(jProperty);
+                    currentEntity.Add(ParseKeyValueInput(input.Key, input.Value));
                 }
                 else
                 {
                     JProperty? existingProperty = currentEntity.Property(input.Key);
-                    JProperty jProperty;
-                    if (int.TryParse(input.Value, out int numberValue))
-                    {
-                        jProperty = new(input.Key, numberValue);
-                    }
-                    else
-                    {
-                        try
-                        {
-                            // try to parse as a non-string value
-                            jProperty = new(input.Key, JToken.Parse(input.Value));
-                        }
-                        catch (JsonReaderException)
-                        {
-                            // assume it was a string
-                            jProperty = new(input.Key, input.Value);
-                        }
-                    }
-                    existingProperty?.Replace(jProperty);
+                    existingProperty?.Replace(ParseKeyValueInput(input.Key, input.Value));
                 }
 
                 ReloadEntity();
             }
+        }
+
+        private JProperty ParseKeyValueInput(string key, string value)
+        {
+            JProperty jProperty;
+            if (int.TryParse(value, out int numberValue))
+            {
+                jProperty = new(key, numberValue);
+            }
+            else
+            {
+                try
+                {
+                    // try to parse as a non-string value
+                    jProperty = new(key, JToken.Parse(value));
+                }
+                catch (JsonReaderException)
+                {
+                    // assume it was a string
+                    jProperty = new(key, value);
+                }
+            }
+            return jProperty;
         }
 
         private void deletePropertyToolStripMenuItem_Click(object sender, EventArgs e)
