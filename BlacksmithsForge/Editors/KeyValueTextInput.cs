@@ -34,6 +34,25 @@ namespace BlacksmithsForge.Editors
 
         }
 
+        public KeyValueTextInput(Type entityType) : this("", "")
+        {
+            AddAutoCompleteForType(entityType);
+        }
+
+        public void AddAutoCompleteSuggestionList(List<string> suggestions)
+        {
+            nameTextBox.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            nameTextBox.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            var source = new AutoCompleteStringCollection();
+            source.AddRange(suggestions.ToArray());
+            nameTextBox.AutoCompleteCustomSource = source;
+        }
+
+        public void AddAutoCompleteForType(Type entityType)
+        {
+            AddAutoCompleteSuggestionList(Utils.GetEntityPropertyNames(entityType));
+        }
+
         private void InitializeScintilla()
         {
             valueScintilla.Styles[Style.Json.Default].ForeColor = Color.Silver;

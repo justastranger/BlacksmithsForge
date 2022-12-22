@@ -253,6 +253,12 @@ namespace BlacksmithsForge.Editors
             if (selectedToken is JObject jObject)
             {
                 KeyValueTextInput input = new();
+
+                if (selectedNode.Parent == null)
+                {
+                    string rootName = ((selectedToken.Root as JObject).First as JProperty).Name;
+                    input.AddAutoCompleteForType(Utils.GetTypeFromRootName(rootName));
+                }
                 if (input.ShowDialog() == DialogResult.OK)
                 {
                     JProperty jProperty;
