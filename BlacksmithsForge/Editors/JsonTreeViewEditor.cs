@@ -178,8 +178,7 @@ namespace BlacksmithsForge.Editors
                 SimpleTextInput STI = new();
                 if (STI.ShowDialog() == DialogResult.OK)
                 {
-                    int numberValue = 0;
-                    if (int.TryParse(STI.textValue, out numberValue))
+                    if (int.TryParse(STI.textValue, out int numberValue))
                     {
                         jArray.Add(numberValue);
                     }
@@ -196,7 +195,36 @@ namespace BlacksmithsForge.Editors
 
         private void addEntryToDictionaryToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (selectedNode == null || selectedNode.Parent == null) return;
+            string? jsonPath = selectedNode.Tag?.ToString() ?? throw new NullReferenceException("Selected Node has null tag.");
+            selectedToken = currentEntity.SelectToken(jsonPath) ?? throw new NullReferenceException("Null Token retrieved from Node.");
 
+            if (selectedToken is JObject jObject)
+            {
+                SimpleTextInput STI = new();
+                if (STI.ShowDialog() == DialogResult.OK)
+                {
+                    string key = STI.textValue;
+                    STI = new();
+                    if (STI.ShowDialog() == DialogResult.OK)
+                    {
+                        JProperty jProperty;
+                        if (int.TryParse(STI.textValue, out int numberValue))
+                        {
+                            // jArray.Add(numberValue);
+                            jProperty = new(key, numberValue);
+                        }
+                        else
+                        {
+                            // jArray.Add(STI.textValue);
+                            jProperty = new(key, STI.textValue);
+                        }
+                        jObject.Add(jProperty);
+                        ReloadEntity();
+                    }
+
+                }
+            }
         }
     }
 }
