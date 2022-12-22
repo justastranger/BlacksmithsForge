@@ -29,11 +29,21 @@ namespace BlacksmithsForge.Editors
         {
             string json = currentEntity.ToString();
             jsonTreeView.LoadJsonToTreeView(json);
+            jsonTreeView.TopNode.ExpandAll();
+        }
+
+        private void ReloadEntity()
+        {
+            jsonTreeView.Nodes.Clear();
+            string json = currentEntity.ToString();
+            jsonTreeView.LoadJsonToTreeView(json);
+            jsonTreeView.TopNode.ExpandAll();
         }
 
         private void jsonTreeView_MouseDown(object sender, MouseEventArgs e)
         {
             selectedNode = jsonTreeView.GetNodeAt(e.X, e.Y);
+            jsonTreeView.SelectedNode = selectedNode;
         }
 
         private void jsonTreeView_Click(object sender, EventArgs e)
@@ -59,8 +69,7 @@ namespace BlacksmithsForge.Editors
                     // update the Value as a string
                     jValue.Value = e.Label;
                 }
-                // show the entire EntityData to prove the value was updated
-                // MessageBox.Show(currentEntity.ToString());
+                ReloadEntity();
             }
         }
 
@@ -68,7 +77,7 @@ namespace BlacksmithsForge.Editors
         {
             if (selectedNode != null && selectedNode.Parent != null)
             {
-                jsonTreeView.SelectedNode = selectedNode;
+                // jsonTreeView.SelectedNode = selectedNode;
                 // Node containing Property name
                 if (selectedNode.Nodes.Count == 1)
                 {
@@ -121,6 +130,33 @@ namespace BlacksmithsForge.Editors
         private void okayButton_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void editPropertyNameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Return if:
+            // No Node selected or Root Node selected
+            if (selectedNode == null || selectedNode.Parent == null) return;
+            // Node is a value, having no children
+            if (selectedNode.Nodes.Count == 0) return;
+
+            string? jsonPath = selectedNode.Tag?.ToString() ?? throw new NullReferenceException("Selected Node has null tag.");
+            selectedToken = currentEntity.SelectToken(jsonPath) ?? throw new NullReferenceException("Null Token retrieved from Node.");
+            JProperty jProperty = (JProperty?)selectedToken.Parent ?? throw new NullReferenceException("Selected Token's Parent is Null.");
+            
+            // put property name through editor
+            SimpleTextInput STI = new(jProperty.Name);
+            STI.ShowDialog();
+            // if it's changed and not null/empty
+            if (STI.textValue != jProperty.Name && !String.IsNullOrEmpty(STI.textValue))
+            {
+                // update it and the node's text
+                JProperty newProperty = new(STI.textValue, jProperty.Value);
+                jProperty.Replace(newProperty);
+                selectedNode.Text = STI.textValue;
+
+                ReloadEntity();
+            }
         }
     }
 }

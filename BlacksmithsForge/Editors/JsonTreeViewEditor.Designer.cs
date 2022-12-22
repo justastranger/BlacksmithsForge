@@ -28,8 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.jsonTreeView = new System.Windows.Forms.TreeView();
             this.okayButton = new System.Windows.Forms.Button();
+            this.treeViewContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.editPropertyNameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.treeViewContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // jsonTreeView
@@ -37,6 +41,7 @@
             this.jsonTreeView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.jsonTreeView.ContextMenuStrip = this.treeViewContextMenuStrip;
             this.jsonTreeView.Location = new System.Drawing.Point(12, 12);
             this.jsonTreeView.Name = "jsonTreeView";
             this.jsonTreeView.Size = new System.Drawing.Size(707, 397);
@@ -56,6 +61,20 @@
             this.okayButton.UseVisualStyleBackColor = true;
             this.okayButton.Click += new System.EventHandler(this.okayButton_Click);
             // 
+            // treeViewContextMenuStrip
+            // 
+            this.treeViewContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.editPropertyNameToolStripMenuItem});
+            this.treeViewContextMenuStrip.Name = "treeViewContextMenuStrip";
+            this.treeViewContextMenuStrip.Size = new System.Drawing.Size(178, 26);
+            // 
+            // editPropertyNameToolStripMenuItem
+            // 
+            this.editPropertyNameToolStripMenuItem.Name = "editPropertyNameToolStripMenuItem";
+            this.editPropertyNameToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.editPropertyNameToolStripMenuItem.Text = "Edit Property Name";
+            this.editPropertyNameToolStripMenuItem.Click += new System.EventHandler(this.editPropertyNameToolStripMenuItem_Click);
+            // 
             // JsonTreeViewEditor
             // 
             this.AcceptButton = this.okayButton;
@@ -68,6 +87,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Json TreeView Editor";
             this.Load += new System.EventHandler(this.JsonTreeViewEditor_Load);
+            this.treeViewContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -76,5 +96,7 @@
 
         private TreeView jsonTreeView;
         private Button okayButton;
+        private ContextMenuStrip treeViewContextMenuStrip;
+        private ToolStripMenuItem editPropertyNameToolStripMenuItem;
     }
 }
