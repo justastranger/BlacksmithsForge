@@ -75,12 +75,11 @@ namespace BlacksmithsForge.Editors
 
         private void addTagButton_Click(object sender, EventArgs e)
         {
-            string tmp = "";
-            SimpleTextInput STI = new(ref tmp);
-            STI.Show();
-            if (tmp != "")
+            SimpleTextInput STI = new("");
+            STI.ShowDialog();
+            if (!String.IsNullOrEmpty(STI.textValue))
             {
-                tagsListBox.Items.Add(tmp);
+                tagsListBox.Items.Add(STI.textValue);
             }
         }
 
