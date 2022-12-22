@@ -44,7 +44,7 @@ namespace BlacksmithsForge.Editors
             nameTextBox.AutoCompleteSource = AutoCompleteSource.CustomSource;
             nameTextBox.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             var source = new AutoCompleteStringCollection();
-            source.AddRange(suggestions.ToArray());
+            source.AddRange(suggestions.ConvertAll(name => name.ToLower()).ToArray());
             nameTextBox.AutoCompleteCustomSource = source;
         }
 
