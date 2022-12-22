@@ -139,24 +139,30 @@ namespace BlacksmithsForge.Editors
             // No Node selected or Root Node selected
             if (selectedNode == null || selectedNode.Parent == null) return;
             // Node is a value, having no children
-            if (selectedNode.Nodes.Count == 0) return;
+            // check for JValue below
+            // if (selectedNode.Nodes.Count == 0) return;
 
             string? jsonPath = selectedNode.Tag?.ToString() ?? throw new NullReferenceException("Selected Node has null tag.");
             selectedToken = currentEntity.SelectToken(jsonPath) ?? throw new NullReferenceException("Null Token retrieved from Node.");
-            JProperty jProperty = (JProperty?)selectedToken.Parent ?? throw new NullReferenceException("Selected Token's Parent is Null.");
-            
-            // put property name through editor
-            SimpleTextInput STI = new(jProperty.Name);
-            STI.ShowDialog();
-            // if it's changed and not null/empty
-            if (STI.textValue != jProperty.Name && !String.IsNullOrEmpty(STI.textValue))
-            {
-                // update it and the node's text
-                JProperty newProperty = new(STI.textValue, jProperty.Value);
-                jProperty.Replace(newProperty);
-                selectedNode.Text = STI.textValue;
 
-                ReloadEntity();
+            if (selectedToken is JValue) return;
+
+            // JProperty jProperty = (JProperty?)selectedToken.Parent ?? throw new NullReferenceException("Selected Token's Parent is Null.");
+            if (selectedToken.Parent is JProperty jProperty)
+            {
+                // put property name through editor
+                SimpleTextInput STI = new(jProperty.Name);
+                STI.ShowDialog();
+                // if it's changed and not null/empty
+                if (STI.textValue != jProperty.Name && !String.IsNullOrEmpty(STI.textValue))
+                {
+                    // update it and the node's text
+                    JProperty newProperty = new(STI.textValue, jProperty.Value);
+                    jProperty.Replace(newProperty);
+                    selectedNode.Text = STI.textValue;
+
+                    ReloadEntity();
+                }
             }
         }
     }
