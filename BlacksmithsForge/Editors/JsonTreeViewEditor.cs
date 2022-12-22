@@ -268,6 +268,9 @@ namespace BlacksmithsForge.Editors
             {
                 // TODO Determine the Entity type we're working with
                 // Might be able to perform a lookup based on the root name, nesting level, and the name of the property that the Entity is being added to
+                // Or use the JSONPath to determine the property name holding the entity being added to and do a lookup on the Entity object itself instead of the EntityData
+                // This would return a correctly typed List or Dictionary, the type of which can be used to generate an AutoComplete suggestions list
+                // The downside is that it would be a switch expression mapping the property names as strings to the Properties themselves which have getters that do the conversion automatically
             }
 
             if (input.ShowDialog() == DialogResult.OK)
