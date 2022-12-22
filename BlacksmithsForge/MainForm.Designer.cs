@@ -41,6 +41,7 @@
             this.entitiesListView = new System.Windows.Forms.ListView();
             this.idColumnHeader = new System.Windows.Forms.ColumnHeader();
             this.fileTypeLabel = new System.Windows.Forms.Label();
+            this.jsonTextEditorButton = new System.Windows.Forms.Button();
             this.toolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -147,11 +148,21 @@
             this.fileTypeLabel.TabIndex = 3;
             this.fileTypeLabel.Text = "Not Loaded";
             // 
+            // jsonTextEditorButton
+            // 
+            this.jsonTextEditorButton.Location = new System.Drawing.Point(384, 46);
+            this.jsonTextEditorButton.Name = "jsonTextEditorButton";
+            this.jsonTextEditorButton.Size = new System.Drawing.Size(75, 23);
+            this.jsonTextEditorButton.TabIndex = 4;
+            this.jsonTextEditorButton.Text = "Edit as Text";
+            this.jsonTextEditorButton.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.jsonTextEditorButton);
             this.Controls.Add(this.fileTypeLabel);
             this.Controls.Add(this.entitiesListView);
             this.Controls.Add(this.filesListView);
@@ -181,5 +192,6 @@
         private ListView entitiesListView;
         private ColumnHeader idColumnHeader;
         private Label fileTypeLabel;
+        private Button jsonTextEditorButton;
     }
 }

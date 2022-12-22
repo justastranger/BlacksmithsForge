@@ -150,7 +150,7 @@ namespace BlacksmithsForge
             IEntity selectedEntity = SelectedEntities[selectedGuid];
 
             // Serialize EntityData and slap it into the editor
-            JsonEditor jsonEditor = new(selectedEntity.EntityData.ToString());
+            JsonTextEditor jsonEditor = new(selectedEntity.EntityData.ToString());
             // and if the Accept button is pressed
             if (jsonEditor.ShowDialog() == DialogResult.Yes)
             {

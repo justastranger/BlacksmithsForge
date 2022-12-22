@@ -11,12 +11,12 @@ using System.Windows.Forms;
 
 namespace BlacksmithsForge.Editors
 {
-    public partial class JsonEditor : Form
+    public partial class JsonTextEditor : Form
     {
         public string jsonText;
         string tmpText;
 
-        public JsonEditor(string text)
+        public JsonTextEditor(string text)
         {
             InitializeComponent();
             InitializeScintilla();

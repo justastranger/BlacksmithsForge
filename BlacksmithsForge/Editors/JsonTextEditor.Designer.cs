@@ -1,6 +1,6 @@
 ﻿namespace BlacksmithsForge.Editors
 {
-    partial class JsonEditor
+    partial class JsonTextEditor
     {
         /// <summary>
         /// Required designer variable.
