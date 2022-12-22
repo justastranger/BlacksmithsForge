@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("Elements", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("Elements", System.Windows.Forms.HorizontalAlignment.Left);
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.fileToolStripDropDownButton = new System.Windows.Forms.ToolStripDropDownButton();
             this.openFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -99,10 +99,10 @@
             this.filesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.filenameColumnHeader});
             this.filesListView.FullRowSelect = true;
-            listViewGroup2.Header = "Elements";
-            listViewGroup2.Name = "elementsListViewGroup";
+            listViewGroup1.Header = "Elements";
+            listViewGroup1.Name = "elementsListViewGroup";
             this.filesListView.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup2});
+            listViewGroup1});
             this.filesListView.Location = new System.Drawing.Point(12, 28);
             this.filesListView.MultiSelect = false;
             this.filesListView.Name = "filesListView";
@@ -153,7 +153,7 @@
             // 
             this.jsonTextEditorButton.Location = new System.Drawing.Point(384, 46);
             this.jsonTextEditorButton.Name = "jsonTextEditorButton";
-            this.jsonTextEditorButton.Size = new System.Drawing.Size(75, 23);
+            this.jsonTextEditorButton.Size = new System.Drawing.Size(100, 23);
             this.jsonTextEditorButton.TabIndex = 4;
             this.jsonTextEditorButton.Text = "Edit as Text";
             this.jsonTextEditorButton.UseVisualStyleBackColor = true;
@@ -163,7 +163,7 @@
             // 
             this.jsonTreeViewEditorButton.Location = new System.Drawing.Point(384, 78);
             this.jsonTreeViewEditorButton.Name = "jsonTreeViewEditorButton";
-            this.jsonTreeViewEditorButton.Size = new System.Drawing.Size(75, 23);
+            this.jsonTreeViewEditorButton.Size = new System.Drawing.Size(100, 23);
             this.jsonTreeViewEditorButton.TabIndex = 5;
             this.jsonTreeViewEditorButton.Text = "Edit as Tree";
             this.jsonTreeViewEditorButton.UseVisualStyleBackColor = true;
