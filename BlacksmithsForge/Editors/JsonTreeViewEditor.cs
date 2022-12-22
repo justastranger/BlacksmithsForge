@@ -69,6 +69,7 @@ namespace BlacksmithsForge.Editors
                     // update the Value as a string
                     jValue.Value = e.Label;
                 }
+                jsonTreeView.LabelEdit = false;
                 ReloadEntity();
             }
         }
