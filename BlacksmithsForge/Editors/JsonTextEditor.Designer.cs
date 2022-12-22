@@ -76,7 +76,7 @@
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
-            // JsonEditor
+            // JsonTextEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -84,8 +84,9 @@
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.acceptButton);
             this.Controls.Add(this.scintilla1);
-            this.Name = "JsonEditor";
-            this.Text = "JsonEditor";
+            this.Name = "JsonTextEditor";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Json Text Editor";
             this.ResumeLayout(false);
 
         }

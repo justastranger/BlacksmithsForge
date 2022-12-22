@@ -117,5 +117,10 @@ namespace BlacksmithsForge.Editors
             JToken? selectedToken = currentEntity.SelectToken(jsonPath ?? throw new NullReferenceException("JSONPath of selected TreeNode is Null."));
             return selectedToken;
         }
+
+        private void okayButton_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }
