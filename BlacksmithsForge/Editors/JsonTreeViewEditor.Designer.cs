@@ -32,9 +32,9 @@
             this.jsonTreeView = new System.Windows.Forms.TreeView();
             this.treeViewContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.editPropertyNameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.okayButton = new System.Windows.Forms.Button();
-            this.addEntryToDictionaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addEntryToArrayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addEntryToDictionaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.okayButton = new System.Windows.Forms.Button();
             this.treeViewContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -46,7 +46,7 @@
             this.jsonTreeView.ContextMenuStrip = this.treeViewContextMenuStrip;
             this.jsonTreeView.Location = new System.Drawing.Point(12, 12);
             this.jsonTreeView.Name = "jsonTreeView";
-            this.jsonTreeView.Size = new System.Drawing.Size(707, 397);
+            this.jsonTreeView.Size = new System.Drawing.Size(304, 249);
             this.jsonTreeView.TabIndex = 0;
             this.jsonTreeView.AfterLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.jsonTreeView_AfterLabelEdit);
             this.jsonTreeView.Click += new System.EventHandler(this.jsonTreeView_Click);
@@ -60,7 +60,7 @@
             this.addEntryToArrayToolStripMenuItem,
             this.addEntryToDictionaryToolStripMenuItem});
             this.treeViewContextMenuStrip.Name = "treeViewContextMenuStrip";
-            this.treeViewContextMenuStrip.Size = new System.Drawing.Size(198, 92);
+            this.treeViewContextMenuStrip.Size = new System.Drawing.Size(198, 70);
             // 
             // editPropertyNameToolStripMenuItem
             // 
@@ -69,15 +69,12 @@
             this.editPropertyNameToolStripMenuItem.Text = "Edit Property Name";
             this.editPropertyNameToolStripMenuItem.Click += new System.EventHandler(this.editPropertyNameToolStripMenuItem_Click);
             // 
-            // okayButton
+            // addEntryToArrayToolStripMenuItem
             // 
-            this.okayButton.Location = new System.Drawing.Point(328, 415);
-            this.okayButton.Name = "okayButton";
-            this.okayButton.Size = new System.Drawing.Size(75, 23);
-            this.okayButton.TabIndex = 1;
-            this.okayButton.Text = "Okay";
-            this.okayButton.UseVisualStyleBackColor = true;
-            this.okayButton.Click += new System.EventHandler(this.okayButton_Click);
+            this.addEntryToArrayToolStripMenuItem.Name = "addEntryToArrayToolStripMenuItem";
+            this.addEntryToArrayToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+            this.addEntryToArrayToolStripMenuItem.Text = "Add Entry to Array";
+            this.addEntryToArrayToolStripMenuItem.Click += new System.EventHandler(this.addEntryToArrayToolStripMenuItem_Click);
             // 
             // addEntryToDictionaryToolStripMenuItem
             // 
@@ -86,21 +83,27 @@
             this.addEntryToDictionaryToolStripMenuItem.Text = "Add Entry to Dictionary";
             this.addEntryToDictionaryToolStripMenuItem.Click += new System.EventHandler(this.addEntryToDictionaryToolStripMenuItem_Click);
             // 
-            // addEntryToArrayToolStripMenuItem
+            // okayButton
             // 
-            this.addEntryToArrayToolStripMenuItem.Name = "addEntryToArrayToolStripMenuItem";
-            this.addEntryToArrayToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
-            this.addEntryToArrayToolStripMenuItem.Text = "Add Entry to Array";
-            this.addEntryToArrayToolStripMenuItem.Click += new System.EventHandler(this.addEntryToArrayToolStripMenuItem_Click);
+            this.okayButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.okayButton.Location = new System.Drawing.Point(127, 267);
+            this.okayButton.Name = "okayButton";
+            this.okayButton.Size = new System.Drawing.Size(75, 23);
+            this.okayButton.TabIndex = 1;
+            this.okayButton.Text = "Okay";
+            this.okayButton.UseVisualStyleBackColor = true;
+            this.okayButton.Click += new System.EventHandler(this.okayButton_Click);
             // 
             // JsonTreeViewEditor
             // 
             this.AcceptButton = this.okayButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(731, 450);
+            this.ClientSize = new System.Drawing.Size(328, 302);
             this.Controls.Add(this.okayButton);
             this.Controls.Add(this.jsonTreeView);
+            this.MinimumSize = new System.Drawing.Size(344, 341);
             this.Name = "JsonTreeViewEditor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Json TreeView Editor";
