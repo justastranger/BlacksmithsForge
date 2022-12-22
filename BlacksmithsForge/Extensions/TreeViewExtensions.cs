@@ -26,7 +26,7 @@ namespace BlacksmithsForge.Extensions
 
         public static void AddObjectNodes(JObject @object, string name, TreeNodeCollection parent)
         {
-            var node = new TreeNode(name);
+            var node = new TreeNode(name) { Tag = @object.Path };
             parent.Add(node);
 
             foreach (var property in @object.Properties())
@@ -37,7 +37,7 @@ namespace BlacksmithsForge.Extensions
 
         private static void AddArrayNodes(JArray array, string name, TreeNodeCollection parent)
         {
-            var node = new TreeNode(name);
+            var node = new TreeNode(name) { Tag = array.Path };
             parent.Add(node);
 
             for (var i = 0; i < array.Count; i++)
@@ -50,7 +50,10 @@ namespace BlacksmithsForge.Extensions
         {
             if (token is JValue value)
             {
-                parent.Add(new TreeNode(string.Format("{0}: {1}", name, value.Value)));
+                TreeNode mainChild = new TreeNode(name) { Tag = token.Path };
+                mainChild.Nodes.Add(new TreeNode(value.Value.ToString()) { Tag = token.Path });
+                // parent.Add(new TreeNode(string.Format("{0}: {1}", name, value.Value)));
+                parent.Add(mainChild);
             }
             else if (token is JArray array)
             {
