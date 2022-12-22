@@ -145,6 +145,7 @@ namespace BlacksmithsForge.Editors
             string? jsonPath = selectedNode.Tag?.ToString() ?? throw new NullReferenceException("Selected Node has null tag.");
             selectedToken = currentEntity.SelectToken(jsonPath) ?? throw new NullReferenceException("Null Token retrieved from Node.");
 
+            // is this even necessary anymore with the pattern matching expression below?
             if (selectedToken is JValue) return;
 
             // JProperty jProperty = (JProperty?)selectedToken.Parent ?? throw new NullReferenceException("Selected Token's Parent is Null.");
@@ -164,6 +165,38 @@ namespace BlacksmithsForge.Editors
                     ReloadEntity();
                 }
             }
+        }
+
+        private void addEntryToArrayToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (selectedNode == null || selectedNode.Parent == null) return;
+            string? jsonPath = selectedNode.Tag?.ToString() ?? throw new NullReferenceException("Selected Node has null tag.");
+            selectedToken = currentEntity.SelectToken(jsonPath) ?? throw new NullReferenceException("Null Token retrieved from Node.");
+
+            if (selectedToken is JArray jArray)
+            {
+                SimpleTextInput STI = new();
+                if (STI.ShowDialog() == DialogResult.OK)
+                {
+                    int numberValue = 0;
+                    if (int.TryParse(STI.textValue, out numberValue))
+                    {
+                        jArray.Add(numberValue);
+                    }
+                    else
+                    {
+                        jArray.Add(STI.textValue);
+                    }
+
+                    ReloadEntity();
+                }
+            }
+
+        }
+
+        private void addEntryToDictionaryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

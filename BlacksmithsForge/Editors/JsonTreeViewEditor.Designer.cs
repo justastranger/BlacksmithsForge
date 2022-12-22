@@ -30,9 +30,11 @@
         {
             this.components = new System.ComponentModel.Container();
             this.jsonTreeView = new System.Windows.Forms.TreeView();
-            this.okayButton = new System.Windows.Forms.Button();
             this.treeViewContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.editPropertyNameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.okayButton = new System.Windows.Forms.Button();
+            this.addEntryToDictionaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addEntryToArrayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.treeViewContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,6 +53,22 @@
             this.jsonTreeView.DoubleClick += new System.EventHandler(this.jsonTreeView_DoubleClick);
             this.jsonTreeView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.jsonTreeView_MouseDown);
             // 
+            // treeViewContextMenuStrip
+            // 
+            this.treeViewContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.editPropertyNameToolStripMenuItem,
+            this.addEntryToArrayToolStripMenuItem,
+            this.addEntryToDictionaryToolStripMenuItem});
+            this.treeViewContextMenuStrip.Name = "treeViewContextMenuStrip";
+            this.treeViewContextMenuStrip.Size = new System.Drawing.Size(198, 92);
+            // 
+            // editPropertyNameToolStripMenuItem
+            // 
+            this.editPropertyNameToolStripMenuItem.Name = "editPropertyNameToolStripMenuItem";
+            this.editPropertyNameToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+            this.editPropertyNameToolStripMenuItem.Text = "Edit Property Name";
+            this.editPropertyNameToolStripMenuItem.Click += new System.EventHandler(this.editPropertyNameToolStripMenuItem_Click);
+            // 
             // okayButton
             // 
             this.okayButton.Location = new System.Drawing.Point(328, 415);
@@ -61,19 +79,19 @@
             this.okayButton.UseVisualStyleBackColor = true;
             this.okayButton.Click += new System.EventHandler(this.okayButton_Click);
             // 
-            // treeViewContextMenuStrip
+            // addEntryToDictionaryToolStripMenuItem
             // 
-            this.treeViewContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.editPropertyNameToolStripMenuItem});
-            this.treeViewContextMenuStrip.Name = "treeViewContextMenuStrip";
-            this.treeViewContextMenuStrip.Size = new System.Drawing.Size(178, 26);
+            this.addEntryToDictionaryToolStripMenuItem.Name = "addEntryToDictionaryToolStripMenuItem";
+            this.addEntryToDictionaryToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+            this.addEntryToDictionaryToolStripMenuItem.Text = "Add Entry to Dictionary";
+            this.addEntryToDictionaryToolStripMenuItem.Click += new System.EventHandler(this.addEntryToDictionaryToolStripMenuItem_Click);
             // 
-            // editPropertyNameToolStripMenuItem
+            // addEntryToArrayToolStripMenuItem
             // 
-            this.editPropertyNameToolStripMenuItem.Name = "editPropertyNameToolStripMenuItem";
-            this.editPropertyNameToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.editPropertyNameToolStripMenuItem.Text = "Edit Property Name";
-            this.editPropertyNameToolStripMenuItem.Click += new System.EventHandler(this.editPropertyNameToolStripMenuItem_Click);
+            this.addEntryToArrayToolStripMenuItem.Name = "addEntryToArrayToolStripMenuItem";
+            this.addEntryToArrayToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+            this.addEntryToArrayToolStripMenuItem.Text = "Add Entry to Array";
+            this.addEntryToArrayToolStripMenuItem.Click += new System.EventHandler(this.addEntryToArrayToolStripMenuItem_Click);
             // 
             // JsonTreeViewEditor
             // 
@@ -98,5 +116,7 @@
         private Button okayButton;
         private ContextMenuStrip treeViewContextMenuStrip;
         private ToolStripMenuItem editPropertyNameToolStripMenuItem;
+        private ToolStripMenuItem addEntryToArrayToolStripMenuItem;
+        private ToolStripMenuItem addEntryToDictionaryToolStripMenuItem;
     }
 }
