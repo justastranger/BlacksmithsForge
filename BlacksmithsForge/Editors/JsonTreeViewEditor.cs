@@ -187,15 +187,19 @@ namespace BlacksmithsForge.Editors
                     {
                         // Allows for arbitrary JSON to be used as a value
                         // Or for simple values like strings, numbers, bools
-                        JValue value;
+                        JToken value;
                         try
                         {
-                            value = new(JToken.Parse(STI.textValue));
+                            value = JToken.Parse(STI.textValue);
                         }
                         catch (JsonReaderException)
                         {
-                            value = new(STI.textValue);
+                            value = new JValue(STI.textValue.Replace("\"", ""));
                         }
+                        //catch (ArgumentException)
+                        //{
+                        //    value = JObject.Parse(STI.textValue);
+                        //}
                         jArray.Add(value);
                     }
                     
