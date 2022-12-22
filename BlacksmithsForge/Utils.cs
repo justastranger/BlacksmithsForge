@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BlacksmithsForge.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -29,9 +30,9 @@ namespace BlacksmithsForge
         
         public static List<PropertyInfo> GetEntityProperties(Type entityType)
         {
-            PropertyInfo[] unfiltered = entityType.GetProperties(BindingFlags.Instance | BindingFlags.Public);
-            PropertyInfo[] implementedProperties = entityType.GetInterfaces().First().GetProperties();
-            List<string> filter = unfiltered.Select((property) => property.Name).Except(implementedProperties.Select(property => property.Name)).ToList();
+            var unfiltered = entityType.GetProperties(BindingFlags.Instance | BindingFlags.Public);
+            var implementedProperties = entityType.GetInterfaces().SelectMany(@interface => @interface.GetProperties()).ToList();
+            var filter = unfiltered.Select((property) => property.Name).Except(implementedProperties.Select(property => property.Name)).ToList();
             List<PropertyInfo> filteredProperties = unfiltered.Where(property => filter.Contains(property.Name)).ToList();
             // Since ID is declared at the interface level, it gets filtered out
             // but we actually want to include it so we have to pop it back in
@@ -41,14 +42,15 @@ namespace BlacksmithsForge
 
         public static List<string> GetEntityPropertyNames(Type entityType)
         {
-            PropertyInfo[] unfiltered = entityType.GetProperties(BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Public);
-            PropertyInfo[] implementedProperties = entityType.GetInterfaces().First().GetProperties();
-            // we can skip the actual PropertyInfo filtering step
-            List<string> filteredNames = unfiltered.Select((property) => property.Name).Except(implementedProperties.Select(property => property.Name)).ToList();
+            // Retrieve a *complete* list of property names for a Type, including IRootEntity and IEntity properties
+            var unfilteredNames = entityType.GetProperties(BindingFlags.Instance | BindingFlags.Public).Select(property => property.Name).ToList();
+            // Retrieve a list of just the IRootEntity and IEntity property names
+            var interfaceProperties = entityType.GetInterfaces().SelectMany(@interface => @interface.GetProperties()).Select(property => property.Name).ToList();
+            // And remove the latter from the former
+            List<string> filteredNames = unfilteredNames.Except(interfaceProperties).ToList();
             // Since ID is declared at the interface level, it gets filtered out
             // but we actually want to include it so we have to pop it back in
-            filteredNames.Add("ID");
-            return filteredNames;
+            return filteredNames.Prepend("ID").ToList();
         }
     }
 }
