@@ -12,21 +12,27 @@ namespace BlacksmithsForge.Editors
 {
     public partial class SimpleTextInput : Form
     {
-        public string? textInput;
+        public string? textValue;
 
-        public SimpleTextInput(ref string input)
+        public SimpleTextInput(string input)
         {
             InitializeComponent();
 
-            textInput = input;
+            textValue = input;
 
             textBox.Text = input;
         }
 
         private void textBox_TextChanged(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(textBox.Text)) textInput = null;
-            else textInput = textBox.Text;
+            if (String.IsNullOrEmpty(textBox.Text)) textValue = null;
+            else textValue = textBox.Text;
+        }
+
+        private void okayButton_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.OK;
+            Close();
         }
     }
 }

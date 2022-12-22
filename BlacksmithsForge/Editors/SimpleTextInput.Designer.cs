@@ -49,6 +49,7 @@
             this.okayButton.TabIndex = 1;
             this.okayButton.Text = "OK";
             this.okayButton.UseVisualStyleBackColor = true;
+            this.okayButton.Click += new System.EventHandler(this.okayButton_Click);
             // 
             // SimpleTextInput
             // 
