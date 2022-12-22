@@ -246,16 +246,35 @@ namespace BlacksmithsForge.Editors
 
         private void addPropertyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // make sure we're only adding to the root node
-            if (selectedNode == null || selectedNode.Parent != null) return;
+            // make sure we have a selected node
+            if (selectedNode == null) return;
+
+            string? jsonPath = selectedNode.Tag?.ToString() ?? throw new NullReferenceException("Selected Node has null tag.");
+            selectedToken = currentEntity.SelectToken(jsonPath) ?? throw new NullReferenceException("Null Token retrieved from Node.");
             
-            string rootName = ((currentEntity.Root as JObject).First as JProperty).Name;
-            KeyValueTextInput input = new(Utils.GetTypeFromRootName(rootName));
+            // Guard clause so only Objects are modified
+            // Not specific enough to guard against Dictionary properties
+            // TODO Either find a way to differentiate the two or merge the buttons
+            if (selectedToken is not JObject jObject) return;
+
+            KeyValueTextInput input = new();
+            // if this is the root node, we know what autocomplete list to use
+            if (selectedNode.Parent != null)
+            {
+                string rootName = ((jObject.Root as JObject).First as JProperty).Name;
+                input.AddAutoCompleteForType(Utils.GetTypeFromRootName(rootName));
+            }
+            else
+            {
+                // TODO Determine the Entity type we're working with
+                // Might be able to perform a lookup based on the root name, nesting level, and the name of the property that the Entity is being added to
+            }
+
             if (input.ShowDialog() == DialogResult.OK)
             {
-                if (!currentEntity.ContainsKey(input.Key))
+                if (!jObject.ContainsKey(input.Key))
                 {
-                    currentEntity.Add(ParseKeyValueInput(input.Key, input.Value));
+                    jObject.Add(ParseKeyValueInput(input.Key, input.Value));
                 }
                 else
                 {
