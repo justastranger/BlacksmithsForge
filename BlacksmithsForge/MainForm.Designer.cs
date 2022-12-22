@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("Elements", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("Elements", System.Windows.Forms.HorizontalAlignment.Left);
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.fileToolStripDropDownButton = new System.Windows.Forms.ToolStripDropDownButton();
             this.openFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -42,6 +42,7 @@
             this.idColumnHeader = new System.Windows.Forms.ColumnHeader();
             this.fileTypeLabel = new System.Windows.Forms.Label();
             this.jsonTextEditorButton = new System.Windows.Forms.Button();
+            this.jsonTreeViewEditorButton = new System.Windows.Forms.Button();
             this.toolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -98,10 +99,10 @@
             this.filesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.filenameColumnHeader});
             this.filesListView.FullRowSelect = true;
-            listViewGroup1.Header = "Elements";
-            listViewGroup1.Name = "elementsListViewGroup";
+            listViewGroup2.Header = "Elements";
+            listViewGroup2.Name = "elementsListViewGroup";
             this.filesListView.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup1});
+            listViewGroup2});
             this.filesListView.Location = new System.Drawing.Point(12, 28);
             this.filesListView.MultiSelect = false;
             this.filesListView.Name = "filesListView";
@@ -156,12 +157,24 @@
             this.jsonTextEditorButton.TabIndex = 4;
             this.jsonTextEditorButton.Text = "Edit as Text";
             this.jsonTextEditorButton.UseVisualStyleBackColor = true;
+            this.jsonTextEditorButton.Click += new System.EventHandler(this.jsonTextEditorButton_Click);
+            // 
+            // jsonTreeViewEditorButton
+            // 
+            this.jsonTreeViewEditorButton.Location = new System.Drawing.Point(384, 78);
+            this.jsonTreeViewEditorButton.Name = "jsonTreeViewEditorButton";
+            this.jsonTreeViewEditorButton.Size = new System.Drawing.Size(75, 23);
+            this.jsonTreeViewEditorButton.TabIndex = 5;
+            this.jsonTreeViewEditorButton.Text = "Edit as Tree";
+            this.jsonTreeViewEditorButton.UseVisualStyleBackColor = true;
+            this.jsonTreeViewEditorButton.Click += new System.EventHandler(this.jsonTreeViewEditorButton_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.jsonTreeViewEditorButton);
             this.Controls.Add(this.jsonTextEditorButton);
             this.Controls.Add(this.fileTypeLabel);
             this.Controls.Add(this.entitiesListView);
@@ -193,5 +206,6 @@
         private ColumnHeader idColumnHeader;
         private Label fileTypeLabel;
         private Button jsonTextEditorButton;
+        private Button jsonTreeViewEditorButton;
     }
 }

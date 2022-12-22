@@ -140,7 +140,27 @@ namespace BlacksmithsForge
             entitiesListView.Items.AddRange(items.ToArray());
         }
 
+        // "Disabled" double clicking until I figure out the best thing to do when you do so
         private void entitiesListView_DoubleClick(object sender, EventArgs e)
+        {
+            //if (CurrentMod == null) return;
+            //if (SelectedEntities == null) return;
+            //if (entitiesListView.SelectedItems.Count != 1) return;
+
+            //Guid selectedGuid = (Guid)entitiesListView.SelectedItems[0].Tag;
+            //IEntity selectedEntity = SelectedEntities[selectedGuid];
+
+            //// Serialize EntityData and slap it into the editor
+            //JsonTextEditor jsonEditor = new(selectedEntity.EntityData.ToString());
+            //// and if the Accept button is pressed
+            //if (jsonEditor.ShowDialog() == DialogResult.Yes)
+            //{
+            //    // we deserialize the EntityData and replace the old with the new
+            //    selectedEntity.EntityData = JObject.Parse(jsonEditor.jsonText);
+            //}
+        }
+
+        private void jsonTextEditorButton_Click(object sender, EventArgs e)
         {
             if (CurrentMod == null) return;
             if (SelectedEntities == null) return;
@@ -156,6 +176,25 @@ namespace BlacksmithsForge
             {
                 // we deserialize the EntityData and replace the old with the new
                 selectedEntity.EntityData = JObject.Parse(jsonEditor.jsonText);
+            }
+        }
+
+        private void jsonTreeViewEditorButton_Click(object sender, EventArgs e)
+        {
+            if (CurrentMod == null) return;
+            if (SelectedEntities == null) return;
+            if (entitiesListView.SelectedItems.Count != 1) return;
+
+            Guid selectedGuid = (Guid)entitiesListView.SelectedItems[0].Tag;
+            IEntity selectedEntity = SelectedEntities[selectedGuid];
+
+            // Whip up a TreeViewEditor with the selected EntityData
+            JsonTreeViewEditor jsonEditor = new(selectedEntity.EntityData);
+            // and if the Accept button is pressed
+            if (jsonEditor.ShowDialog() == DialogResult.Yes)
+            {
+                // we replace the old EntityData with the new
+                selectedEntity.EntityData = jsonEditor.currentEntity;
             }
         }
     }
