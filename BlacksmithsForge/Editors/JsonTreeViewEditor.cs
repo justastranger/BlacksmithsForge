@@ -204,29 +204,21 @@ namespace BlacksmithsForge.Editors
 
             if (selectedToken is JObject jObject)
             {
-                SimpleTextInput STI = new();
-                if (STI.ShowDialog() == DialogResult.OK)
+                KeyValueTextInput input = new();
+                if (input.ShowDialog() == DialogResult.OK)
                 {
-                    string key = STI.textValue;
-                    STI = new();
-                    if (STI.ShowDialog() == DialogResult.OK)
-                    {
                         JProperty jProperty;
-                        if (int.TryParse(STI.textValue, out int numberValue))
+                    if (int.TryParse(input.Value, out int numberValue))
                         {
-                            // jArray.Add(numberValue);
-                            jProperty = new(key, numberValue);
+                          jProperty = new(input.Key, numberValue);
                         }
                         else
                         {
-                            // Allows for arbitrary JSON to be used as a value
-                            // Or for simple values like strings, numbers, bools
-                            jProperty = new(key, JToken.Parse(STI.textValue));
+                        jProperty = new(input.Key, JToken.Parse(input.Value));
                         }
                         jObject.Add(jProperty);
                         ReloadEntity();
                     }
-
                 }
             }
         }
