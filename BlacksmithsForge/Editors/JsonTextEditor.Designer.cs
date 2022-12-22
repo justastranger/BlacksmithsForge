@@ -84,6 +84,7 @@
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.acceptButton);
             this.Controls.Add(this.scintilla1);
+            this.MinimumSize = new System.Drawing.Size(200, 200);
             this.Name = "JsonTextEditor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Json Text Editor";
