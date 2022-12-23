@@ -6,24 +6,66 @@ Designed to have a smaller, less bloated scope than Carcass Spark with support f
 
 ## TODO
 
- - Add a main overview to see everything that loaded
-	 - A ListView on one side showing each file
-		 - (Double) Click on one of the filenames to select it
-			 - Shows its contents in the ListView next to it
-			 - Some info displayed above entities ListView
-				 - Entity type for file (can't change)
-				 - Number of entities
-				 - Selected filename (just so you can be extra sure)
-			 - Buttons above entities list view
-				 - New Entity
-				 - Delete Entity
-				 - Edit Entity
-				 - Rename File
-				 - Copy Entity
-				 - Paste Entity
- - Add all main Entity types
-	 - Add all main properties present in current version (`gateofhorn`) of the game's code
-	 - Create forms for editing
-		 - Raw JSON Editor via Scintilla
-		 - Tree Editor of some kind?
-			 - 
+- [x] Add a main overview to see everything that loaded
+	- [x] A ListView on one side showing each file
+		- [x] (Double) Click on one of the filenames to select it
+			- [x] Shows its contents in the ListView next to it
+			- [ ] Some info displayed above entities ListView
+				- [x] Entity type for file (can't change)
+				- [ ] Number of entities
+				- [ ] Selected filename (just so you can be extra sure)
+			- [ ] Buttons above entities list view
+				- [ ] New Entity
+				- [ ] Delete Entity
+				- [x] Edit Entity
+					- [x] Using Text
+					- [x] Using TreeView
+					- [ ] Maybe a high-level, Carcass Spark-esque control-based editor
+				- [ ] Rename/move File
+				- [ ] Copy Entity
+				- [ ] Paste Entity
+- [x] TreeView-based editor
+	- [x] Context menu when right clicking a property or value
+		- [x] Rename property
+		- [x] Add property
+		- [x] Add values to Dictionary and List properties
+		- [x] Delete properties
+		- [ ] Input forms for adding more advanced values
+			- [ ] RecipeLink
+			- [ ] Sphere (aka slot)
+			- [ ] Mutation
+			- [ ] Expulsion
+			- [ ] XTrigger
+		- [ ] Dictionary editor
+			- [ ] Would be more intuitive for editing keys *and* values
+				- [ ] As it stands, you can double-click a value to edit it but you have to right click the key to rename it as a property
+		- [ ] Tabbed Array editor
+			- [ ] Each entry gets its own Scintilla text editor
+			- [ ] Only other alternative would be to create a control for editing each Entity Type
+				- [ ] The effort could be recycled in an un-tabbed editor for single Entities
+					- [ ] With a Type in the constructor, the editor form could lookup the correct control for the Entity it has
+					- [ ] The control itself could be tabbed to separate properties from property operations
+						- [ ] Main tab
+						- [ ] Operations for Lists
+							- [ ] `"property$append: ["example1", {"id": "example2"}]"`
+							- [ ] `"property$prepend": ["example1", {"id": "example2"}]`
+							- [ ] `"property$remove": ["example1", "example2"]`
+							- [ ] `"property$clear: <anything>`
+						- [ ] Operations for Dictionaries
+							- [ ] `"property$add": {"example1": 2}`
+							- [ ] `"property$remove": ["example1", "example2"]`
+							- [ ] `"property$clear: <anything>`
+						- [ ] Operations for Numbers
+							- [ ] `"property$plus": 1`
+							- [ ] `"property$minus": 2`
+							- [ ] `"property$clear: <anything>`
+						- [ ] Operations for Strins
+							- [ ] `"property$prefix": "example"`
+							- [ ] `"property$postfix": "example"`
+							- [ ] `"property$replace": [{"example1": "example2"}]`
+							- [ ] `"property$replacelast": [{"example1": "example2"}]`
+							- [ ] `"property$clear": <anything>`
+						- [ ] Complex Operations
+							- [ ] `"property$listedit"`
+							- [ ] `"property$dictedit"`
+- [ ] 
