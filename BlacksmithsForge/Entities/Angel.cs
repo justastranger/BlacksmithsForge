@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BlacksmithsForge.Entities
 {
-    internal class Angel : IEntity
+    public class Angel : IEntity
     {
         public JObject EntityData { get; set; }
         public string ID

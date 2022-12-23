@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BlacksmithsForge.Entities
 {
-    internal enum EntityTypes
+    public enum EntityTypes
     {
         ACHIEVEMENT,
         ANGEL,

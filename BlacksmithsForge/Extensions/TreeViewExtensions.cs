@@ -11,7 +11,7 @@ namespace BlacksmithsForge.Extensions
     // Licensed under MIT
     // https://github.com/huseyint/JsonTreeView/blob/master/JsonTreeView/JsonTreeViewLoader.cs
 
-    internal static class TreeViewExtensions
+    public static class TreeViewExtensions
     {
         public static void LoadJsonToTreeView(this TreeView treeView, string json)
         {

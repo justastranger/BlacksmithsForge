@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BlacksmithsForge.Entities
 {
-    internal class XTrigger : IEntity
+    public class XTrigger : IEntity
     {
         public JObject EntityData { get; set; }
         // determines result

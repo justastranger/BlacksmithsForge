@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace BlacksmithsForge.Entities
 {
     // aka Slot
-    internal class Sphere : IEntity
+    public class Sphere : IEntity
     {
         public JObject EntityData { get; set; }
         public string ID

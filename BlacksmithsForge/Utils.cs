@@ -11,7 +11,7 @@ using static System.Formats.Asn1.AsnWriter;
 
 namespace BlacksmithsForge
 {
-    internal class Utils
+    public class Utils
     {
         public static string PluralToSingular(string name) {
             return name switch

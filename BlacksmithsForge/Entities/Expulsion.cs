@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BlacksmithsForge.Entities
 {
-    internal class Expulsion : IEntity
+    public class Expulsion : IEntity
     {
         public JObject EntityData { get; set; }
         // For this Entity, the ID property determines the target

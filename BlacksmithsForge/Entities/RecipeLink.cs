@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BlacksmithsForge.Entities
 {
-    internal class RecipeLink : IEntity
+    public class RecipeLink : IEntity
     {
         public JObject EntityData { get; set; }
         // For this Entity, the ID property determines the target for the link
@@ -33,6 +33,11 @@ namespace BlacksmithsForge.Entities
         public RecipeLink(JObject entityData)
         {
             EntityData = entityData;
+        }
+
+        public RecipeLink()
+        {
+            EntityData = new JObject();
         }
     }
 }

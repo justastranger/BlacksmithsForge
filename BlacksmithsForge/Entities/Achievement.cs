@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BlacksmithsForge.Entities
 {
-    internal class Achievement : IRootEntity
+    public class Achievement : IRootEntity
     {
         public JObject EntityData { get; set; }
         public string ID

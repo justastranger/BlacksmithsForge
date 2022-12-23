@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BlacksmithsForge.Entities
 {
-    internal class EntityFactory
+    public class EntityFactory
     {
 
         public static IEntity Parse(JObject entityData, string type, string filename)
