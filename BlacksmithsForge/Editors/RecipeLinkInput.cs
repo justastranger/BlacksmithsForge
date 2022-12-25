@@ -118,6 +118,11 @@ namespace BlacksmithsForge.Editors
 
         private void okayButton_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(RecipeLink.ID) || RecipeLink.ID == "CHANGEME.recipe.target")
+            {
+                MessageBox.Show("You must set the ID to target a recipe.. To cancel, click the close button in the top right.");
+                return;
+            }
             UpdateChallenges();
             DialogResult = DialogResult.OK;
             Close();
