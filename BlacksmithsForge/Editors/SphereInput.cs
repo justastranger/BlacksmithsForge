@@ -35,42 +35,42 @@ namespace BlacksmithsForge.Editors
 
         private void idTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(idTextBox.Text)) Sphere.ID = idTextBox.Text;
+            if (!string.IsNullOrEmpty(idTextBox.Text)) Sphere.ID = idTextBox.Text;
         }
 
         private void labelTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(labelTextBox.Text)) Sphere.Label = labelTextBox.Text;
+            if (!string.IsNullOrEmpty(labelTextBox.Text)) Sphere.Label = labelTextBox.Text;
             else Sphere.Label = null;
         }
 
         private void descriptionTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(descriptionTextBox.Text)) Sphere.Description = descriptionTextBox.Text;
+            if (!string.IsNullOrEmpty(descriptionTextBox.Text)) Sphere.Description = descriptionTextBox.Text;
             else Sphere.Description = null;
         }
 
         private void actionIdTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(actionIdTextBox.Text)) Sphere.ActionId = actionIdTextBox.Text;
+            if (!string.IsNullOrEmpty(actionIdTextBox.Text)) Sphere.ActionId = actionIdTextBox.Text;
             else Sphere.ActionId = null;
         }
 
         private void fromPathTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(fromPathTextBox.Text)) Sphere.FromPath = fromPathTextBox.Text;
+            if (!string.IsNullOrEmpty(fromPathTextBox.Text)) Sphere.FromPath = fromPathTextBox.Text;
             else Sphere.FromPath = null;
         }
 
         private void enRouteSpherePathTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(enRouteSpherePathTextBox.Text)) Sphere.EnRouteSpherePath = enRouteSpherePathTextBox.Text;
+            if (!string.IsNullOrEmpty(enRouteSpherePathTextBox.Text)) Sphere.EnRouteSpherePath = enRouteSpherePathTextBox.Text;
             else Sphere.EnRouteSpherePath = null;
         }
 
         private void windowsSpherePathTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(windowsSpherePathTextBox.Text)) Sphere.WindowsSpherePath = windowsSpherePathTextBox.Text;
+            if (!string.IsNullOrEmpty(windowsSpherePathTextBox.Text)) Sphere.WindowsSpherePath = windowsSpherePathTextBox.Text;
             else Sphere.WindowsSpherePath = null;
         }
 
