@@ -61,7 +61,7 @@ namespace BlacksmithsForge.Editors
 
         private void UpdateFilter()
         {
-            Expulsion.Filter = new();
+            Dictionary<string, string>? Filter = new();
 
             foreach (DataGridViewRow row in filterDataGridView.Rows)
             {
@@ -73,15 +73,17 @@ namespace BlacksmithsForge.Editors
                     string key = row.Cells[0].Value.ToString();
                     string value = row.Cells[1].Value.ToString();
 
-                    Expulsion.Filter.Add(key, value);
+                    Filter.Add(key, value);
                 }
             }
 
-            if (Expulsion.Filter.Count == 0)
+            if (Filter.Count == 0)
             {
                 // This basically renders the expulsion useless but if it's empty it's empty and we don't need stragglers
-                Expulsion.Filter = null;
+                Filter = null;
             }
+
+            Expulsion.Filter = Filter;
         }
 
         private void filterDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)

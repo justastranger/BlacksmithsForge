@@ -54,13 +54,13 @@ namespace BlacksmithsForge.Editors
         {
             if (challengesDataGridView.Rows[e.RowIndex].Cells[0].Value != null && challengesDataGridView.Rows[e.RowIndex].Cells[1].Value != null)
             {
-                UpdateRecipeLinks();
+                UpdateChallenges();
             }
         }
 
-        private void UpdateRecipeLinks()
+        private void UpdateChallenges()
         {
-            RecipeLink.Challenges = new();
+            Dictionary<string,string>? Challenges = new();
 
             foreach (DataGridViewRow row in challengesDataGridView.Rows)
             {
@@ -71,15 +71,17 @@ namespace BlacksmithsForge.Editors
                     string key = row.Cells[0].Value.ToString();
                     string value = row.Cells[1].Value.ToString();
 
-                    RecipeLink.Challenges.Add(key, value);
+                    Challenges.Add(key, value);
                 }
             }
 
-            if (RecipeLink.Challenges.Count == 0)
+            if (Challenges.Count == 0)
             {
-                RecipeLink.Challenges = null;
+                Challenges = null;
             }
-            
+
+            RecipeLink.Challenges = Challenges;
+
             // ReloadDataGridView();
         }
 
@@ -111,24 +113,24 @@ namespace BlacksmithsForge.Editors
 
         private void challengesDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
-            UpdateRecipeLinks();
+            UpdateChallenges();
         }
 
         private void okayButton_Click(object sender, EventArgs e)
         {
-            UpdateRecipeLinks();
+            UpdateChallenges();
             DialogResult = DialogResult.OK;
             Close();
         }
 
         private void expulsionButton_Click(object sender, EventArgs e)
         {
-            RecipeLink.Expulsion = new();
-            ExpulsionInput expulsionInput = new(RecipeLink.Expulsion);
+            Expulsion expulsion = new();
+            ExpulsionInput expulsionInput = new(expulsion);
             expulsionInput.ShowDialog();
-            if (RecipeLink.Expulsion.Filter == null)
+            if (expulsionInput.Expulsion.Filter != null)
             {
-                RecipeLink.Expulsion = null;
+                RecipeLink.Expulsion = expulsion;
             }
         }
     }
