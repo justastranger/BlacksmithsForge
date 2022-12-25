@@ -24,6 +24,11 @@ namespace BlacksmithsForge.Entities
             EntityData = entityData;
         }
 
+        public Expulsion() : this(new())
+        {
+
+        }
+
         public override string ToString()
         {
             return EntityData.ToString();
