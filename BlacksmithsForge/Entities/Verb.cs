@@ -40,7 +40,6 @@ namespace BlacksmithsForge.Entities
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public List<Sphere>? Slots { get { return (List<Sphere>?)(EntityData["slots"]?.Values<Sphere>()); } set => EntityData["slots"] = value != null ? JArray.FromObject(value) : null; }
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Dictionary<string, int>? Aspects { get { return EntityData["aspects"]?.ToObject<Dictionary<string, int>?>(); } set => EntityData["aspects"] = value != null ? JObject.FromObject(value) : null; }
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Dictionary<string, List<XTrigger>>? XTriggers { get { return EntityData["induces"]?.ToObject<Dictionary<string, List<XTrigger>>?>(); } set => EntityData["induces"] = value != null ? JObject.FromObject(value) : null; }
