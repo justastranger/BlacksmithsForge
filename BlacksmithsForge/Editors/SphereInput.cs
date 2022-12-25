@@ -19,6 +19,20 @@ namespace BlacksmithsForge.Editors
         {
             InitializeComponent();
             Sphere = sphere;
+            LoadValues();
+        }
+
+        private void LoadValues()
+        {
+            idTextBox.Text = Sphere.ID;
+            labelTextBox.Text = Sphere.Label ?? "";
+            descriptionTextBox.Text = Sphere.Description ?? "";
+            actionIdTextBox.Text = Sphere.ActionId ?? "";
+            fromPathTextBox.Text = Sphere.FromPath ?? "";
+            enRouteSpherePathTextBox.Text = Sphere.EnRouteSpherePath ?? "";
+            windowsSpherePathTextBox.Text = Sphere.WindowsSpherePath ?? "";
+            greedyCheckBox.Checked = Sphere.Greedy ?? false;
+            consumesCheckBox.Checked = Sphere.Consumes ?? false;
         }
 
         private void greedyCheckBox_CheckedChanged(object sender, EventArgs e)
