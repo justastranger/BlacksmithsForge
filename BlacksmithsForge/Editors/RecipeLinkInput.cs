@@ -19,17 +19,94 @@ namespace BlacksmithsForge.Editors
         {
             InitializeComponent();
             RecipeLink = recipeLink;
+            LoadValues();
         }
 
-        public RecipeLinkInput()
+        public RecipeLinkInput() : this(new("CHANGEME.recipe.target"))
         {
-            InitializeComponent();
-            RecipeLink = new();
+            
         }
 
         private void additionalCheckBox_CheckedChanged(object sender, EventArgs e)
         {
+            if (additionalCheckBox.Checked) RecipeLink.Additional = true;
+            else RecipeLink.Additional = null;
+        }
 
+        private void idTextBox_TextChanged(object sender, EventArgs e)
+        {
+            RecipeLink.ID = idTextBox.Text;
+        }
+
+        private void chanceNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            if (chanceNumericUpDown.Value == 100) RecipeLink.Chance = null;
+            else RecipeLink.Chance = (int)chanceNumericUpDown.Value;
+        }
+
+        private void toPathTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(toPathTextBox.Text)) RecipeLink.ToPath = null;
+            else RecipeLink.ToPath = toPathTextBox.Text;
+        }
+
+        private void challengesDataGridView_RowValidated(object sender, DataGridViewCellEventArgs e)
+        {
+            if (challengesDataGridView.Rows[e.RowIndex].Cells[0].Value != null && challengesDataGridView.Rows[e.RowIndex].Cells[1].Value != null)
+            {
+                UpdateRecipeLinks();
+            }
+        }
+
+        private void UpdateRecipeLinks()
+        {
+            RecipeLink.Challenges = new();
+
+            foreach (DataGridViewRow row in challengesDataGridView.Rows)
+            {
+                // Look for rows where both cells are filled
+                if (row.Cells[0].Value?.ToString() != null && row.Cells[1].Value?.ToString() != null)
+                {
+                    // null checked above, idk why it is so damned sure there's a null reference possibility
+                    string key = row.Cells[0].Value.ToString();
+                    string value = row.Cells[1].Value.ToString();
+
+                    RecipeLink.Challenges.Add(key, value);
+                }
+            }
+
+            if (RecipeLink.Challenges.Count == 0)
+            {
+                RecipeLink.Challenges = null;
+            }
+            
+            // ReloadDataGridView();
+        }
+
+        private void LoadValues()
+        {
+            idTextBox.Text = RecipeLink.ID;
+            // 100 is functionally the same as null, a guaranteed link
+            chanceNumericUpDown.Value = RecipeLink.Chance ?? 100;
+            additionalCheckBox.Checked = RecipeLink.Additional ?? false;
+            toPathTextBox.Text = RecipeLink.ToPath ?? "";
+
+            // Empty DataGridViews that can have rows added always start with one blank
+            // And always immediately add a second row once the first starts being filled
+            if (challengesDataGridView.Rows.Count > 1) challengesDataGridView.Rows.Clear();
+
+            if (RecipeLink.Challenges?.Count > 0)
+            {
+                RecipeLink.Challenges?.ToList().ForEach(pair =>
+                {
+                    challengesDataGridView.Rows.Add(pair.Key, pair.Value);
+                });
+            }
+        }
+
+        private void challengesDataGridView_DefaultValuesNeeded(object sender, DataGridViewRowEventArgs e)
+        {
+            e.Row.Cells[1].Value = "base";
         }
     }
 }
