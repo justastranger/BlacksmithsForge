@@ -1,7 +1,9 @@
 ﻿using BlacksmithsForge.Entities;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Serialization;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -15,10 +17,23 @@ namespace BlacksmithsForge
 {
     public class Utils
     {
+        private class LowerCaseContractResolver : DefaultContractResolver
+        {
+            public LowerCaseContractResolver() { }
+
+            protected override IList<JsonProperty> CreateProperties(Type type, MemberSerialization memberSerialization)
+            {
+                List<JsonProperty> properties = base.CreateProperties(type, memberSerialization).ToList();
+                properties.ForEach(property => property.PropertyName = property.PropertyName?.ToLower());
+                return properties;
+            }
+        }
+
         private static readonly JsonSerializer jsonSerializer = new()
         {
             NullValueHandling = NullValueHandling.Ignore,
-            Formatting = Formatting.Indented
+            Formatting = Formatting.Indented,
+            ContractResolver = new LowerCaseContractResolver()
         };
 
         public static string PluralToSingular(string name) {
