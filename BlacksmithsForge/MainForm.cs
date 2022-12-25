@@ -220,11 +220,6 @@ namespace BlacksmithsForge
             // and if the Accept button is pressed
             jsonEditor.ShowDialog();
             UpdateEntities();
-            //{
-            //    // we replace the old EntityData with the new
-            //    // might not be necessary
-            //    selectedEntity.EntityData = jsonEditor.currentEntity;
-            //}
         }
     }
 }
