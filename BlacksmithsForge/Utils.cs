@@ -117,7 +117,12 @@ namespace BlacksmithsForge
         {
             if (entity is JObject jObject)
             {
-                jObject.SelectTokens("$..*").OfType<JValue>().Where(value => value.Type == JTokenType.Null).Select(nullValue => nullValue.Parent).ToList().ForEach(property => property?.Remove());
+                jObject.SelectTokens("$..*")
+                    .OfType<JValue>()
+                    .Where(value => value.Type == JTokenType.Null || value.Value == null)
+                    .Select(nullValue => nullValue.Parent)
+                    .ToList()
+                    .ForEach(property => property?.Remove());
             }
             return JsonConvert.SerializeObject(entity, jsonSerializerSettings);
         }
