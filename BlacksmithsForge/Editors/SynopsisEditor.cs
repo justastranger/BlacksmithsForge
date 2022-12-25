@@ -57,19 +57,19 @@ namespace BlacksmithsForge.Editors
 
         private void versionTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(versionTextBox.Text)) Synopsis.Version = null;
+            if (String.IsNullOrEmpty(versionTextBox.Text)) Synopsis.Version = "";
             else Synopsis.Version = versionTextBox.Text;
         }
 
         private void descriptionTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(descriptionTextBox.Text)) Synopsis.Description = null;
+            if (String.IsNullOrEmpty(descriptionTextBox.Text)) Synopsis.Description = "";
             else Synopsis.Description = descriptionTextBox.Text;
         }
 
         private void longDescriptionTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(longDescriptionTextBox.Text)) Synopsis.Description_Long = null;
+            if (String.IsNullOrEmpty(longDescriptionTextBox.Text)) Synopsis.Description_Long = "";
             else Synopsis.Description_Long = longDescriptionTextBox.Text;
         }
 
