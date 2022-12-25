@@ -25,7 +25,7 @@ namespace BlacksmithsForge.Entities
 
 
         public string? WorldSphereType { get { return EntityData["worldspheretype"]?.ToString(); } set => EntityData["worldspheretype"] = value; }
-        public string? DefaultWorldSpherePath { get { return EntityData["DefaultWorldSpherePath"]?.ToString(); } set => EntityData["DefaultWorldSpherePath"] = value; }
+        public string? DefaultWorldSpherePath { get { return EntityData["defaultworldspherepath"]?.ToString(); } set => EntityData["defaultworldspherepath"] = value; }
         public List<string>? AlternativeDefaultWorldSpherePaths { get { return (List<string>?)(EntityData["alternativedefaultworldspherepaths"]?.Values<string>()); } set => EntityData["alternativedefaultworldspherepaths"] = value != null ? JArray.FromObject(value) : null; }
         public string? LogoScene { get { return EntityData["logoscene"]?.ToString(); } set => EntityData["logoscene"] = value; }
         public string? QuoteScene { get { return EntityData["quotescene"]?.ToString(); } set => EntityData["quotescene"] = value; }
@@ -34,9 +34,9 @@ namespace BlacksmithsForge.Entities
         public string? GameOverScene { get { return EntityData["gameoverscene"]?.ToString(); } set => EntityData["gameoverscene"] = value; }
         public string? NewGameScene { get { return EntityData["newgamescene"]?.ToString(); } set => EntityData["newgamescene"] = value; }
         public string? NoteElementId { get { return EntityData["noteelementid"]?.ToString(); } set => EntityData["noteelementid"] = value; }
-        public float? DefaultTravelDuration { get { return EntityData["defaulttravelduration"]?.ToObject<float>() ?? 1; } set => EntityData["defaulttravelduration"] = value; }
-        public int? DefaultGameSpeed { get { return EntityData["defaultgamespeed"]?.ToObject<int>() ?? 1; } set => EntityData["defaultgamespeed"] = value; }
-        public float? DefaultQuickTravelDuration { get { return EntityData["defaultquicktravelduration"]?.ToObject<float>() ?? 1; } set => EntityData["defaultquicktravelduration"] = value; }
+        public float? DefaultTravelDuration { get { return EntityData["defaulttravelduration"]?.ToObject<float?>() ?? 1; } set => EntityData["defaulttravelduration"] = value; }
+        public int? DefaultGameSpeed { get { return EntityData["defaultgamespeed"]?.ToObject<int?>() ?? 1; } set => EntityData["defaultgamespeed"] = value; }
+        public float? DefaultQuickTravelDuration { get { return EntityData["defaultquicktravelduration"]?.ToObject<float?>() ?? 1; } set => EntityData["defaultquicktravelduration"] = value; }
 
 
 

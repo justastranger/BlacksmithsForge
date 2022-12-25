@@ -25,15 +25,15 @@ namespace BlacksmithsForge.Entities
         public string? Label { get { return EntityData["label"]?.ToString(); } set => EntityData["label"] = value; }
         public string? DescriptionLocked { get { return EntityData["descriptionlocked"]?.ToString(); } set => EntityData["descriptionlocked"] = value; }
         public string? DescriptionUnlocked { get { return EntityData["descriptionunlocked"]?.ToString(); } set => EntityData["descriptionunlocked"] = value; }
-        public bool? SingleDescription { get { return EntityData["singledescription"]?.ToObject<bool>(); } set => EntityData["singledescription"] = value; }
+        public bool? SingleDescription { get { return EntityData["singledescription"]?.ToObject<bool?>(); } set => EntityData["singledescription"] = value; }
         public string? IconUnlocked { get { return EntityData["iconunlocked"]?.ToString(); } set => EntityData["iconunlocked"] = value; }
         public string? IconLocked { get { return EntityData["iconlocked"]?.ToString(); } set => EntityData["iconlocked"] = value; }
         public string? UnlockMessage { get { return EntityData["unlockmessage"]?.ToString(); } set => EntityData["unlockmessage"] = value; }
-        public bool? IsHidden { get { return EntityData["ishidden"]?.ToObject<bool>(); } set => EntityData["ishidden"] = value; }
-        public bool? IsCategory { get { return EntityData["iscategory"]?.ToObject<bool>(); } set => EntityData["iscategory"] = value; }
+        public bool? IsHidden { get { return EntityData["ishidden"]?.ToObject<bool?>(); } set => EntityData["ishidden"] = value; }
+        public bool? IsCategory { get { return EntityData["iscategory"]?.ToObject<bool?>(); } set => EntityData["iscategory"] = value; }
         public string? Category { get { return EntityData["category"]?.ToString(); } set => EntityData["category"] = value; }
         // should basically always be false for custom achievements
-        public bool? ValidateOnStorefront { get { return EntityData["validateonstorefront"]?.ToObject<bool>(); } set => EntityData["validateonstorefront"] = value; }
+        public bool? ValidateOnStorefront { get { return EntityData["validateonstorefront"]?.ToObject<bool?>(); } set => EntityData["validateonstorefront"] = value; }
 
 
 

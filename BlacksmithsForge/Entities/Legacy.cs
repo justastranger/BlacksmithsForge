@@ -31,9 +31,9 @@ namespace BlacksmithsForge.Entities
         public string? TableSurfaceImage { get { return EntityData["tablesurfaceimage"]?.ToString(); } set => EntityData["tablesurfaceimage"] = value; }
         public string? TableEdgeImage { get { return EntityData["tableedgeimage"]?.ToString(); } set => EntityData["tableedgeimage"] = value; }
         public string? FromEnding { get { return EntityData["fromending"]?.ToString(); } set => EntityData["fromending"] = value; }
-        public bool? AvailableWithoutEndingMatch { get { return EntityData["availablewithoutendingmatch"]?.ToObject<bool>(); } set => EntityData["availablewithoutendingmatch"] = value; }
-        public bool? NewStart { get { return EntityData["newstart"]?.ToObject<bool>(); } set => EntityData["newstart"] = value; }
-        public Dictionary<string, int>? Effects { get { return EntityData["effects"]?.ToObject<Dictionary<string, int>>(); } set => EntityData["effects"] = value != null ? JObject.FromObject(value) : null; }
+        public bool? AvailableWithoutEndingMatch { get { return EntityData["availablewithoutendingmatch"]?.ToObject<bool?>(); } set => EntityData["availablewithoutendingmatch"] = value; }
+        public bool? NewStart { get { return EntityData["newstart"]?.ToObject<bool?>(); } set => EntityData["newstart"] = value; }
+        public Dictionary<string, int>? Effects { get { return EntityData["effects"]?.ToObject<Dictionary<string, int>?>(); } set => EntityData["effects"] = value != null ? JObject.FromObject(value) : null; }
         public List<RecipeLink>? Startup { get { return (List<RecipeLink>?)(EntityData["startup"]?.Values<RecipeLink>()); } set => EntityData["startup"] = value != null ? JArray.FromObject(value) : null; }
         public List<string>? ExcludesOnEnding { get { return (List<string>?)(EntityData["excludesonending"]?.Values<string>()); } set => EntityData["excludesonending"] = value != null ? JArray.FromObject(value) : null; }
         public List<string>? StatusBarElements { get { return (List<string>?)(EntityData["statusbarelements"]?.Values<string>()); } set => EntityData["statusbarelements"] = value != null ? JArray.FromObject(value) : null; }

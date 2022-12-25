@@ -22,8 +22,8 @@ namespace BlacksmithsForge.Entities
         public Guid Guid { get; set; } = Guid.NewGuid();
         public string? Filter { get { return EntityData["filter"]?.ToString(); } set => EntityData["filter"] = value; }
         public string? Mutate { get { return EntityData["mutate"]?.ToString(); } set => EntityData["mutate"] = value; }
-        public int? Level { get { return EntityData["level"]?.ToObject<int>(); } set => EntityData["level"] = value; }
-        public bool? Additive { get { return EntityData["additive"]?.ToObject<bool>(); } set => EntityData["additive"] = value; }
+        public int? Level { get { return EntityData["level"]?.ToObject<int?>(); } set => EntityData["level"] = value; }
+        public bool? Additive { get { return EntityData["additive"]?.ToObject<bool?>(); } set => EntityData["additive"] = value; }
 
 
 

@@ -22,8 +22,8 @@ namespace BlacksmithsForge.Entities
         }
         public Guid Guid { get; set; } = Guid.NewGuid();
 
-        public int? Chance { get { return EntityData["chance"]?.ToObject<int>(); } set => EntityData["chance"] = value; }
-        public int? Level { get { return EntityData["level"]?.ToObject<int>(); } set => EntityData["level"] = value; }
+        public int? Chance { get { return EntityData["chance"]?.ToObject<int?>(); } set => EntityData["chance"] = value; }
+        public int? Level { get { return EntityData["level"]?.ToObject<int?>(); } set => EntityData["level"] = value; }
         public string? MorphEffect { get { return EntityData["morpheffect"]?.ToString(); } set => EntityData["morpheffect"] = value; }
 
 

@@ -23,11 +23,11 @@ namespace BlacksmithsForge.Entities
         public string? Filename { get; set; }
 
         public string? RecordKey { get { return EntityData["recordkey"]?.ToString(); } set => EntityData["recordkey"] = value; }
-        public Dictionary<string, int>? Weights { get { return EntityData["weights"]?.ToObject<Dictionary<string, int>>(); } set => EntityData["weights"] = value != null ? JObject.FromObject(value) : null; }
-        public int? RequiredScore { get { return EntityData["requiredscore"]?.ToObject<int>(); } set => EntityData["requiredscore"] = value; }
+        public Dictionary<string, int>? Weights { get { return EntityData["weights"]?.ToObject<Dictionary<string, int>?>(); } set => EntityData["weights"] = value != null ? JObject.FromObject(value) : null; }
+        public int? RequiredScore { get { return EntityData["requiredscore"]?.ToObject<int?>(); } set => EntityData["requiredscore"] = value; }
         // keys and values must both reference Elements
-        public Dictionary<string, string>? Redirects { get { return EntityData["redirects"]?.ToObject<Dictionary<string, string>>(); } set => EntityData["redirects"] = value != null ? JObject.FromObject(value) : null; }
-        public bool? OnGameEnd { get { return EntityData["ongameend"]?.ToObject<bool>(); } set => EntityData["ongameend"] = value; }
+        public Dictionary<string, string>? Redirects { get { return EntityData["redirects"]?.ToObject<Dictionary<string, string>?>(); } set => EntityData["redirects"] = value != null ? JObject.FromObject(value) : null; }
+        public bool? OnGameEnd { get { return EntityData["ongameend"]?.ToObject<bool?>(); } set => EntityData["ongameend"] = value; }
         public string? Comments { get { return EntityData["comments"]?.ToString(); } set => EntityData["comments"] = value; }
 
 

@@ -25,9 +25,9 @@ namespace BlacksmithsForge.Entities
         public string? Endonym { get { return EntityData["endonym"]?.ToString(); } set => EntityData["endonym"] = value; }
         public string? Exonym { get { return EntityData["exonym"]?.ToString(); } set => EntityData["exonym"] = value; }
         public string? FontScript { get { return EntityData["fontscript"]?.ToString(); } set => EntityData["fontscript"] = value; }
-        public bool? BoldAllowed { get { return EntityData["boldallowed"]?.ToObject<bool>(); } set => EntityData["boldallowed"] = value; }
-        public bool? Released { get { return EntityData["released"]?.ToObject<bool>(); } set => EntityData["released"] = value; }
-        public Dictionary<string, string>? UILabels { get { return EntityData["uilabels"]?.ToObject<Dictionary<string, string>>(); } set => EntityData["uilabels"] = value != null ? JObject.FromObject(value) : null; }
+        public bool? BoldAllowed { get { return EntityData["boldallowed"]?.ToObject<bool?>(); } set => EntityData["boldallowed"] = value; }
+        public bool? Released { get { return EntityData["released"]?.ToObject<bool?>(); } set => EntityData["released"] = value; }
+        public Dictionary<string, string>? UILabels { get { return EntityData["uilabels"]?.ToObject<Dictionary<string, string>?>(); } set => EntityData["uilabels"] = value != null ? JObject.FromObject(value) : null; }
 
 
         public Culture(JObject entityData)
