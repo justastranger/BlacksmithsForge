@@ -11,25 +11,33 @@ using System.Windows.Forms;
 using BlacksmithsForge.Extensions;
 using Newtonsoft.Json;
 using System.Reflection.Metadata.Ecma335;
+using BlacksmithsForge.Entities;
 
 namespace BlacksmithsForge.Editors
 {
     public partial class JsonTreeViewEditor : Form
     {
-        public readonly JObject currentEntity;
+        public readonly JObject currentEntityData;
+        public readonly Type entityType;
 
         private TreeNode? selectedNode;
         private JToken? selectedToken;
 
-        public JsonTreeViewEditor(JObject entityToEdit)
+        public JsonTreeViewEditor(IEntity entityToEdit) : this(JObject.Parse(entityToEdit.ToString()), entityToEdit.GetType())
         {
-            currentEntity = entityToEdit ?? throw new NullReferenceException("Can't edit a null JObject");
+            
+        }
+
+        public JsonTreeViewEditor(JObject entityToEdit, Type entityType)
+        {
+            currentEntityData = entityToEdit ?? throw new NullReferenceException("Can't edit a null JObject");
             InitializeComponent();
+            this.entityType = entityType;
         }
 
         private void JsonTreeViewEditor_Load(object sender, EventArgs e)
         {
-            string json = currentEntity.ToString();
+            string json = currentEntityData.ToString();
             jsonTreeView.LoadJsonToTreeView(json);
             jsonTreeView.TopNode.ExpandAll();
         }
@@ -37,7 +45,7 @@ namespace BlacksmithsForge.Editors
         private void ReloadEntity()
         {
             jsonTreeView.Nodes.Clear();
-            string json = currentEntity.ToString();
+            string json = currentEntityData.ToString();
             jsonTreeView.LoadJsonToTreeView(json);
             jsonTreeView.TopNode.ExpandAll();
         }
@@ -126,12 +134,13 @@ namespace BlacksmithsForge.Editors
         private JToken? SelectTokenFromNodeTag(TreeNode nodeToFollow)
         {
             string? jsonPath = nodeToFollow.Tag.ToString();
-            JToken? selectedToken = currentEntity.SelectToken(jsonPath ?? throw new NullReferenceException("JSONPath of selected TreeNode is Null."));
+            JToken? selectedToken = currentEntityData.SelectToken(jsonPath ?? throw new NullReferenceException("JSONPath of selected TreeNode is Null."));
             return selectedToken;
         }
 
         private void okayButton_Click(object sender, EventArgs e)
         {
+            DialogResult = DialogResult.OK;
             Close();
         }
 
@@ -145,7 +154,7 @@ namespace BlacksmithsForge.Editors
             // if (selectedNode.Nodes.Count == 0) return;
 
             string? jsonPath = selectedNode.Tag?.ToString() ?? throw new NullReferenceException("Selected Node has null tag.");
-            selectedToken = currentEntity.SelectToken(jsonPath) ?? throw new NullReferenceException("Null Token retrieved from Node.");
+            selectedToken = currentEntityData.SelectToken(jsonPath) ?? throw new NullReferenceException("Null Token retrieved from Node.");
 
             // is this even necessary anymore with the pattern matching expression below?
             if (selectedToken is JValue) return;
@@ -173,7 +182,7 @@ namespace BlacksmithsForge.Editors
         {
             if (selectedNode == null || selectedNode.Parent == null) return;
             string? jsonPath = selectedNode.Tag?.ToString() ?? throw new NullReferenceException("Selected Node has null tag.");
-            selectedToken = currentEntity.SelectToken(jsonPath) ?? throw new NullReferenceException("Null Token retrieved from Node.");
+            selectedToken = currentEntityData.SelectToken(jsonPath) ?? throw new NullReferenceException("Null Token retrieved from Node.");
 
             if (selectedToken is JArray jArray)
             {
@@ -213,7 +222,7 @@ namespace BlacksmithsForge.Editors
         {
             if (selectedNode == null || selectedNode.Parent == null) return;
             string? jsonPath = selectedNode.Tag?.ToString() ?? throw new NullReferenceException("Selected Node has null tag.");
-            selectedToken = currentEntity.SelectToken(jsonPath) ?? throw new NullReferenceException("Null Token retrieved from Node.");
+            selectedToken = currentEntityData.SelectToken(jsonPath) ?? throw new NullReferenceException("Null Token retrieved from Node.");
 
             if (selectedToken is JObject jObject)
             {
@@ -250,7 +259,7 @@ namespace BlacksmithsForge.Editors
             if (selectedNode == null) return;
 
             string? jsonPath = selectedNode.Tag?.ToString() ?? throw new NullReferenceException("Selected Node has null tag.");
-            selectedToken = currentEntity.SelectToken(jsonPath) ?? throw new NullReferenceException("Null Token retrieved from Node.");
+            selectedToken = currentEntityData.SelectToken(jsonPath) ?? throw new NullReferenceException("Null Token retrieved from Node.");
             
             // Guard clause so only Objects are modified
             // Not specific enough to guard against Dictionary properties
@@ -281,7 +290,7 @@ namespace BlacksmithsForge.Editors
                 }
                 else
                 {
-                    JProperty? existingProperty = currentEntity.Property(input.Key);
+                    JProperty? existingProperty = currentEntityData.Property(input.Key);
                     existingProperty?.Replace(ParseKeyValueInput(input.Key, input.Value));
                 }
 
@@ -289,7 +298,7 @@ namespace BlacksmithsForge.Editors
             }
         }
 
-        private JProperty ParseKeyValueInput(string key, string value)
+        private static JProperty ParseKeyValueInput(string key, string value)
         {
             JProperty jProperty;
             if (int.TryParse(value, out int numberValue))
@@ -316,7 +325,7 @@ namespace BlacksmithsForge.Editors
         {
             if (selectedNode == null || selectedNode.Parent == null) return;
             string? jsonPath = selectedNode.Tag?.ToString() ?? throw new NullReferenceException("Selected Node has null tag.");
-            selectedToken = currentEntity.SelectToken(jsonPath) ?? throw new NullReferenceException("Null Token retrieved from Node.");
+            selectedToken = currentEntityData.SelectToken(jsonPath) ?? throw new NullReferenceException("Null Token retrieved from Node.");
             
             JToken actualToken = selectedToken.Parent ?? throw new NullReferenceException("Parent Token is Null.");
 
@@ -333,6 +342,58 @@ namespace BlacksmithsForge.Editors
                 }
                 ReloadEntity();
             }
+        }
+
+        private void recipeLinkToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (entityType != typeof(Element)
+                && entityType != typeof(Legacy)
+                && entityType != typeof(Portal)
+                && entityType != typeof(Recipe))
+            {
+                MessageBox.Show("This type of entity does not support adding Recipes.");
+                return;
+            }
+
+            // get the name of the property
+            // if '$' is present, split and discard it and everything after it
+            // then compare it to the properties that contain RecipeLinks
+            // throw an error if it doesn't
+
+            if (selectedNode == null || selectedNode.Parent == null) return;
+            string? jsonPath = selectedNode.Tag?.ToString() ?? throw new NullReferenceException("Selected Node has null tag.");
+            selectedToken = currentEntityData.SelectToken(jsonPath) ?? throw new NullReferenceException("Null Token retrieved from Node.");
+
+            if (selectedToken is JArray jArray)
+            {
+                string propertyName = selectedToken.Path.Split('.').Last().ToLower();
+                // This is somehow less work than a really long if
+                // I'm sorry for exposing you to it
+                switch (propertyName)
+                {
+                    case "induces":
+                    case "startup":
+                    case "consequences":
+                    case "alt":
+                    case "latealt":
+                    case "linked":
+                    case "inductions":
+                        break;
+                    default:
+                        MessageBox.Show(propertyName);
+                        // MessageBox.Show("Selected node does not store RecipeLinks.", "Invalid Property", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        return;
+                }
+
+                RecipeLinkInput recipeLinkInput = new();
+                if (recipeLinkInput.ShowDialog() == DialogResult.OK)
+                {
+                    jArray.Add(JObject.Parse(recipeLinkInput.RecipeLink.ToString()));
+                    ReloadEntity();
+                }
+
+            }
+
         }
     }
 }

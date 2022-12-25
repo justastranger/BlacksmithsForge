@@ -37,6 +37,8 @@
             this.addPropertyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deletePropertyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.okayButton = new System.Windows.Forms.Button();
+            this.addEntityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.recipeLinkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.treeViewContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -62,9 +64,10 @@
             this.addEntryToArrayToolStripMenuItem,
             this.addEntryToDictionaryToolStripMenuItem,
             this.addPropertyToolStripMenuItem,
-            this.deletePropertyToolStripMenuItem});
+            this.deletePropertyToolStripMenuItem,
+            this.addEntityToolStripMenuItem});
             this.treeViewContextMenuStrip.Name = "treeViewContextMenuStrip";
-            this.treeViewContextMenuStrip.Size = new System.Drawing.Size(198, 114);
+            this.treeViewContextMenuStrip.Size = new System.Drawing.Size(198, 158);
             // 
             // editPropertyNameToolStripMenuItem
             // 
@@ -113,6 +116,21 @@
             this.okayButton.UseVisualStyleBackColor = true;
             this.okayButton.Click += new System.EventHandler(this.okayButton_Click);
             // 
+            // addEntityToolStripMenuItem
+            // 
+            this.addEntityToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.recipeLinkToolStripMenuItem});
+            this.addEntityToolStripMenuItem.Name = "addEntityToolStripMenuItem";
+            this.addEntityToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+            this.addEntityToolStripMenuItem.Text = "Add Entity";
+            // 
+            // recipeLinkToolStripMenuItem
+            // 
+            this.recipeLinkToolStripMenuItem.Name = "recipeLinkToolStripMenuItem";
+            this.recipeLinkToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.recipeLinkToolStripMenuItem.Text = "Recipe Link";
+            this.recipeLinkToolStripMenuItem.Click += new System.EventHandler(this.recipeLinkToolStripMenuItem_Click);
+            // 
             // JsonTreeViewEditor
             // 
             this.AcceptButton = this.okayButton;
@@ -141,5 +159,7 @@
         private ToolStripMenuItem addEntryToDictionaryToolStripMenuItem;
         private ToolStripMenuItem addPropertyToolStripMenuItem;
         private ToolStripMenuItem deletePropertyToolStripMenuItem;
+        private ToolStripMenuItem addEntityToolStripMenuItem;
+        private ToolStripMenuItem recipeLinkToolStripMenuItem;
     }
 }
