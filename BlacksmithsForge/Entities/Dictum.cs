@@ -61,7 +61,7 @@ namespace BlacksmithsForge.Entities
 
         public override string ToString()
         {
-            return JsonConvert.SerializeObject(EntityData, Utils.jsonSerializerSettings);
+            return Utils.ToJson(EntityData);
         }
     }
 }
