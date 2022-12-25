@@ -116,6 +116,8 @@
             // 
             // idTextBox
             // 
+            this.idTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.idTextBox.Location = new System.Drawing.Point(36, 12);
             this.idTextBox.Name = "idTextBox";
             this.idTextBox.Size = new System.Drawing.Size(245, 23);
@@ -124,6 +126,8 @@
             // 
             // labelTextBox
             // 
+            this.labelTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.labelTextBox.Location = new System.Drawing.Point(53, 41);
             this.labelTextBox.Name = "labelTextBox";
             this.labelTextBox.Size = new System.Drawing.Size(228, 23);
@@ -132,6 +136,8 @@
             // 
             // descriptionTextBox
             // 
+            this.descriptionTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.descriptionTextBox.Location = new System.Drawing.Point(85, 70);
             this.descriptionTextBox.Name = "descriptionTextBox";
             this.descriptionTextBox.Size = new System.Drawing.Size(196, 23);
@@ -140,6 +146,8 @@
             // 
             // actionIdTextBox
             // 
+            this.actionIdTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.actionIdTextBox.Location = new System.Drawing.Point(62, 99);
             this.actionIdTextBox.Name = "actionIdTextBox";
             this.actionIdTextBox.Size = new System.Drawing.Size(219, 23);
@@ -148,32 +156,38 @@
             // 
             // fromPathTextBox
             // 
+            this.fromPathTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.fromPathTextBox.Location = new System.Drawing.Point(80, 128);
             this.fromPathTextBox.Name = "fromPathTextBox";
-            this.fromPathTextBox.Size = new System.Drawing.Size(201, 23);
+            this.fromPathTextBox.Size = new System.Drawing.Size(382, 23);
             this.fromPathTextBox.TabIndex = 11;
             this.fromPathTextBox.TextChanged += new System.EventHandler(this.fromPathTextBox_TextChanged);
             // 
             // enRouteSpherePathTextBox
             // 
+            this.enRouteSpherePathTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.enRouteSpherePathTextBox.Location = new System.Drawing.Point(138, 157);
             this.enRouteSpherePathTextBox.Name = "enRouteSpherePathTextBox";
-            this.enRouteSpherePathTextBox.Size = new System.Drawing.Size(143, 23);
+            this.enRouteSpherePathTextBox.Size = new System.Drawing.Size(324, 23);
             this.enRouteSpherePathTextBox.TabIndex = 12;
             this.enRouteSpherePathTextBox.TextChanged += new System.EventHandler(this.enRouteSpherePathTextBox_TextChanged);
             // 
             // windowsSpherePathTextBox
             // 
+            this.windowsSpherePathTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.windowsSpherePathTextBox.Location = new System.Drawing.Point(140, 186);
             this.windowsSpherePathTextBox.Name = "windowsSpherePathTextBox";
-            this.windowsSpherePathTextBox.Size = new System.Drawing.Size(141, 23);
+            this.windowsSpherePathTextBox.Size = new System.Drawing.Size(322, 23);
             this.windowsSpherePathTextBox.TabIndex = 13;
             this.windowsSpherePathTextBox.TextChanged += new System.EventHandler(this.windowsSpherePathTextBox_TextChanged);
             // 
             // consumesCheckBox
             // 
             this.consumesCheckBox.AutoSize = true;
-            this.consumesCheckBox.Location = new System.Drawing.Point(140, 215);
+            this.consumesCheckBox.Location = new System.Drawing.Point(122, 215);
             this.consumesCheckBox.Name = "consumesCheckBox";
             this.consumesCheckBox.Size = new System.Drawing.Size(82, 19);
             this.consumesCheckBox.TabIndex = 14;
@@ -194,6 +208,7 @@
             // 
             // essentialButton
             // 
+            this.essentialButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.essentialButton.Location = new System.Drawing.Point(287, 12);
             this.essentialButton.Name = "essentialButton";
             this.essentialButton.Size = new System.Drawing.Size(175, 23);
@@ -204,6 +219,7 @@
             // 
             // requiredButton
             // 
+            this.requiredButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.requiredButton.Location = new System.Drawing.Point(287, 41);
             this.requiredButton.Name = "requiredButton";
             this.requiredButton.Size = new System.Drawing.Size(175, 23);
@@ -214,6 +230,7 @@
             // 
             // forbiddenButton
             // 
+            this.forbiddenButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.forbiddenButton.Location = new System.Drawing.Point(287, 70);
             this.forbiddenButton.Name = "forbiddenButton";
             this.forbiddenButton.Size = new System.Drawing.Size(175, 23);
@@ -224,6 +241,7 @@
             // 
             // ifAspectsPresentButton
             // 
+            this.ifAspectsPresentButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ifAspectsPresentButton.Location = new System.Drawing.Point(287, 98);
             this.ifAspectsPresentButton.Name = "ifAspectsPresentButton";
             this.ifAspectsPresentButton.Size = new System.Drawing.Size(175, 23);
