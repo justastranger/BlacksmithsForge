@@ -75,8 +75,8 @@ namespace BlacksmithsForge.Editors
 
         private void dictionaryDataGridView_RowValidated(object sender, DataGridViewCellEventArgs e)
         {
-            if (string.IsNullOrEmpty(dictionaryDataGridView.Rows[e.RowIndex].Cells[0].Value?.ToString()) &&
-                string.IsNullOrEmpty(dictionaryDataGridView.Rows[e.RowIndex].Cells[1].Value?.ToString()))
+            if (!string.IsNullOrEmpty(dictionaryDataGridView.Rows[e.RowIndex].Cells[0].Value?.ToString()) &&
+                !string.IsNullOrEmpty(dictionaryDataGridView.Rows[e.RowIndex].Cells[1].Value?.ToString()))
             {
                 UpdateDictionary();
             }
