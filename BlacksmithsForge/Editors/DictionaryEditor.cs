@@ -12,10 +12,10 @@ namespace BlacksmithsForge.Editors
 {
     public partial class DictionaryEditor : Form
     {
-        public Dictionary<string, dynamic> Dictionary;
+        public Dictionary<string, object> Dictionary;
         private Type valueType;
 
-        public DictionaryEditor(Dictionary<string, dynamic> dictionaryToEdit)
+        public DictionaryEditor(Dictionary<string, object> dictionaryToEdit)
         {
             InitializeComponent();
             Dictionary = dictionaryToEdit;
@@ -49,7 +49,7 @@ namespace BlacksmithsForge.Editors
                     // null checked above, idk why it is so damned sure there's a null reference possibility
                     
                     string key = row.Cells[0].Value.ToString();
-                    dynamic value;
+                    object value;
                     if (valueType == typeof(string))
                     {
                         value = row.Cells[1].Value.ToString();
