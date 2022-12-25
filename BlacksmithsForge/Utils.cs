@@ -1,4 +1,5 @@
 ﻿using BlacksmithsForge.Entities;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,12 @@ namespace BlacksmithsForge
 {
     public class Utils
     {
+        private static readonly JsonSerializer jsonSerializer = new()
+        {
+            NullValueHandling = NullValueHandling.Ignore,
+            Formatting = Formatting.Indented
+        };
+
         public static string PluralToSingular(string name) {
             return name switch
             {
@@ -88,6 +95,16 @@ namespace BlacksmithsForge
             unknownProperties.Prepend("id");
 
             return entityData.Properties().Where(property => unknownProperties.Contains(property.Name.ToLower())).ToList();
+        }
+
+        public static string ToJson(IEntity entity)
+        {
+            StringBuilder stringBuilder = new();
+            using StringWriter stringWriter = new(stringBuilder);
+            using JsonTextWriter jsonTextWriter = new(stringWriter);
+            jsonSerializer.Serialize(jsonTextWriter, entity);
+            jsonTextWriter.Flush();
+            return stringBuilder.ToString();
         }
     }
 }
