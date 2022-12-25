@@ -215,7 +215,7 @@ namespace BlacksmithsForge
             Guid selectedGuid = (Guid)entitiesListView.SelectedItems[0].Tag;
             IEntityWithId selectedEntity = SelectedEntities[selectedGuid];
 
-            // Whip up a TreeViewEditor with the selected EntityData
+            // Whip up a TreeViewEditor with the selected Entity
             JsonTreeViewEditor jsonEditor = new(selectedEntity);
             // and if the Accept button is pressed
             if (jsonEditor.ShowDialog() == DialogResult.OK)
