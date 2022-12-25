@@ -30,12 +30,20 @@
         {
             this.dictionaryDataGridView = new System.Windows.Forms.DataGridView();
             this.okayButton = new System.Windows.Forms.Button();
+            this.keyColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.valueColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dictionaryDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // dictionaryDataGridView
             // 
+            this.dictionaryDataGridView.AllowUserToResizeColumns = false;
+            this.dictionaryDataGridView.AllowUserToResizeRows = false;
+            this.dictionaryDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dictionaryDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dictionaryDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.keyColumn,
+            this.valueColumn});
             this.dictionaryDataGridView.Location = new System.Drawing.Point(12, 12);
             this.dictionaryDataGridView.Name = "dictionaryDataGridView";
             this.dictionaryDataGridView.RowTemplate.Height = 25;
@@ -53,6 +61,16 @@
             this.okayButton.Text = "Okay";
             this.okayButton.UseVisualStyleBackColor = true;
             this.okayButton.Click += new System.EventHandler(this.okayButton_Click);
+            // 
+            // keyColumn
+            // 
+            this.keyColumn.HeaderText = "Key";
+            this.keyColumn.Name = "keyColumn";
+            // 
+            // valueColumn
+            // 
+            this.valueColumn.HeaderText = "Value";
+            this.valueColumn.Name = "valueColumn";
             // 
             // DictionaryEditor
             // 
@@ -72,5 +90,7 @@
 
         private DataGridView dictionaryDataGridView;
         private Button okayButton;
+        private DataGridViewTextBoxColumn keyColumn;
+        private DataGridViewTextBoxColumn valueColumn;
     }
 }
