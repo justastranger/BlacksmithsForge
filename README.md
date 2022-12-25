@@ -31,10 +31,10 @@ Designed to have a smaller, less bloated scope than Carcass Spark with support f
 		- [x] Add values to Dictionary and List properties
 		- [x] Delete properties
 		- [ ] Input forms for adding more advanced values
-			- [ ] RecipeLink
+			- [x] RecipeLink
 			- [ ] Sphere (aka slot)
 			- [ ] Mutation
-			- [ ] Expulsion
+			- [x] Expulsion
 			- [ ] XTrigger
 		- [ ] Dictionary editor
 			- [ ] Would be more intuitive for editing keys *and* values
