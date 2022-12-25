@@ -27,7 +27,7 @@ namespace BlacksmithsForge.Entities
         public bool? Additional { get { return EntityData["additional"]?.ToObject<bool?>(); } set => EntityData["additional"] = value; }
         public string? ToPath { get { return EntityData["topath"]?.ToString(); } set => EntityData["topath"] = value; }
         public Dictionary<string, string>? Challenges { get { return EntityData["challenges"]?.ToObject<Dictionary<string, string>?>(); } set => EntityData["challenges"] = value != null ? JObject.FromObject(value) : null; }
-        public Expulsion? Expulsion { get { return EntityData["challenges"]?.ToObject<Expulsion?>(); } set => EntityData["challenges"] = value != null ? JObject.FromObject(value) : null; }
+        public Expulsion? Expulsion { get { return EntityData["expulsion"]?.ToObject<Expulsion?>(); } set => EntityData["expulsion"] = value != null ? JObject.FromObject(value) : null; }
         
 
         public RecipeLink(JObject entityData)
