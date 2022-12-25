@@ -190,7 +190,7 @@
             this.warningLabel.Name = "warningLabel";
             this.warningLabel.Size = new System.Drawing.Size(246, 15);
             this.warningLabel.TabIndex = 19;
-            this.warningLabel.Text = "The first 4 properties are updated as you type.";
+            this.warningLabel.Text = "The first 5 properties are updated as you type.";
             // 
             // SynopsisEditor
             // 
