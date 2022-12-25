@@ -1,4 +1,5 @@
 ﻿using BlacksmithsForge.Entities;
+using BlacksmithsForge.Extensions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
@@ -17,9 +18,9 @@ namespace BlacksmithsForge
 {
     public class Utils
     {
-        private class LowerCaseContractResolver : DefaultContractResolver
+        private class PrepareJSONContractResolver : DefaultContractResolver
         {
-            public LowerCaseContractResolver() { }
+            public PrepareJSONContractResolver() { }
 
             protected override IList<JsonProperty> CreateProperties(Type type, MemberSerialization memberSerialization)
             {
@@ -33,7 +34,7 @@ namespace BlacksmithsForge
         {
             NullValueHandling = NullValueHandling.Ignore,
             Formatting = Formatting.Indented,
-            ContractResolver = new LowerCaseContractResolver()
+            ContractResolver = new PrepareJSONContractResolver()
         };
 
         public static string PluralToSingular(string name) {
@@ -114,6 +115,10 @@ namespace BlacksmithsForge
 
         public static string ToJson(object entity)
         {
+            if (entity is JObject jObject)
+            {
+                jObject.SelectTokens("$..*").OfType<JValue>().Where(value => value.Type == JTokenType.Null).Select(nullValue => nullValue.Parent).ToList().ForEach(property => property?.Remove());
+            }
             return JsonConvert.SerializeObject(entity, jsonSerializerSettings);
         }
     }
