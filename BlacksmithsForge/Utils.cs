@@ -29,7 +29,7 @@ namespace BlacksmithsForge
             }
         }
 
-        private static readonly JsonSerializer jsonSerializer = new()
+        public static readonly JsonSerializerSettings jsonSerializerSettings = new()
         {
             NullValueHandling = NullValueHandling.Ignore,
             Formatting = Formatting.Indented,
@@ -114,12 +114,7 @@ namespace BlacksmithsForge
 
         public static string ToJson(object entity)
         {
-            StringBuilder stringBuilder = new();
-            using StringWriter stringWriter = new(stringBuilder);
-            using JsonTextWriter jsonTextWriter = new(stringWriter);
-            jsonSerializer.Serialize(jsonTextWriter, entity);
-            jsonTextWriter.Flush();
-            return stringBuilder.ToString();
+            return JsonConvert.SerializeObject(entity, jsonSerializerSettings);
         }
     }
 }
