@@ -112,7 +112,7 @@ namespace BlacksmithsForge
             return entityData.Properties().Where(property => unknownProperties.Contains(property.Name.ToLower())).ToList();
         }
 
-        public static string ToJson(IEntity entity)
+        public static string ToJson(object entity)
         {
             StringBuilder stringBuilder = new();
             using StringWriter stringWriter = new(stringBuilder);

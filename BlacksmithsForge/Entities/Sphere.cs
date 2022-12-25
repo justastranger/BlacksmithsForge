@@ -59,7 +59,7 @@ namespace BlacksmithsForge.Entities
 
         public override string ToString()
         {
-            return Utils.ToJson(this);
+            return Utils.ToJson(EntityData);
         }
     }
 }
