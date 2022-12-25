@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BlacksmithsForge.Entities
 {
-    public class Recipe : IRootEntity
+    public class Recipe : IRootEntity, ILink
     {
         public JObject EntityData { get; set; }
         public string ID
@@ -47,10 +47,10 @@ namespace BlacksmithsForge.Entities
         public string? Description { get { return EntityData["description"]?.ToString(); } set => EntityData["description"] = value; }
         public string? StartDescription { get { return EntityData["startdescription"]?.ToString(); } set => EntityData["startdescription"] = value; }
         public string? Comments { get { return EntityData["comments"]?.ToString(); } set => EntityData["comments"] = value; }
-        public List<RecipeLink>? Alt { get { return (List<RecipeLink>?)(EntityData["alt"]?.Values<RecipeLink>()); } set => EntityData["alt"] = value != null ? JArray.FromObject(value) : null; }
-        public List<RecipeLink>? LateAlt { get { return (List<RecipeLink>?)(EntityData["latealt"]?.Values<RecipeLink>()); } set => EntityData["latealt"] = value != null ? JArray.FromObject(value) : null; }
-        public List<RecipeLink>? Linked { get { return (List<RecipeLink>?)(EntityData["linked"]?.Values<RecipeLink>()); } set => EntityData["linked"] = value != null ? JArray.FromObject(value) : null; }
-        public List<RecipeLink>? Inductions { get { return (List<RecipeLink>?)(EntityData["inductions"]?.Values<RecipeLink>()); } set => EntityData["inductions"] = value != null ? JArray.FromObject(value) : null; }
+        public List<ILink>? Alt { get { return (List<ILink>?)(EntityData["alt"]?.Values<ILink>()); } set => EntityData["alt"] = value != null ? JArray.FromObject(value) : null; }
+        public List<ILink>? LateAlt { get { return (List<ILink>?)(EntityData["latealt"]?.Values<ILink>()); } set => EntityData["latealt"] = value != null ? JArray.FromObject(value) : null; }
+        public List<ILink>? Linked { get { return (List<ILink>?)(EntityData["linked"]?.Values<ILink>()); } set => EntityData["linked"] = value != null ? JArray.FromObject(value) : null; }
+        public List<ILink>? Inductions { get { return (List<ILink>?)(EntityData["inductions"]?.Values<ILink>()); } set => EntityData["inductions"] = value != null ? JArray.FromObject(value) : null; }
         // references Ending ID
         public string? Ending { get { return EntityData["ending"]?.ToString(); } set => EntityData["ending"] = value; }
         public int? MaxExecutions { get { return EntityData["maxexecutions"]?.ToObject<int>(); } set => EntityData["maxexecutions"] = value; }

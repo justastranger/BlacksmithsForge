@@ -18,7 +18,7 @@ namespace BlacksmithsForge.Mods
         public string SynopsisPath;
 
         // <filename, <guid, entity>>
-        public Dictionary<string, Dictionary<Guid, IEntity>> Content = new();
+        public Dictionary<string, Dictionary<Guid, IEntityWithId>> Content = new();
         public Dictionary<string, string> FileTypes = new();
 
         public Mod(string path)
@@ -104,18 +104,18 @@ namespace BlacksmithsForge.Mods
                 List<JToken> array = parsedJson.Properties().First().Value.ToList();
                 // oh lawd have mercy on my soul for this accursed nested ForEach loop
                 string shortFilePath = file.Remove(0, contentFolder.Length);
-                Dictionary<Guid, IEntity> results = ParseJTokenList(array, jsonType, shortFilePath);
+                Dictionary<Guid, IEntityWithId> results = ParseJTokenList(array, jsonType, shortFilePath);
                 Content.Add(shortFilePath, results);
                 FileTypes.Add(shortFilePath, jsonType);
             });
         }
 
-        private static Dictionary<Guid, IEntity> ParseJTokenList(List<JToken> jTokens, string type, string filename)
+        private static Dictionary<Guid, IEntityWithId> ParseJTokenList(List<JToken> jTokens, string type, string filename)
         {
-            Dictionary<Guid, IEntity> result = new();
+            Dictionary<Guid, IEntityWithId> result = new();
 
             jTokens.ForEach((JToken token) => {
-                IEntity parsed = EntityFactory.Parse((JObject)token, type, filename);
+                IEntityWithId parsed = EntityFactory.Parse((JObject)token, type, filename);
 
                 result.Add(parsed.Guid, parsed);
             });

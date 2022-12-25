@@ -12,16 +12,9 @@ namespace BlacksmithsForge.Entities
         public JObject EntityData { get; set; }
         // For this Entity, the ID property determines the target
         // It should never be null
-        public string ID
-        {
-            get
-            {
-                if (EntityData["id"] == null) throw new NullReferenceException("Expulsion ID must be specified.");
-                else return EntityData["id"].ToString();
-            }
-            set => EntityData["id"] = value;
-        }
         public Guid Guid { get; set; } = Guid.NewGuid();
+
+
         public Dictionary<string, string>? Filter { get { return EntityData["filter"]?.ToObject<Dictionary<string, string>>(); } set => EntityData["filter"] = value != null ? JObject.FromObject(value) : null; }
         public int? Limit { get { return EntityData["limit"]?.ToObject<int>(); } set => EntityData["limit"] = value; }
         public string? ToPath { get { return EntityData["topath"]?.ToString(); } set => EntityData["topath"] = value; }

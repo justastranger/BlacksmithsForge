@@ -9,7 +9,7 @@ namespace BlacksmithsForge
     public partial class MainForm : Form
     {
         private Mod? CurrentMod;
-        private Dictionary<Guid, IEntity>? SelectedEntities;
+        private Dictionary<Guid, IEntityWithId>? SelectedEntities;
 
         public MainForm()
         {
@@ -116,7 +116,7 @@ namespace BlacksmithsForge
             if (SelectedEntities == null) return;
 
             List<ListViewItem> items = new();
-            foreach (KeyValuePair<Guid, IEntity> pair in SelectedEntities)
+            foreach (KeyValuePair<Guid, IEntityWithId> pair in SelectedEntities)
             {
                 ListViewItem item = new(pair.Value.ID) { Tag = pair.Key };
                 items.Add(item);
@@ -158,7 +158,7 @@ namespace BlacksmithsForge
             SelectedEntities = CurrentMod.Content[filename];
 
             List<ListViewItem> items = new();
-            foreach (KeyValuePair<Guid, IEntity> pair in SelectedEntities)
+            foreach (KeyValuePair<Guid, IEntityWithId> pair in SelectedEntities)
             {
                 ListViewItem item = new(pair.Value.ID) { Tag = pair.Key };
                 items.Add(item);
@@ -193,7 +193,7 @@ namespace BlacksmithsForge
             if (entitiesListView.SelectedItems.Count != 1) return;
 
             Guid selectedGuid = (Guid)entitiesListView.SelectedItems[0].Tag;
-            IEntity selectedEntity = SelectedEntities[selectedGuid];
+            IEntityWithId selectedEntity = SelectedEntities[selectedGuid];
 
             // Serialize EntityData and slap it into the editor
             JsonTextEditor jsonEditor = new(selectedEntity.EntityData.ToString());
@@ -213,7 +213,7 @@ namespace BlacksmithsForge
             if (entitiesListView.SelectedItems.Count != 1) return;
 
             Guid selectedGuid = (Guid)entitiesListView.SelectedItems[0].Tag;
-            IEntity selectedEntity = SelectedEntities[selectedGuid];
+            IEntityWithId selectedEntity = SelectedEntities[selectedGuid];
 
             // Whip up a TreeViewEditor with the selected EntityData
             JsonTreeViewEditor jsonEditor = new(selectedEntity.EntityData);

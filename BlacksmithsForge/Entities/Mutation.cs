@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BlacksmithsForge.Entities
 {
-    public class Mutation : IEntity
+    public class Mutation : IEntityWithId
     {
         public JObject EntityData { get; set; }
         public string ID

@@ -1,4 +1,5 @@
 ﻿using BlacksmithsForge.Entities;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,7 @@ namespace BlacksmithsForge
                 "achievements" => "achievement",
                 "cultures" => "culture",
                 "decks" => "deck",
+                "dicta" => "dictum",
                 "elements" => "element",
                 "endings" => "ending",
                 "legacies" => "legacy",
@@ -65,14 +67,27 @@ namespace BlacksmithsForge
         public static List<string> GetEntityPropertyNames(Type entityType)
         {
             // Retrieve a *complete* list of property names for a Type, including IRootEntity and IEntity properties
-            var unfilteredNames = entityType.GetProperties(BindingFlags.Instance | BindingFlags.Public).Select(property => property.Name).ToList();
+            var unfilteredNames = entityType.GetProperties(BindingFlags.Instance | BindingFlags.Public).Select(property => property.Name.ToLower()).ToList();
             // Retrieve a list of just the IRootEntity and IEntity property names
-            var interfaceProperties = entityType.GetInterfaces().SelectMany(@interface => @interface.GetProperties()).Select(property => property.Name).ToList();
+            var interfaceProperties = entityType.GetInterfaces().SelectMany(@interface => @interface.GetProperties()).Select(property => property.Name.ToLower()).ToList();
             // And remove the latter from the former
-            List<string> filteredNames = unfilteredNames.Except(interfaceProperties).ToList();
+            var filteredNames = unfilteredNames.Except(interfaceProperties);
             // Since ID is declared at the interface level, it gets filtered out
             // but we actually want to include it so we have to pop it back in
-            return filteredNames.Prepend("ID").ToList();
+            return filteredNames.Prepend("id").ToList();
+        }
+
+        public static List<JProperty> GetUnknownProperties(JObject entityData, Type entityType)
+        {
+            // Basically the same process as above 
+            List<string> knownProperties = GetEntityPropertyNames(entityType);
+            
+            var entityProperties = entityData.Properties().Select(property => property.Name.ToLower());
+
+            var unknownProperties = entityProperties.Except(knownProperties);
+            unknownProperties.Prepend("id");
+
+            return entityData.Properties().Where(property => unknownProperties.Contains(property.Name.ToLower())).ToList();
         }
     }
 }
