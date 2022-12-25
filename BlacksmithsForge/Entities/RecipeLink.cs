@@ -50,5 +50,10 @@ namespace BlacksmithsForge.Entities
             
             return newEntityData.ToObject<Recipe>();
         }
+
+        public override string ToString()
+        {
+            return EntityData.ToString();
+        }
     }
 }

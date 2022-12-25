@@ -43,5 +43,10 @@ namespace BlacksmithsForge.Entities
             Level = 1;
             MorphEffect = "Transform";
         }
+
+        public override string ToString()
+        {
+            return EntityData.ToString();
+        }
     }
 }

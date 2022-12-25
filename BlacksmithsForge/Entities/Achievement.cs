@@ -41,5 +41,10 @@ namespace BlacksmithsForge.Entities
         {
             EntityData = entityData;
         }
+
+        public override string ToString()
+        {
+            return EntityData.ToString();
+        }
     }
 }
