@@ -108,5 +108,28 @@ namespace BlacksmithsForge.Editors
         {
             e.Row.Cells[1].Value = "base";
         }
+
+        private void challengesDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            UpdateRecipeLinks();
+        }
+
+        private void okayButton_Click(object sender, EventArgs e)
+        {
+            UpdateRecipeLinks();
+            DialogResult = DialogResult.OK;
+            Close();
+        }
+
+        private void expulsionButton_Click(object sender, EventArgs e)
+        {
+            RecipeLink.Expulsion = new();
+            ExpulsionInput expulsionInput = new(RecipeLink.Expulsion);
+            expulsionInput.ShowDialog();
+            if (RecipeLink.Expulsion.Filter == null)
+            {
+                RecipeLink.Expulsion = null;
+            }
+        }
     }
 }
