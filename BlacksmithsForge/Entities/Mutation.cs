@@ -40,7 +40,7 @@ namespace BlacksmithsForge.Entities
 
         public override string ToString()
         {
-            return Utils.ToJson(EntityData);
+            return JsonConvert.SerializeObject(EntityData, Utils.jsonSerializerSettings);
         }
     }
 }
