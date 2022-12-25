@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,9 @@ namespace BlacksmithsForge.Entities
 {
     public interface IEntity
     {
+        [JsonIgnore]
         Guid Guid { get; set; }
+        [JsonIgnore]
         JObject EntityData { get; set; }
     }
 
@@ -21,11 +24,13 @@ namespace BlacksmithsForge.Entities
 
     public interface IRootEntity : IEntityWithId
     {
+        [JsonIgnore]
         string? Filename { get; set; }
     }
 
     public interface ILink
     {
+        [JsonIgnore]
         JObject EntityData { get; set; }
         string ID { get; set; }
     }
