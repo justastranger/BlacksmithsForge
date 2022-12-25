@@ -218,8 +218,11 @@ namespace BlacksmithsForge
             // Whip up a TreeViewEditor with the selected EntityData
             JsonTreeViewEditor jsonEditor = new(selectedEntity);
             // and if the Accept button is pressed
-            jsonEditor.ShowDialog();
-            UpdateEntities();
+            if (jsonEditor.ShowDialog() == DialogResult.OK)
+            {
+                selectedEntity.EntityData = jsonEditor.currentEntityData;
+                UpdateEntities();
+            }
         }
     }
 }
