@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,10 +24,15 @@ namespace BlacksmithsForge.Entities
         }
         public Guid Guid { get; set; } = Guid.NewGuid();
 
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public int? Chance { get { return EntityData["chance"]?.ToObject<int?>(); } set => EntityData["chance"] = value; }
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public bool? Additional { get { return EntityData["additional"]?.ToObject<bool?>(); } set => EntityData["additional"] = value; }
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string? ToPath { get { return EntityData["topath"]?.ToString(); } set => EntityData["topath"] = value; }
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Dictionary<string, string>? Challenges { get { return EntityData["challenges"]?.ToObject<Dictionary<string, string>?>(); } set => EntityData["challenges"] = value != null ? JObject.FromObject(value) : null; }
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Expulsion? Expulsion { get { return EntityData["expulsion"]?.ToObject<Expulsion?>(); } set => EntityData["expulsion"] = value != null ? JObject.FromObject(value) : null; }
         
 

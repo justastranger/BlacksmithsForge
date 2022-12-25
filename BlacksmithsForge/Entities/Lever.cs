@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,12 +23,18 @@ namespace BlacksmithsForge.Entities
         public Guid Guid { get; set; } = Guid.NewGuid();
         public string? Filename { get; set; }
 
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string? RecordKey { get { return EntityData["recordkey"]?.ToString(); } set => EntityData["recordkey"] = value; }
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Dictionary<string, int>? Weights { get { return EntityData["weights"]?.ToObject<Dictionary<string, int>?>(); } set => EntityData["weights"] = value != null ? JObject.FromObject(value) : null; }
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public int? RequiredScore { get { return EntityData["requiredscore"]?.ToObject<int?>(); } set => EntityData["requiredscore"] = value; }
         // keys and values must both reference Elements
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Dictionary<string, string>? Redirects { get { return EntityData["redirects"]?.ToObject<Dictionary<string, string>?>(); } set => EntityData["redirects"] = value != null ? JObject.FromObject(value) : null; }
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public bool? OnGameEnd { get { return EntityData["ongameend"]?.ToObject<bool?>(); } set => EntityData["ongameend"] = value; }
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string? Comments { get { return EntityData["comments"]?.ToString(); } set => EntityData["comments"] = value; }
 
 

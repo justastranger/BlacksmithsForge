@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,9 +21,14 @@ namespace BlacksmithsForge.Entities
             set => EntityData["id"] = value;
         }
         public Guid Guid { get; set; } = Guid.NewGuid();
+
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string? Filter { get { return EntityData["filter"]?.ToString(); } set => EntityData["filter"] = value; }
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string? Mutate { get { return EntityData["mutate"]?.ToString(); } set => EntityData["mutate"] = value; }
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public int? Level { get { return EntityData["level"]?.ToObject<int?>(); } set => EntityData["level"] = value; }
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public bool? Additive { get { return EntityData["additive"]?.ToObject<bool?>(); } set => EntityData["additive"] = value; }
 
 

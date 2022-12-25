@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,12 +24,19 @@ namespace BlacksmithsForge.Entities
         public string? Filename { get; set; }
 
 
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string? Label { get { return EntityData["label"]?.ToString(); } set => EntityData["label"] = value; }
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string? Description { get { return EntityData["description"]?.ToString(); } set => EntityData["description"] = value; }
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string? Comments { get { return EntityData["comments"]?.ToString(); } set => EntityData["comments"] = value; }
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string? Image { get { return EntityData["image"]?.ToString(); } set => EntityData["image"] = value; }
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string? Flavour { get { return EntityData["flavour"]?.ToString() ?? "melancholy"; } set => EntityData["flavour"] = value; }
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string? Anim { get { return EntityData["anim"]?.ToString(); } set => EntityData["anim"] = value; }
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public List<string>? Achievements { get { return (List<string>?)(EntityData["achievements"]?.Values<string>()); } set => EntityData["achievements"] = value != null ? JArray.FromObject(value) : null; }
 
         public Ending(JObject entityData)

@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,8 +23,11 @@ namespace BlacksmithsForge.Entities
         }
         public Guid Guid { get; set; } = Guid.NewGuid();
 
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public int? Chance { get { return EntityData["chance"]?.ToObject<int?>(); } set => EntityData["chance"] = value; }
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public int? Level { get { return EntityData["level"]?.ToObject<int?>(); } set => EntityData["level"] = value; }
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string? MorphEffect { get { return EntityData["morpheffect"]?.ToString(); } set => EntityData["morpheffect"] = value; }
 
 
