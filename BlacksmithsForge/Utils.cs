@@ -8,6 +8,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ using static System.Formats.Asn1.AsnWriter;
 
 namespace BlacksmithsForge
 {
-    public class Utils
+    public static class Utils
     {
         private class PrepareJSONContractResolver : DefaultContractResolver
         {
@@ -115,16 +116,23 @@ namespace BlacksmithsForge
 
         public static string ToJson(object entity)
         {
+            // purge null properties from JObjects passed to this function
+            // there's no NullValueHandling property that covers JObjects so this needs to be done here
             if (entity is JObject jObject)
             {
-                jObject.SelectTokens("$..*")
+                jObject.PurgeNullValues();
+            } 
+            return JsonConvert.SerializeObject(entity, jsonSerializerSettings);
+        }
+
+        public static void PurgeNullValues(this JToken jObject)
+        {
+            jObject.SelectTokens("$..*")
                     .OfType<JValue>()
                     .Where(value => value.Type == JTokenType.Null || value.Value == null)
                     .Select(nullValue => nullValue.Parent)
                     .ToList()
                     .ForEach(property => property?.Remove());
-            }
-            return JsonConvert.SerializeObject(entity, jsonSerializerSettings);
         }
     }
 }
