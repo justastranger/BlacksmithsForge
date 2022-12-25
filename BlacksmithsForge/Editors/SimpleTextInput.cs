@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ScintillaNET;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,14 +13,15 @@ namespace BlacksmithsForge.Editors
 {
     public partial class SimpleTextInput : Form
     {
-        public string textValue;
+        public string? textValue;
 
         public SimpleTextInput(string input)
         {
             InitializeComponent();
 
             textValue = input;
-            textBox.Text = input;
+            scintilla1.Text = input;
+            InitializeScintilla();
         }
 
         public SimpleTextInput() : this("")
@@ -29,8 +31,23 @@ namespace BlacksmithsForge.Editors
 
         private void textBox_TextChanged(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(textBox.Text)) textValue = null;
-            else textValue = textBox.Text;
+            if (string.IsNullOrEmpty(scintilla1.Text)) textValue = null;
+            else textValue = scintilla1.Text;
+        }
+
+        private void InitializeScintilla()
+        {
+            scintilla1.Styles[Style.Json.Default].ForeColor = Color.Silver;
+            scintilla1.Styles[Style.Json.BlockComment].ForeColor = Color.Green; // Green
+            scintilla1.Styles[Style.Json.LineComment].ForeColor = Color.Green; // Green
+            scintilla1.Styles[Style.Json.Number].ForeColor = Color.Olive;
+            scintilla1.Styles[Style.Json.PropertyName].ForeColor = Color.Blue;
+            scintilla1.Styles[Style.Json.String].ForeColor = Color.FromArgb(163, 21, 21); // Red
+            scintilla1.Styles[Style.Json.StringEol].BackColor = Color.Pink;
+            scintilla1.Styles[Style.Json.Operator].ForeColor = Color.Purple;
+            scintilla1.Styles[Style.Json.Keyword].ForeColor = Color.OrangeRed;
+
+            scintilla1.SetKeywords(0, "true false");
         }
 
         private void okayButton_Click(object sender, EventArgs e)
