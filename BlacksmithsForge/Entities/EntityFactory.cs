@@ -10,27 +10,28 @@ namespace BlacksmithsForge.Entities
     public class EntityFactory
     {
 
-        public static IEntity Parse(JObject entityData, string type, string filename)
+        public static IEntityWithId Parse(JObject entityData, string type, string filename)
         {
             // get the right type name, hopefully not a big performance impact
             // would be easy enough to swap the strings in the switch below back to their plural form
-            type = Utils.PluralToSingular(type);
+            // type = Utils.PluralToSingular(type);
 
             return type switch
             {
                 // the Filename is added only when Entities are parsed this way
                 // 
-                "achievement" => new Achievement(entityData) { Filename = filename },
-                "culture" => new Culture(entityData) { Filename = filename },
-                "deck" => new Deck(entityData) { Filename = filename },
-                "element" => new Element(entityData) { Filename = filename },
-                "ending" => new Ending(entityData) { Filename = filename },
-                "legacy" => new Legacy(entityData) { Filename = filename },
-                "lever" => new Lever(entityData) { Filename = filename },
-                "portal" => new Portal(entityData) { Filename = filename },
-                "recipe" => new Recipe(entityData) { Filename = filename },
-                "setting" => new Setting(entityData) { Filename = filename },
-                "verb" => new Verb(entityData) { Filename = filename },
+                "achievements" => new Achievement(entityData) { Filename = filename },
+                "cultures" => new Culture(entityData) { Filename = filename },
+                "decks" => new Deck(entityData) { Filename = filename },
+                "dicta" => new Dictum(entityData) { Filename = filename },
+                "elements" => new Element(entityData) { Filename = filename },
+                "endings" => new Ending(entityData) { Filename = filename },
+                "legacies" => new Legacy(entityData) { Filename = filename },
+                "levers" => new Lever(entityData) { Filename = filename },
+                "portals" => new Portal(entityData) { Filename = filename },
+                "recipes" => new Recipe(entityData) { Filename = filename },
+                "settings" => new Setting(entityData) { Filename = filename },
+                "verbs" => new Verb(entityData) { Filename = filename },
                 _ => throw new NotImplementedException(),
             };
         }
