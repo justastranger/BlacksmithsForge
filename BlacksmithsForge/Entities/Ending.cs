@@ -38,7 +38,7 @@ namespace BlacksmithsForge.Entities
 
         public override string ToString()
         {
-            return EntityData.ToString();
+            return Utils.ToJson(this);
         }
 
     }
