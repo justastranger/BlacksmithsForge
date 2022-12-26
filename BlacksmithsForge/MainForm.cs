@@ -122,6 +122,7 @@ namespace BlacksmithsForge
                 items.Add(item);
             }
             entitiesListView.Items.AddRange(items.ToArray());
+            entityCountToolStripStatusLabel.Text = "File Entity Count: " + items.Count.ToString();
         }
 
         private void UpdateFilesList()
@@ -154,36 +155,33 @@ namespace BlacksmithsForge
 
             string filename = filesListView.SelectedItems[0].Text;
 
-            fileTypeLabel.Text = CurrentMod.FileTypes[filename];
+            SelectedEntityType = CurrentMod.FileTypes[filename];
+            entityTypeToolStripStatusLabel.Text = "File Type: " + SelectedEntityType;
+            filenameToolStripStatusLabel.Text = "Selected Filename: " + filename;
             SelectedEntities = CurrentMod.Content[filename];
 
-            List<ListViewItem> items = new();
-            foreach (KeyValuePair<Guid, IEntityWithId> pair in SelectedEntities)
-            {
-                ListViewItem item = new(pair.Value.ID) { Tag = pair.Key };
-                items.Add(item);
+            UpdateEntities();
             }
-            entitiesListView.Items.AddRange(items.ToArray());
-        }
 
-        // "Disabled" double clicking until I figure out the best thing to do when you do so
+        // TreeViewEditor is currently going to be the preferred editor
         private void entitiesListView_DoubleClick(object sender, EventArgs e)
         {
-            //if (CurrentMod == null) return;
-            //if (SelectedEntities == null) return;
-            //if (entitiesListView.SelectedItems.Count != 1) return;
+            if (CurrentMod == null) return;
+            if (SelectedEntities == null) return;
+            if (entitiesListView.SelectedItems.Count != 1) return;
 
-            //Guid selectedGuid = (Guid)entitiesListView.SelectedItems[0].Tag;
-            //IEntity selectedEntity = SelectedEntities[selectedGuid];
+            Guid selectedGuid = (Guid)entitiesListView.SelectedItems[0].Tag;
+            IEntity selectedEntity = SelectedEntities[selectedGuid];
 
-            //// Serialize EntityData and slap it into the editor
-            //JsonTextEditor jsonEditor = new(selectedEntity.EntityData.ToString());
-            //// and if the Accept button is pressed
-            //if (jsonEditor.ShowDialog() == DialogResult.Yes)
-            //{
-            //    // we deserialize the EntityData and replace the old with the new
-            //    selectedEntity.EntityData = JObject.Parse(jsonEditor.jsonText);
-            //}
+            // Serialize EntityData and slap it into the editor
+            JsonTreeViewEditor jsonEditor = new(selectedEntity);
+            // and if the Accept button is pressed
+            if (jsonEditor.ShowDialog() == DialogResult.OK)
+            {
+                // we deserialize the EntityData and replace the old with the new
+                selectedEntity.EntityData = JObject.Parse(jsonEditor.currentEntityData.ToString());
+                UpdateEntities();
+            }
         }
 
         private void jsonTextEditorButton_Click(object sender, EventArgs e)
