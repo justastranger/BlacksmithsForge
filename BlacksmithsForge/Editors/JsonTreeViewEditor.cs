@@ -366,7 +366,9 @@ namespace BlacksmithsForge.Editors
 
             if (selectedToken is JArray jArray)
             {
-                string propertyName = selectedToken.Path.Split('.').Last().ToLower();
+                // Retrieve the name of the property, shedding the rest of the JSONPath and then trimming any Property Operations
+                // TODO Determine if this is a valid action based on what the property operation is, if present
+                string propertyName = selectedToken.Path.Split('.').Last().Split('$').First().ToLower();
                 // This is somehow less work than a really long if
                 // I'm sorry for exposing you to it
                 switch (propertyName)
@@ -380,8 +382,7 @@ namespace BlacksmithsForge.Editors
                     case "inductions":
                         break;
                     default:
-                        MessageBox.Show(propertyName);
-                        // MessageBox.Show("Selected node does not store RecipeLinks.", "Invalid Property", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        MessageBox.Show("Selected property node does not store RecipeLinks.", "Invalid Property Node", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         return;
                 }
 
@@ -394,6 +395,50 @@ namespace BlacksmithsForge.Editors
 
             }
 
+        }
+
+        private void sphereToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (entityType != typeof(Element)
+                && entityType != typeof(Recipe)
+                && entityType != typeof(Verb))
+            {
+                MessageBox.Show("This type of entity does not support adding Spheres.");
+                return;
+            }
+
+            // get the name of the property
+            // if '$' is present, split and discard it and everything after it
+            // then compare it to the properties that contain RecipeLinks
+            // throw an error if it doesn't
+
+            if (selectedNode == null || selectedNode.Parent == null) return;
+            string? jsonPath = selectedNode.Tag?.ToString() ?? throw new NullReferenceException("Selected Node has null tag.");
+            selectedToken = currentEntityData.SelectToken(jsonPath) ?? throw new NullReferenceException("Null Token retrieved from Node.");
+
+            if (selectedToken is JArray jArray)
+            {
+                string propertyName = selectedToken.Path.Split('.').Last().Split('$').First().ToLower();
+                // This is somehow less work than a really long if
+                // I'm sorry for exposing you to it
+                switch (propertyName)
+                {
+                    case "slots":
+                    case "slot":
+                        break;
+                    default:
+                        MessageBox.Show("Selected property node does not store Spheres.", "Invalid Property Node", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        return;
+                }
+
+                RecipeLinkInput recipeLinkInput = new();
+                if (recipeLinkInput.ShowDialog() == DialogResult.OK)
+                {
+                    jArray.Add(JObject.Parse(recipeLinkInput.RecipeLink.ToString()));
+                    ReloadEntity();
+                }
+
+            }
         }
     }
 }
