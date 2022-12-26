@@ -18,21 +18,17 @@ namespace BlacksmithsForge.Editors
         public SimpleTextInput(string input)
         {
             InitializeComponent();
+            InitializeScintilla();
 
             textValue = input;
             scintilla1.Text = input;
+            scintilla1.SelectAll();
+        }
+
+        public SimpleTextInput()
+        {
+            InitializeComponent();
             InitializeScintilla();
-        }
-
-        public SimpleTextInput() : this("")
-        {
-
-        }
-
-        private void textBox_TextChanged(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(scintilla1.Text)) textValue = null;
-            else textValue = scintilla1.Text;
         }
 
         private void InitializeScintilla()
