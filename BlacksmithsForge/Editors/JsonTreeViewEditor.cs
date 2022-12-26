@@ -440,5 +440,37 @@ namespace BlacksmithsForge.Editors
 
             }
         }
+
+        private void dictionaryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (selectedNode == null) return;
+
+            string? jsonPath = selectedNode.Tag?.ToString() ?? throw new NullReferenceException("Selected Node has null tag.");
+            selectedToken = currentEntityData.SelectToken(jsonPath) ?? throw new NullReferenceException("Null Token retrieved from Node.");
+
+            if (selectedToken is not JObject jObject) return;
+
+            SimpleTextInput STI = new("Put the name of your Dictionary here.");
+            if (STI.ShowDialog() == DialogResult.OK && !string.IsNullOrEmpty(STI.textValue))
+            {
+                string dictName = STI.textValue;
+
+                DictionaryEditor dictionaryEditor = new(new());
+                if (dictionaryEditor.ShowDialog() == DialogResult.OK && dictionaryEditor.Dictionary.Count > 0)
+                {
+                    if (jObject.ContainsKey(dictName))
+                    {
+                        jObject[dictName] = JObject.FromObject(dictionaryEditor.Dictionary);
+                    }
+                    else
+                    {
+                        JProperty jProperty = new(dictName, JObject.FromObject(dictionaryEditor.Dictionary));
+                        jObject.Add(jProperty);
+                    }
+                    ReloadEntity();
+                }
+            }
+
+        }
     }
 }
