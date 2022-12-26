@@ -17,7 +17,7 @@ namespace BlacksmithsForge.Entities
         {
             get
             {
-                if (EntityData["id"] == null) throw new NullReferenceException("RecipeLink ID must be specified.");
+                if (EntityData["id"] == null) return "";
                 else return EntityData["id"].ToString();
             }
             set => EntityData["id"] = value;
