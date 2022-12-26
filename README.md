@@ -10,12 +10,12 @@ Designed to have a smaller, less bloated scope than Carcass Spark with support f
 	- [x] A ListView on one side showing each file
 		- [x] (Double) Click on one of the filenames to select it
 			- [x] Shows its contents in the ListView next to it
-			- [ ] Some info displayed above entities ListView
+			- [x] Some info displayed about the entities in the ListView
 				- [x] Entity type for file (can't change)
-				- [ ] Number of entities
-				- [ ] Selected filename (just so you can be extra sure)
+				- [x] Number of entities
+				- [x] Selected filename (just so you can be extra sure)
 			- [ ] Buttons above entities list view
-				- [ ] New Entity
+				- [x] New Entity
 				- [ ] Delete Entity
 				- [x] Edit Entity
 					- [x] Using Text
@@ -32,13 +32,13 @@ Designed to have a smaller, less bloated scope than Carcass Spark with support f
 		- [x] Delete properties
 		- [ ] Input forms for adding more advanced values
 			- [x] RecipeLink
-			- [ ] Sphere (aka slot)
+			- [x] Sphere (aka slot)
 			- [ ] Mutation
 			- [x] Expulsion
 			- [ ] XTrigger
-		- [ ] Dictionary editor
-			- [ ] Would be more intuitive for editing keys *and* values
-				- [ ] As it stands, you can double-click a value to edit it but you have to right click the key to rename it as a property
+		- [x] Dictionary editor
+			- Would be more intuitive for editing keys *and* values
+				- As it stands, you can double-click a value to edit it but you have to right click the key to rename it as a property
 		- [ ] Tabbed Array editor
 			- [ ] Each entry gets its own Scintilla text editor
 			- [ ] Only other alternative would be to create a control for editing each Entity Type
