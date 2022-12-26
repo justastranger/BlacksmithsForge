@@ -10,6 +10,8 @@ namespace BlacksmithsForge
     {
         private Mod? CurrentMod;
         private Dictionary<Guid, IEntityWithId>? SelectedEntities;
+        private string? SelectedEntityType;
+        private string? SelectedFilename;
 
         public MainForm()
         {
@@ -153,12 +155,12 @@ namespace BlacksmithsForge
             
             entitiesListView.Items.Clear();
 
-            string filename = filesListView.SelectedItems[0].Text;
+            string filename = SelectedFilename = filesListView.SelectedItems[0].Text;
 
-            SelectedEntityType = CurrentMod.FileTypes[filename];
+            SelectedEntityType = CurrentMod.FileTypes[SelectedFilename];
             entityTypeToolStripStatusLabel.Text = "File Type: " + SelectedEntityType;
-            filenameToolStripStatusLabel.Text = "Selected Filename: " + filename;
-            SelectedEntities = CurrentMod.Content[filename];
+            filenameToolStripStatusLabel.Text = "Selected Filename: " + SelectedFilename;
+            SelectedEntities = CurrentMod.Content[SelectedFilename];
 
             UpdateEntities();
             }
