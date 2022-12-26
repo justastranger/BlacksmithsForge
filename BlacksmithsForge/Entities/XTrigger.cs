@@ -38,6 +38,11 @@ namespace BlacksmithsForge.Entities
             EntityData = entityData;
         }
 
+        public XTrigger() : this(new JObject())
+        {
+
+        }
+
         // anticipating quickspec support
         public XTrigger(string id)
         {

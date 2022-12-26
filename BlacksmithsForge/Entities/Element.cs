@@ -79,6 +79,11 @@ namespace BlacksmithsForge.Entities
             EntityData = entityData;
         }
 
+        public Element() : this(new())
+        {
+
+        }
+
         public override string ToString()
         {
             return Utils.ToJson(EntityData);

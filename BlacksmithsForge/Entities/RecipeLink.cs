@@ -41,10 +41,9 @@ namespace BlacksmithsForge.Entities
             EntityData = entityData;
         }
 
-        public RecipeLink(string id)
+        public RecipeLink() : this(new())
         {
-            EntityData = new JObject();
-            ID = id;
+
         }
 
         public Recipe? TryToRecipe()

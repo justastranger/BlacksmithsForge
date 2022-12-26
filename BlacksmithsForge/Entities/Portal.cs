@@ -37,10 +37,14 @@ namespace BlacksmithsForge.Entities
         public List<RecipeLink>? Consequences { get { return (List<RecipeLink>?)(EntityData["consequences"]?.Values<RecipeLink>()); } set => EntityData["consequences"] = value != null ? JArray.FromObject(value) : null; }
 
 
-
         public Portal(JObject entityData)
         {
             EntityData = entityData;
+        }
+
+        public Portal() : this(new())
+        {
+
         }
 
         public override string ToString()
