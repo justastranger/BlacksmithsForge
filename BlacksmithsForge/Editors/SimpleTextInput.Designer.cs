@@ -46,7 +46,8 @@
             // 
             this.scintilla1.AutoCMaxHeight = 9;
             this.scintilla1.BiDirectionality = ScintillaNET.BiDirectionalDisplayType.Disabled;
-            this.scintilla1.CaretLineBackColor = System.Drawing.Color.Black;
+            this.scintilla1.CaretLineBackColor = System.Drawing.Color.White;
+            this.scintilla1.CaretLineVisible = true;
             this.scintilla1.Lexer = ScintillaNET.Lexer.Json;
             this.scintilla1.LexerName = "json";
             this.scintilla1.Location = new System.Drawing.Point(12, 12);
@@ -57,7 +58,7 @@
             this.scintilla1.TabIndex = 2;
             this.scintilla1.UseRightToLeftReadingLayout = false;
             this.scintilla1.WrapMode = ScintillaNET.WrapMode.None;
-            this.scintilla1.Click += new System.EventHandler(this.textBox_TextChanged);
+            this.scintilla1.TextChanged += new System.EventHandler(this.scintilla1_TextChanged);
             // 
             // SimpleTextInput
             // 

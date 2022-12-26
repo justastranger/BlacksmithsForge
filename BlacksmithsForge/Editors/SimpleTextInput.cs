@@ -55,5 +55,11 @@ namespace BlacksmithsForge.Editors
             DialogResult = DialogResult.OK;
             Close();
         }
+
+        private void scintilla1_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(scintilla1.Text)) textValue = null;
+            else textValue = scintilla1.Text;
+        }
     }
 }
