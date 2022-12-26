@@ -59,7 +59,7 @@ namespace BlacksmithsForge.Entities
             EntityData = entityData;
         }
 
-        public Diictum() : this(new())
+        public Dictum() : this(new())
         {
 
         }
