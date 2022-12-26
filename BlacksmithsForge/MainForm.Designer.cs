@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("Elements", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("Elements", System.Windows.Forms.HorizontalAlignment.Left);
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.fileToolStripDropDownButton = new System.Windows.Forms.ToolStripDropDownButton();
             this.openFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -40,10 +40,15 @@
             this.filenameColumnHeader = new System.Windows.Forms.ColumnHeader();
             this.entitiesListView = new System.Windows.Forms.ListView();
             this.idColumnHeader = new System.Windows.Forms.ColumnHeader();
-            this.fileTypeLabel = new System.Windows.Forms.Label();
             this.jsonTextEditorButton = new System.Windows.Forms.Button();
             this.jsonTreeViewEditorButton = new System.Windows.Forms.Button();
+            this.statusStrip = new System.Windows.Forms.StatusStrip();
+            this.entityTypeToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.entityCountToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.filenameToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.addEntityButton = new System.Windows.Forms.Button();
             this.toolStrip.SuspendLayout();
+            this.statusStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip
@@ -100,15 +105,15 @@
             this.filesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.filenameColumnHeader});
             this.filesListView.FullRowSelect = true;
-            listViewGroup1.Header = "Elements";
-            listViewGroup1.Name = "elementsListViewGroup";
+            listViewGroup2.Header = "Elements";
+            listViewGroup2.Name = "elementsListViewGroup";
             this.filesListView.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup1});
+            listViewGroup2});
             this.filesListView.Location = new System.Drawing.Point(12, 28);
             this.filesListView.MultiSelect = false;
             this.filesListView.Name = "filesListView";
             this.filesListView.ShowGroups = false;
-            this.filesListView.Size = new System.Drawing.Size(366, 410);
+            this.filesListView.Size = new System.Drawing.Size(366, 397);
             this.filesListView.TabIndex = 1;
             this.filesListView.UseCompatibleStateImageBehavior = false;
             this.filesListView.View = System.Windows.Forms.View.Details;
@@ -130,7 +135,7 @@
             this.entitiesListView.MultiSelect = false;
             this.entitiesListView.Name = "entitiesListView";
             this.entitiesListView.ShowGroups = false;
-            this.entitiesListView.Size = new System.Drawing.Size(404, 331);
+            this.entitiesListView.Size = new System.Drawing.Size(404, 318);
             this.entitiesListView.TabIndex = 2;
             this.entitiesListView.UseCompatibleStateImageBehavior = false;
             this.entitiesListView.View = System.Windows.Forms.View.Details;
@@ -140,15 +145,6 @@
             // 
             this.idColumnHeader.Text = "Entity ID";
             this.idColumnHeader.Width = 400;
-            // 
-            // fileTypeLabel
-            // 
-            this.fileTypeLabel.AutoSize = true;
-            this.fileTypeLabel.Location = new System.Drawing.Point(384, 28);
-            this.fileTypeLabel.Name = "fileTypeLabel";
-            this.fileTypeLabel.Size = new System.Drawing.Size(69, 15);
-            this.fileTypeLabel.TabIndex = 3;
-            this.fileTypeLabel.Text = "Not Loaded";
             // 
             // jsonTextEditorButton
             // 
@@ -170,14 +166,54 @@
             this.jsonTreeViewEditorButton.UseVisualStyleBackColor = true;
             this.jsonTreeViewEditorButton.Click += new System.EventHandler(this.jsonTreeViewEditorButton_Click);
             // 
+            // statusStrip
+            // 
+            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.entityTypeToolStripStatusLabel,
+            this.entityCountToolStripStatusLabel,
+            this.filenameToolStripStatusLabel});
+            this.statusStrip.Location = new System.Drawing.Point(0, 428);
+            this.statusStrip.Name = "statusStrip";
+            this.statusStrip.Size = new System.Drawing.Size(800, 22);
+            this.statusStrip.TabIndex = 8;
+            // 
+            // entityTypeToolStripStatusLabel
+            // 
+            this.entityTypeToolStripStatusLabel.Name = "entityTypeToolStripStatusLabel";
+            this.entityTypeToolStripStatusLabel.Size = new System.Drawing.Size(95, 17);
+            this.entityTypeToolStripStatusLabel.Text = "File Not Selected";
+            // 
+            // entityCountToolStripStatusLabel
+            // 
+            this.entityCountToolStripStatusLabel.Name = "entityCountToolStripStatusLabel";
+            this.entityCountToolStripStatusLabel.Size = new System.Drawing.Size(79, 17);
+            this.entityCountToolStripStatusLabel.Text = "Entity Count: ";
+            // 
+            // filenameToolStripStatusLabel
+            // 
+            this.filenameToolStripStatusLabel.Name = "filenameToolStripStatusLabel";
+            this.filenameToolStripStatusLabel.Size = new System.Drawing.Size(108, 17);
+            this.filenameToolStripStatusLabel.Text = "Selected Filename: ";
+            // 
+            // addEntityButton
+            // 
+            this.addEntityButton.Location = new System.Drawing.Point(490, 46);
+            this.addEntityButton.Name = "addEntityButton";
+            this.addEntityButton.Size = new System.Drawing.Size(100, 23);
+            this.addEntityButton.TabIndex = 9;
+            this.addEntityButton.Text = "New Entity";
+            this.addEntityButton.UseVisualStyleBackColor = true;
+            this.addEntityButton.Click += new System.EventHandler(this.addEntityButton_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.addEntityButton);
+            this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.jsonTreeViewEditorButton);
             this.Controls.Add(this.jsonTextEditorButton);
-            this.Controls.Add(this.fileTypeLabel);
             this.Controls.Add(this.entitiesListView);
             this.Controls.Add(this.filesListView);
             this.Controls.Add(this.toolStrip);
@@ -188,6 +224,8 @@
             this.Text = "Blacksmith\'s Forge";
             this.toolStrip.ResumeLayout(false);
             this.toolStrip.PerformLayout();
+            this.statusStrip.ResumeLayout(false);
+            this.statusStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -205,8 +243,12 @@
         private ColumnHeader filenameColumnHeader;
         private ListView entitiesListView;
         private ColumnHeader idColumnHeader;
-        private Label fileTypeLabel;
         private Button jsonTextEditorButton;
         private Button jsonTreeViewEditorButton;
+        private StatusStrip statusStrip;
+        private ToolStripStatusLabel entityTypeToolStripStatusLabel;
+        private ToolStripStatusLabel entityCountToolStripStatusLabel;
+        private ToolStripStatusLabel filenameToolStripStatusLabel;
+        private Button addEntityButton;
     }
 }

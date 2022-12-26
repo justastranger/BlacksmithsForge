@@ -3,6 +3,7 @@ using BlacksmithsForge.Entities;
 using BlacksmithsForge.Mods;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Reflection;
 
 namespace BlacksmithsForge
 {
@@ -163,7 +164,7 @@ namespace BlacksmithsForge
             SelectedEntities = CurrentMod.Content[SelectedFilename];
 
             UpdateEntities();
-            }
+        }
 
         // TreeViewEditor is currently going to be the preferred editor
         private void entitiesListView_DoubleClick(object sender, EventArgs e)
@@ -222,6 +223,31 @@ namespace BlacksmithsForge
             {
                 selectedEntity.EntityData = jsonEditor.currentEntityData;
                 UpdateEntities();
+            }
+        }
+
+        private void addEntityButton_Click(object sender, EventArgs e)
+        {
+            if (CurrentMod == null) return;
+            if (SelectedEntities == null) return;
+            if (SelectedEntityType == null) return;
+
+            Type entityType = Utils.GetTypeFromRootName(SelectedEntityType);
+
+            ConstructorInfo? entityTypeConstructor = entityType.GetConstructor(Type.EmptyTypes);
+            if (entityTypeConstructor != null)
+            {
+                dynamic newEntity = entityTypeConstructor.Invoke(null);
+                SimpleTextInput STI = new("Enter your new Entity's ID here.");
+                if (STI.ShowDialog() == DialogResult.OK) newEntity.ID = STI.textValue;
+                else return;
+                JsonTreeViewEditor jtve = new(newEntity);
+                if (jtve.ShowDialog() == DialogResult.OK)
+                {
+                    newEntity.EntityData = jtve.currentEntityData;
+                    SelectedEntities.Add(newEntity.Guid, newEntity);
+                    UpdateEntities();
+                }
             }
         }
     }
