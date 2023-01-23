@@ -472,5 +472,47 @@ namespace BlacksmithsForge.Editors
             }
 
         }
+
+        private void xTriggerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (entityType != typeof(Element)
+                && entityType != typeof(Verb))
+            {
+                MessageBox.Show("This type of entity does not support adding XTriggers.");
+                return;
+            }
+
+            if (selectedNode == null || selectedNode.Parent == null) return;
+            string? jsonPath = selectedNode.Tag?.ToString() ?? throw new NullReferenceException("Selected Node has null tag.");
+            selectedToken = currentEntityData.SelectToken(jsonPath) ?? throw new NullReferenceException("Null Token retrieved from Node.");
+
+            SimpleTextInput STI = new("Put the ID of the element to react to here.");
+            if (STI.ShowDialog() == DialogResult.OK && !string.IsNullOrEmpty(STI.textValue))
+            {
+                string reagentValue = STI.textValue;
+
+                if (selectedToken is JObject jObject)
+                {
+
+                    // get the name of the property
+                    // if '$' is present, split and discard it and everything after it
+                    // then check if it's "xtrigger"
+                    // throw an error if it isn't't
+                    if (selectedToken.Path.Split('.').Last().Split('$').First().ToLower() != "xtrigger")
+                    {
+                        MessageBox.Show("Selected property node does not store XTriggers.", "Invalid Property Node", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        return;
+                    }
+
+                    XTriggerInput xTriggerLinkInput = new();
+                    if (xTriggerLinkInput.ShowDialog() == DialogResult.OK)
+                    {
+                        jObject.Add(reagentValue, JObject.Parse(xTriggerLinkInput.xTrigger.ToString()));
+                        ReloadEntity();
+                    }
+
+                }
+            }
+        }
     }
 }

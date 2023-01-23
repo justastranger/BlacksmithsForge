@@ -35,7 +35,7 @@ Designed to have a smaller, less bloated scope than Carcass Spark with support f
 			- [x] Sphere (aka slot)
 			- [ ] Mutation
 			- [x] Expulsion
-			- [ ] XTrigger
+			- [x] XTrigger
 		- [x] Dictionary editor
 			- Would be more intuitive for editing keys *and* values
 				- As it stands, you can double-click a value to edit it but you have to right click the key to rename it as a property
@@ -59,7 +59,7 @@ Designed to have a smaller, less bloated scope than Carcass Spark with support f
 							- [ ] `"property$plus": 1`
 							- [ ] `"property$minus": 2`
 							- [ ] `"property$clear: <anything>`
-						- [ ] Operations for Strins
+						- [ ] Operations for Strings
 							- [ ] `"property$prefix": "example"`
 							- [ ] `"property$postfix": "example"`
 							- [ ] `"property$replace": [{"example1": "example2"}]`

@@ -39,8 +39,9 @@
             this.addEntityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.recipeLinkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sphereToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.okayButton = new System.Windows.Forms.Button();
             this.dictionaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.okayButton = new System.Windows.Forms.Button();
+            this.xTriggerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.treeViewContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -111,6 +112,7 @@
             this.addEntityToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.recipeLinkToolStripMenuItem,
             this.sphereToolStripMenuItem,
+            this.xTriggerToolStripMenuItem,
             this.dictionaryToolStripMenuItem});
             this.addEntityToolStripMenuItem.Name = "addEntityToolStripMenuItem";
             this.addEntityToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
@@ -130,6 +132,13 @@
             this.sphereToolStripMenuItem.Text = "Sphere";
             this.sphereToolStripMenuItem.Click += new System.EventHandler(this.sphereToolStripMenuItem_Click);
             // 
+            // dictionaryToolStripMenuItem
+            // 
+            this.dictionaryToolStripMenuItem.Name = "dictionaryToolStripMenuItem";
+            this.dictionaryToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.dictionaryToolStripMenuItem.Text = "Dictionary";
+            this.dictionaryToolStripMenuItem.Click += new System.EventHandler(this.dictionaryToolStripMenuItem_Click);
+            // 
             // okayButton
             // 
             this.okayButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
@@ -142,12 +151,12 @@
             this.okayButton.UseVisualStyleBackColor = true;
             this.okayButton.Click += new System.EventHandler(this.okayButton_Click);
             // 
-            // dictionaryToolStripMenuItem
+            // xTriggerToolStripMenuItem
             // 
-            this.dictionaryToolStripMenuItem.Name = "dictionaryToolStripMenuItem";
-            this.dictionaryToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.dictionaryToolStripMenuItem.Text = "Dictionary";
-            this.dictionaryToolStripMenuItem.Click += new System.EventHandler(this.dictionaryToolStripMenuItem_Click);
+            this.xTriggerToolStripMenuItem.Name = "xTriggerToolStripMenuItem";
+            this.xTriggerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.xTriggerToolStripMenuItem.Text = "XTrigger";
+            this.xTriggerToolStripMenuItem.Click += new System.EventHandler(this.xTriggerToolStripMenuItem_Click);
             // 
             // JsonTreeViewEditor
             // 
@@ -181,5 +190,6 @@
         private ToolStripMenuItem recipeLinkToolStripMenuItem;
         private ToolStripMenuItem sphereToolStripMenuItem;
         private ToolStripMenuItem dictionaryToolStripMenuItem;
+        private ToolStripMenuItem xTriggerToolStripMenuItem;
     }
 }
