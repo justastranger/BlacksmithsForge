@@ -47,6 +47,7 @@
             this.entityCountToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.filenameToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.addEntityButton = new System.Windows.Forms.Button();
+            this.deleteEntityButton = new System.Windows.Forms.Button();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -205,11 +206,22 @@
             this.addEntityButton.UseVisualStyleBackColor = true;
             this.addEntityButton.Click += new System.EventHandler(this.addEntityButton_Click);
             // 
+            // deleteEntityButton
+            // 
+            this.deleteEntityButton.Location = new System.Drawing.Point(490, 78);
+            this.deleteEntityButton.Name = "deleteEntityButton";
+            this.deleteEntityButton.Size = new System.Drawing.Size(100, 23);
+            this.deleteEntityButton.TabIndex = 10;
+            this.deleteEntityButton.Text = "Delete Entity";
+            this.deleteEntityButton.UseVisualStyleBackColor = true;
+            this.deleteEntityButton.Click += new System.EventHandler(this.deleteEntityButton_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.deleteEntityButton);
             this.Controls.Add(this.addEntityButton);
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.jsonTreeViewEditorButton);
@@ -250,5 +262,6 @@
         private ToolStripStatusLabel entityCountToolStripStatusLabel;
         private ToolStripStatusLabel filenameToolStripStatusLabel;
         private Button addEntityButton;
+        private Button deleteEntityButton;
     }
 }

@@ -250,5 +250,20 @@ namespace BlacksmithsForge
                 }
             }
         }
+
+        private void deleteEntityButton_Click(object sender, EventArgs e)
+        {
+            if (CurrentMod == null) return;
+            if (SelectedEntities == null) return;
+            if (entitiesListView.SelectedItems.Count != 1) return;
+            if (MessageBox.Show("The selected Entity can't be recovered if you save your changes after deleting it.","Are you sure?", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) != DialogResult.Yes) return;
+
+            Guid selectedGuid = (Guid)entitiesListView.SelectedItems[0].Tag;
+            // IEntityWithId selectedEntity = SelectedEntities[selectedGuid];
+
+            SelectedEntities.Remove(selectedGuid);
+
+            UpdateEntities();
+        }
     }
 }
